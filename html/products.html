@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MWF - Products & Inventory</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/productlist.css">
+</head>
+
+<body>
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <h2>MWF</h2>
+        <a href="dashboard.html">Dashboard</a>
+        <a href="products.html" class="active">Products</a>
+        <a href="sales.html">Sales</a>
+        <a href="suppliers.html">Suppliers</a>
+        <a href="reports.html">Reports</a>
+    </div>
+
+    <!-- Navbar -->
+    <div class="navbar-custom d-flex justify-content-between align-items-center">
+        <span>Mayondo Wood & Furniture Ltd</span>
+        <span class="user-role">Manager</span>
+    </div>
+
+    <!-- Content -->
+    <div class="content">
+        <h2>Products & Inventory</h2>
+
+        <!-- Add Product Form -->
+        <button class="btn btn-primary mb-3" data-bs-toggle="collapse" data-bs-target="#addProductForm">
+            + Add New Product
+        </button>
+
+        <div id="addProductForm" class="collapse">
+            <div class="card card-custom">
+                <div class="card-body">
+                    <form>
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <label class="form-label">Product Name</label>
+                                <input type="text" class="form-control" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">Product Type</label>
+                                <select class="form-select">
+                                    <option value="">-- Select Type --</option>
+                                    <option>Wood</option>
+                                    <option>Furniture</option>
+                                </select>
+                            </div>
+                            <div class="col-md-4">
+                                <label class="form-label">Supplier</label>
+                                <input type="text" class="form-control">
+                            </div>
+                            <div class="col-md-4">
+                                <label class="form-label">Cost Price</label>
+                                <input type="number" class="form-control">
+                            </div>
+                            <div class="col-md-4">
+                                <label class="form-label">Selling Price</label>
+                                <input type="number" class="form-control">
+                            </div>
+                            <div class="col-md-4">
+                                <label class="form-label">Quantity</label>
+                                <input type="number" class="form-control" min="0">
+                            </div>
+                            <div class="col-md-4">
+                                <label class="form-label">Quality</label>
+                                <input type="text" class="form-control" placeholder="e.g. Grade A">
+                            </div>
+                            <div class="col-md-4">
+                                <label class="form-label">Color (optional)</label>
+                                <input type="text" class="form-control">
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">Measurements (optional)</label>
+                                <input type="text" class="form-control" placeholder="e.g. 6ft x 4ft">
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">Date</label>
+                                <input type="date" class="form-control">
+                            </div>
+                        </div>
+                        <button class="btn btn-success mt-3">Save Product</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- Inventory Table -->
+        <table class="table table-striped mt-4">
+            <thead class="table-dark">
+                <tr>
+                    <th>#</th>
+                    <th>Product</th>
+                    <th>Type</th>
+                    <th>Supplier</th>
+                    <th>Cost Price</th>
+                    <th>Selling Price</th>
+                    <th>Stock Qty</th>
+                    <th>Quality</th>
+                    <th>Color</th>
+                    <th>Measurements</th>
+                    <th>Last Update</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Example row -->
+                <tr>
+                    <td>1</td>
+                    <td>Timber</td>
+                    <td>Wood</td>
+                    <td>ABC Timber Ltd</td>
+                    <td>150,000</td>
+                    <td>200,000</td>
+                    <td>100</td>
+                    <td>Grade A</td>
+                    <td>-</td>
+                    <td>2x4 ft</td>
+                    <td>2025-09-10</td>
+                    <td>
+                        <button class="btn btn-sm btn-warning">Edit</button>
+                        <button class="btn btn-sm btn-danger">Delete</button>
+                        <button class="btn btn-sm btn-info" data-bs-toggle="modal" data-bs-target="#adjustStockModal">
+                            Adjust Stock
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Stock Adjustment Modal -->
+    <div class="modal fade" id="adjustStockModal" tabindex="-1" aria-labelledby="adjustStockModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form>
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="adjustStockModalLabel">Adjust Stock for Timber</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+                    <div class="modal-body">
+                        <label class="form-label">Adjustment Type</label>
+                        <select class="form-select mb-3">
+                            <option value="increase">Increase</option>
+                            <option value="decrease">Decrease</option>
+                        </select>
+
+                        <label class="form-label">Quantity</label>
+                        <input type="number" class="form-control mb-3" min="1" required>
+
+                        <label class="form-label">Reason (optional)</label>
+                        <input type="text" class="form-control" placeholder="e.g. New delivery, Damaged items">
+                    </div>
+                    <label>Adjusted By</label>
+                    <select class="form-select mb-3" id="adjustedBySelect">
+                        <!-- JS will populate attendants -->
+                    </select>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                        <button type="submit" class="btn btn-primary">Save Adjustment</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+<script>
+    // ------------------------------
+        // GLOBAL DATA
+        // ------------------------------
+        let products = [
+            {
+                id: 1,
+                name: "Timber",
+                type: "Wood",
+                supplier: "ABC Timber Ltd",
+                cost: 150000,
+                price: 200000,
+                quantity: 100,
+                quality: "Grade A",
+                color: "-",
+                measurements: "2x4 ft",
+                lastUpdate: "2025-09-10"
+            }
+        ];
+
+        let sales = [];
+        let stockAdjustments = [];
+
+        // ------------------------------
+        // PRODUCTS / INVENTORY FUNCTIONS
+        // ------------------------------
+        function renderProducts() {
+            const tbody = document.querySelector("#inventoryBody");
+            tbody.innerHTML = "";
+            products.forEach((p, i) => {
+                tbody.innerHTML += `
+      <tr data-id="${p.id}">
+        <td>${i + 1}</td>
+        <td>${p.name}</td>
+        <td>${p.type}</td>
+        <td>${p.supplier}</td>
+        <td>${p.cost}</td>
+        <td>${p.price}</td>
+        <td>${p.quantity}</td>
+        <td>${p.quality}</td>
+        <td>${p.color}</td>
+        <td>${p.measurements}</td>
+        <td>${p.lastUpdate}</td>
+        <td>
+          <button class="btn btn-sm btn-warning edit-btn">Edit</button>
+          <button class="btn btn-sm btn-danger delete-btn">Delete</button>
+          <button class="btn btn-sm btn-info adjust-btn" data-bs-toggle="modal" data-bs-target="#adjustStockModal">Adjust Stock</button>
+        </td>
+      </tr>
+    `;
+            });
+        }
+
+        // Add Product
+        document.querySelector("#addProductForm form").addEventListener("submit", e => {
+            e.preventDefault();
+            const form = e.target;
+            const newProduct = {
+                id: products.length + 1,
+                name: form[0].value,
+                type: form[1].value,
+                supplier: form[2].value,
+                cost: parseInt(form[3].value),
+                price: parseInt(form[4].value),
+                quantity: parseInt(form[5].value),
+                quality: form[6].value || "-",
+                color: form[7].value || "-",
+                measurements: form[8].value || "-",
+                lastUpdate: form[9].value || new Date().toISOString().split("T")[0]
+            };
+            products.push(newProduct);
+            renderProducts();
+            form.reset();
+            bootstrap.Modal.getInstance(document.getElementById("addProductForm")).hide();
+            renderStockReport();
+        });
+
+        // ------------------------------
+        // STOCK ADJUSTMENT FUNCTIONS
+        // ------------------------------
+        let selectedProductId = null;
+
+        document.querySelectorAll("#inventoryBody").forEach(tbody => {
+            tbody.addEventListener("click", e => {
+                if (e.target.classList.contains("adjust-btn")) {
+                    const tr = e.target.closest("tr");
+                    selectedProductId = parseInt(tr.dataset.id);
+                    document.querySelector("#adjustStockModalLabel").textContent = `Adjust Stock for ${tr.children[1].textContent}`;
+                }
+            });
+        });
+
+        // Handle Stock Adjustment Form
+        document.querySelector("#adjustStockModal form").addEventListener("submit", e => {
+            e.preventDefault();
+            const form = e.target;
+            const type = form[0].value;
+            const qty = parseInt(form[1].value);
+            const reason = form[2].value || "N/A";
+            const product = products.find(p => p.id === selectedProductId);
+
+            if (type === "increase") product.quantity += qty;
+            else product.quantity -= qty;
+
+            product.lastUpdate = new Date().toISOString().split("T")[0];
+
+            // Log adjustment
+            stockAdjustments.push({
+                date: product.lastUpdate,
+                product: product.name,
+                type: type.charAt(0).toUpperCase() + type.slice(1),
+                quantity: type === "increase" ? "+" + qty : "-" + qty,
+                reason,
+                adjustedBy: "Manager"
+            });
+
+            renderProducts();
+            renderStockReport();
+            bootstrap.Modal.getInstance(document.getElementById("adjustStockModal")).hide();
+            form.reset();
+        });
+
+        // ------------------------------
+        // SALES FUNCTIONS
+        // ------------------------------
+        document.querySelector("#salesForm").addEventListener("submit", e => {
+            e.preventDefault();
+            const form = e.target;
+            const productId = parseInt(form.product.value);
+            const qty = parseInt(form.quantity.value);
+            const customer = form.customer.value;
+            const paymentType = form.paymentType.value;
+            const transport = form.transport.checked;
+
+            const product = products.find(p => p.id === productId);
+
+            if (product.quantity < qty) {
+                alert("Insufficient stock!");
+                return;
+            }
+
+            product.quantity -= qty;
+            product.lastUpdate = new Date().toISOString().split("T")[0];
+
+            const subtotal = product.price * qty;
+            const total = transport ? subtotal * 1.05 : subtotal;
+
+            sales.push({
+                date: product.lastUpdate,
+                customer,
+                product: product.name,
+                quantity: qty,
+                totalPrice: total,
+                paymentType,
+                agent: "John"
+            });
+
+            renderProducts();
+            renderSalesReport();
+            alert("Sale recorded!");
+            form.reset();
+        });
+
+        // ------------------------------
+        // REPORT FUNCTIONS
+        // ------------------------------
+        function renderSalesReport() {
+            const tbody = document.querySelector("#salesTable tbody");
+            if (!tbody) return;
+            tbody.innerHTML = "";
+            sales.forEach((s, i) => {
+                tbody.innerHTML += `
+      <tr>
+        <td>${i + 1}</td>
+        <td>${s.date}</td>
+        <td>${s.customer}</td>
+        <td>${s.product}</td>
+        <td>${s.quantity}</td>
+        <td>${s.totalPrice}</td>
+        <td>${s.paymentType}</td>
+        <td>${s.agent}</td>
+      </tr>
+    `;
+            });
+        }
+
+        function renderStockReport() {
+            const tbody = document.querySelector("#stockTable tbody");
+            if (!tbody) return;
+            tbody.innerHTML = "";
+            stockAdjustments.forEach((s, i) => {
+                tbody.innerHTML += `
+      <tr>
+        <td>${i + 1}</td>
+        <td>${s.date}</td>
+        <td>${s.product}</td>
+        <td>${s.type}</td>
+        <td>${s.quantity}</td>
+        <td>${s.reason}</td>
+        <td>${s.adjustedBy}</td>
+      </tr>
+    `;
+            });
+        }
+
+        // ------------------------------
+        // INITIAL RENDER
+        // ------------------------------
+        document.addEventListener("DOMContentLoaded", () => {
+            renderProducts();
+            renderSalesReport();
+            renderStockReport();
+        });
+
+    // Example: stock adjustment code
+    function populateAttendantSelects() {
+        const adjustSelect = document.getElementById("adjustedBySelect");
+        if (adjustSelect) {
+            adjustSelect.innerHTML = attendants.map(a => `<option>${a.name}</option>`).join('');
+        }
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+        renderProducts();
+        renderStockReport();
+        populateAttendantSelects();
+    });
+</script>
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

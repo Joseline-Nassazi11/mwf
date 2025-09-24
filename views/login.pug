@@ -1,0 +1,17 @@
+doctype html
+head
+  meta(charset='UTF-8')
+  meta(name='viewport' content='width=device-width, initial-scale=1.0')
+  title MWF - Login
+  link(rel='stylesheet' href='/css/login.css')
+.login-container
+  .login-box
+    h2 MWF Login
+    form(action='/login' method='post')
+      .input-group
+        label(for='email') Email Address
+        input#email(type='email' name='email' placeholder='Enter email' required='')
+      .input-group
+        label(for='password') Password
+        input#password(type='password' name='password' placeholder='Enter password' required='')
+      button.btn(type='submit') Login

@@ -1,0 +1,70 @@
+body {
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: url('https://images.unsplash.com/photo-1523413651479-597eb2da0ad6?auto=format&fit=crop&w=1350&q=80') no-repeat center center fixed;
+    background-size: cover;
+    min-height: 100vh;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.signup-card {
+    background: rgba(255, 255, 255, 0.95);
+    padding: 20px;
+    border-radius: 12px;
+    width: 100%;
+    max-width: 380px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+}
+
+.signup-card h3 {
+    text-align: center;
+    margin-bottom: 15px;
+    color: #2e4a2f;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.signup-card label {
+    font-weight: 600;
+    margin-bottom: 3px;
+    display: block;
+    color: #333;
+    font-size: 14px;
+}
+
+.signup-card .form-control,
+.signup-card .form-select {
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    margin-bottom: 12px;
+    padding: 8px 10px;
+    font-size: 14px;
+}
+
+/* Button */
+.signup-card .btn-success {
+    background-color: #2e4a2f;
+    border: none;
+    border-radius: 8px;
+    padding: 10px;
+    /* ⬅️ shorter button height */
+    font-size: 15px;
+    font-weight: 600;
+}
+
+.signup-card .btn-success:hover {
+    background-color: #3c633e;
+}
+
+/* Footer */
+.signup-card p {
+    text-align: center;
+    font-size: 12px;
+    /* ⬅️ smaller text */
+    color: #666;
+    margin-top: 10px;
+    /* ⬅️ less margin */
+}

@@ -1,0 +1,73 @@
+doctype html
+head
+  meta(charset='UTF-8')
+  meta(name='viewport' content='width=device-width, initial-scale=1.0')
+  title Mayondo Wood &amp; Furniture Ltd.
+  link(rel='stylesheet' href='/css/index.css')
+// Navbar
+header.navbar
+  .logo Mayondo
+  nav
+    ul
+      li
+        a(href='#home') Home
+      li
+        a(href='#about') About
+      li
+        a(href='#services') Services
+      li
+        a(href='#gallery') Gallery
+      li
+        a(href='#contact') Contact
+      li
+        a(href='/login') Login
+// Hero Section
+section#home.hero
+  .hero-content
+    h1 Mayondo Wood &amp; Furniture Ltd.
+    p Crafting elegant and durable furniture since 2025
+// About Section
+section#about.section.fade-in
+  h2 About Us
+  p
+    | We are a trusted wood and furniture company dedicated to producing high-quality,
+    | handcrafted wooden products. Our mission is to blend traditional craftsmanship
+    | with modern designs that bring comfort and beauty to your spaces.
+// Services Section
+section#services.section.fade-in
+  h2 Our Services
+  .service-grid
+    .service-card Custom Furniture Design
+    .service-card Office &amp; Home Furniture
+    .service-card Wood Finishing &amp; Polishing
+    .service-card Furniture Repair
+// Gallery Section
+section#gallery.section.fade-in
+  h2 Gallery
+  .gallery-grid
+    img(src='https://images.unsplash.com/photo-1582582494700-1a82869c594d' alt='Wood Chair')
+    img(src='https://images.unsplash.com/photo-1616628188502-df4c1f1ec1f3' alt='Table')
+    img(src='https://images.unsplash.com/photo-1505691938895-1758d7feb511' alt='Cupboard')
+    img(src='https://images.unsplash.com/photo-1628744448862-4b16a5fb6d5f' alt='Bed')
+// Contact Section
+section#contact.section.fade-in
+  h2 Contact Us
+  p Email: info@mayondo.com
+  p Phone: +256 700 123 456
+  p Location: Kampala, Uganda
+// Footer
+footer
+  p &copy; 2025 Mayondo Wood &amp; Furniture Ltd. All Rights Reserved.
+script.
+  // Fade-in animation on scroll
+  const sections = document.querySelectorAll('.fade-in');
+  window.addEventListener('scroll', () => {
+  const triggerBottom = window.innerHeight * 0.85;
+  sections.forEach(section => {
+  const sectionTop = section.getBoundingClientRect().top;
+  if (sectionTop < triggerBottom) {
+  section.classList.add('visible');
+  }
+  });
+  });
+script(src='script.js')

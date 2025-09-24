@@ -1,0 +1,123 @@
+/* Sidebar styling */
+.sidebar {
+    height: 100vh;
+    width: 240px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: linear-gradient(180deg, #1a4d2e, #133d27);
+    color: #fff;
+    padding-top: 20px;
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.sidebar h2 {
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 1.5rem;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+.sidebar a {
+    display: block;
+    padding: 12px 20px;
+    color: #ddd;
+    text-decoration: none;
+    transition: all 0.3s;
+    border-radius: 6px;
+    margin: 5px 10px;
+    font-weight: 500;
+}
+
+.sidebar a:hover {
+    background-color: #0d6efd;
+    color: #fff;
+}
+
+.sidebar .active {
+    background-color: #0d6efd;
+    color: #fff;
+}
+
+/* Navbar */
+.navbar-custom {
+    margin-left: 240px;
+    background: #fff;
+    border-bottom: 1px solid #eee;
+    padding: 15px 25px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.navbar-custom span {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #1a4d2e;
+}
+
+.navbar-custom .user-role {
+    background: #0d6efd;
+    color: #fff;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+}
+
+/* Main content */
+.content {
+    margin-left: 240px;
+    padding: 25px;
+    background: #f4f6f9;
+    min-height: 100vh;
+}
+
+.content h2 {
+    margin-bottom: 25px;
+    font-weight: bold;
+    color: #1a4d2e;
+}
+
+/* Cards */
+.card {
+    border-radius: 15px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.05);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0px 6px 20px rgba(0, 0, 0, 0.1);
+}
+
+.card h5 {
+    font-size: 1rem;
+    color: #555;
+}
+
+.card p {
+    font-size: -1.8rem;
+    font-weight: bold;
+    color: #1a4d2e;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .sidebar {
+        width: 100%;
+        height: auto;
+        position: relative;
+    }
+
+    .navbar-custom {
+        margin-left: 0;
+    }
+
+    .content {
+        margin-left: 0;
+    }
+}

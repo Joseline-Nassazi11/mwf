@@ -1,0 +1,85 @@
+doctype html
+head
+  meta(charset='UTF-8')
+  meta(name='viewport' content='width=device-width, initial-scale=1.0')
+  title MWF - Dashboard
+  link(href='https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css' rel='stylesheet')
+  link(href='https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css' rel='stylesheet')
+  link(rel='stylesheet' href='css/dashboard.css')
+  script(src='https://cdn.jsdelivr.net/npm/chart.js')
+// Sidebar
+.sidebar
+  h2 MWF
+  a.active(href='/salestable')
+    i.bi.bi-speedometer2.me-2
+    | Sales Table
+  a(href='products.html')
+    i.bi.bi-box-seam.me-2
+    | Products
+  a(href='/Addsale')
+    i.bi.bi-cash-coin.me-2
+    | Sales
+  a(href='/stock')
+    i.bi.bi-truck.me-2
+    | Stock Management
+  a(href='/')
+    i.bi.bi-bar-chart-line.me-2
+    | Reports
+  a(href='/register-attendant')
+    i.bi.bi-people.me-2
+    | Register Attendant
+  a(href='/Addsale')
+    i.bi.bi-cash-coin.me-2
+    | Sales
+  a(href='/Addsale')
+    i.bi.bi-cash-coin.me-2
+    | Sales    
+  a(href='/logout')
+    i.bi.bi-people.me-2
+    | Logout  
+// Navbar
+.navbar-custom
+  span Mayondo Wood &amp; Furniture Ltd
+  span.user-role
+    i.bi.bi-person-circle.me-1
+    |  Manager
+// Content
+.content
+  h2 Dashboard Overview
+  .row.g-4
+    .col-md-3
+      .card.text-center.p-3
+        .card-body
+          i.bi.bi-box-seam.fs-1.text-primary
+          h3 Purchase Costs
+          p#purchaseCost For Timber: #{new Intl.NumberFormat().format(totalExpenseTimber.totalCost)} Shs
+          p#purchaseCost For Poles: #{new Intl.NumberFormat().format(totalExpensePoles.totalCost)} Shs
+          p#purchaseCost For Softwood: #{new Intl.NumberFormat().format(totalExpenseSoftwood.totalCost)} Shs
+          p#purchaseCost For Hardwood: #{new Intl.NumberFormat().format(totalExpenseHardwood.totalCost)} Shs
+          h5#purchaseCost Total Expense: #{new Intl.NumberFormat().format(totalExpenseTimber.totalCost + totalExpensePoles.totalCost + totalExpenseSoftwood.totalCost + totalExpenseHardwood.totalCost)} Shs
+    .col-md-3
+      .card.text-center.p-3
+        .card-body
+          i.bi.bi-cash-coin.fs-1.text-success
+          h5 Total Sales
+          p#purchaseRevenue For Timber: #{new Intl.NumberFormat().format(totalRevenueTimber.totalCost)} Shs
+          p UGX 
+    .col-md-3
+      .card.text-center.p-3
+        .card-body
+          i.bi.bi-truck.fs-1.text-warning
+          h5 Suppliers
+          p= totalSuppliers
+    .col-md-3
+      .card.text-center.p-3
+        .card-body
+          i.bi.bi-people.fs-1.text-danger
+          h5 Attendants
+          p 8
+  // sales chart
+  .row.mt-5
+    .col-md-12
+      .card.p-4
+        h5.mb-3 Sales Overview
+        canvas#salesChart(height='100')
+script(src='/js/dashboard.js')

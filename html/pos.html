@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MWF POS</title>
+    <link rel="stylesheet" href="/css/pos.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="brand">
+                <h1>Mayondo Wood & Furniture</h1>
+                <p>POS Terminal</p>
+            </div>
+        </div>
+        <div class="main">
+            <section class="products" id="products-grid">
+            </section>
+            <aside class="cart">
+                <h3>Cart</h3>
+                <div class="cart-list" id="cartList"></div>
+                <div id="emptyMsg" class="empty">Cart is empty</div>
+
+                <div class="totals">
+                    <div class="total-row">
+                        <span class="total-label">Subtotal</span>
+                        <span class="total-amount" id="subtotal">UGX 0</span>
+                    </div>
+                    <div class="total-row">
+                        <span class="total-label">Transport (5%)</span>
+                        <span class="total-amount" id="transport-fee">UGX 0</span>
+                    </div>
+                    <div class="total-row grand-total">
+                        <span class="total-label">Total</span>
+                        <span class="total-amount" id="total">UGX 0</span>
+                    </div>
+                </div>
+
+                <div class="checkout-row">
+                    <button class="btn btn-pay" id="checkout-btn">Checkout</button>
+                    <button class="btn btn-print" onclick="window.print()">Print Receipt</button>
+                </div>
+            </aside>
+        </div>
+    </div>
+    <script src="pos.js"></script>
+</body>
+
+</html>

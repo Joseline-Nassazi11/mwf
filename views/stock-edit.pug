@@ -1,0 +1,62 @@
+doctype html
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport" content="width=device-width, initial-scale=1.0")
+    title Edit Product - MWF
+    link(href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet")
+    link(rel="stylesheet", href="/css/forms.css")
+
+  body
+    // Navbar
+    .navbar-custom.d-flex.align-items-center.p-3.shadow-sm
+      img(src="/images/mwf-logo.png" alt="MWF Logo" class="logo me-2")
+      span.fw-bold.fs-5.text-success Mayondo Wood & Furniture Ltd
+
+    // Main content
+    .container.mt-5
+      .card.shadow.p-4
+        h3.mb-4.text-primary Edit Product
+
+        form(action=`/stock/edit/${item._id}` method="POST")
+          .row.mb-3
+            label.col-sm-3.col-form-label(for="name") Product Name
+            .col-sm-9
+              input#name.form-control(type="text" name="name" value=item.name required)
+
+          .row.mb-3
+            label.col-sm-3.col-form-label(for="type") Type
+            .col-sm-9
+              input#type.form-control(type="text" name="type" value=item.type)
+
+          .row.mb-3
+            label.col-sm-3.col-form-label(for="supplier") Supplier
+            .col-sm-9
+              input#supplier.form-control(type="text" name="supplier" value=item.supplier)
+
+          .row.mb-3
+            label.col-sm-3.col-form-label(for="quantity") Quantity
+            .col-sm-9
+              input#quantity.form-control(type="number" name="quantity" value=item.quantity)
+
+          .row.mb-3
+            label.col-sm-3.col-form-label(for="cost") Cost Price
+            .col-sm-9
+              input#cost.form-control(type="number" name="cost" value=item.cost)
+
+          .row.mb-3
+            label.col-sm-3.col-form-label(for="price") Selling Price
+            .col-sm-9
+              input#price.form-control(type="number" name="price" value=item.price)
+
+          .row.mb-3
+            label.col-sm-3.col-form-label(for="quality") Quality
+            .col-sm-9
+              select#quality.form-select(name="quality")
+                option(value="Grade A" selected=item.quality=="Grade A") Grade A
+                option(value="Grade B" selected=item.quality=="Grade B") Grade B
+                option(value="Grade C" selected=item.quality=="Grade C") Grade C
+
+          .text-end
+            button.btn.btn-success(type="submit") Save Changes
+            a.btn.btn-secondary.ms-2(href="/stocklist") Cancel

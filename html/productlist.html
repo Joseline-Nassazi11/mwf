@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Mayondo Wood & Furniture — Product List</title>
+    <link rel="stylesheet" href="css/productlist.css">
+</head>
+
+<body>
+    <header>
+        <h1>Mayondo Wood & Furniture</h1>
+        <p>Available Products</p>
+    </header>
+
+    <!-- Search & Filter -->
+    <div class="toolbar">
+        <input type="text" id="searchInput" placeholder="Search products...">
+        <select id="categoryFilter">
+            <option value="all">All Categories</option>
+            <option value="Living Room">Living Room</option>
+            <option value="Dining Room">Dining Room</option>
+            <option value="Bedroom">Bedroom</option>
+            <option value="Office Furniture">Office Furniture</option>
+            <option value="Wood Products">Wood Products</option>
+            <option value="Custom Orders">Custom Orders</option>
+            <option value="Outdoor">Outdoor</option>
+        </select>
+    </div>
+
+    <div class="grid" id="productGrid">
+        <!-- Example Cards -->
+        <div class="card" data-category="Living Room">
+            <h3>3-Seater Sofa</h3>
+            <p>Category: Living Room</p>
+            <p class="price">650,000 UGX</p>
+            <p>Comfortable sofa with solid frame and upholstery.</p>
+        </div>
+
+        <div class="card" data-category="Living Room">
+            <h3>Coffee Table (Oak)</h3>
+            <p>Category: Living Room</p>
+            <p class="price">180,000 UGX</p>
+            <p>Solid oak coffee table with varnish finish.</p>
+        </div>
+
+        <div class="card" data-category="Dining Room">
+            <h3>Dining Table (6-seater)</h3>
+            <p>Category: Dining Room</p>
+            <p class="price">800,000 UGX</p>
+            <p>Hardwood dining table, perfect for family meals.</p>
+        </div>
+
+        <div class="card" data-category="Dining Room">
+            <h3>Dining Chair</h3>
+            <p>Category: Dining Room</p>
+            <p class="price">75,000 UGX</p>
+            <p>Cushioned dining chair with hardwood legs.</p>
+        </div>
+
+        <div class="card" data-category="Bedroom">
+            <h3>Double Bed Frame</h3>
+            <p>Category: Bedroom</p>
+            <p class="price">700,000 UGX</p>
+            <p>Durable bed with headboard and slats.</p>
+        </div>
+
+        <div class="card" data-category="Bedroom">
+            <h3>Wardrobe (3-door)</h3>
+            <p>Category: Bedroom</p>
+            <p class="price">950,000 UGX</p>
+            <p>Spacious wardrobe with hanging rail and shelves.</p>
+        </div>
+
+        <div class="card" data-category="Office Furniture">
+            <h3>Office Desk</h3>
+            <p>Category: Office Furniture</p>
+            <p class="price">320,000 UGX</p>
+            <p>Wooden office desk with drawer and cable hole.</p>
+        </div>
+
+        <div class="card" data-category="Office Furniture">
+            <h3>Executive Chair</h3>
+            <p>Category: Office Furniture</p>
+            <p class="price">260,000 UGX</p>
+            <p>Ergonomic chair with swivel and tilt.</p>
+        </div>
+
+        <div class="card" data-category="Wood Products">
+            <h3>Plywood Sheet (4x8)</h3>
+            <p>Category: Wood Products</p>
+            <p class="price">120,000 UGX</p>
+            <p>Standard plywood sheet, 18mm.</p>
+        </div>
+
+        <div class="card" data-category="Wood Products">
+            <h3>Hardwood Timber</h3>
+            <p>Category: Wood Products</p>
+            <p class="price">90,000 UGX</p>
+            <p>Seasoned hardwood timber (per piece).</p>
+        </div>
+
+        <div class="card" data-category="Custom Orders">
+            <h3>Custom Cabinet</h3>
+            <p>Category: Custom Orders</p>
+            <p class="price">Price on request</p>
+            <p>Made-to-order based on measurements.</p>
+        </div>
+
+        <div class="card" data-category="Outdoor">
+            <h3>Garden Bench</h3>
+            <p>Category: Outdoor</p>
+            <p class="price">220,000 UGX</p>
+            <p>Wooden bench treated for outdoor use.</p>
+        </div>
+    </div>
+
+    <script src="js/productlist.js"></script>
+</body>
+
+</html>

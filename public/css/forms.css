@@ -1,0 +1,95 @@
+/* General Layout */
+body {
+    background: #f7f9fc;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    color: #333;
+}
+/* Navbar header inside forms */
+.navbar-custom {
+    background: #fff;
+    border-bottom: 1px solid #eaeaea;
+}
+
+.navbar-custom .logo {
+    height: 40px;
+    width: auto;
+}
+
+.navbar-custom span {
+    color: #198754;
+}
+/* Card Styling */
+.card {
+    border: none;
+    border-radius: 15px;
+    background: #fff;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+}
+
+.card h3 {
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+
+/* Labels */
+.col-form-label {
+    font-weight: 500;
+    color: #444;
+}
+
+/* Inputs */
+.form-control,
+.form-select {
+    border-radius: 10px;
+    border: 1px solid #ddd;
+    padding: 10px 12px;
+    transition: all 0.3s ease-in-out;
+}
+
+.form-control:focus,
+.form-select:focus {
+    border-color: #198754;
+    /* Bootstrap success green */
+    box-shadow: 0 0 6px rgba(25, 135, 84, 0.3);
+}
+
+/* Buttons */
+.btn {
+    padding: 10px 18px;
+    border-radius: 12px;
+    font-weight: 500;
+    transition: all 0.3s ease-in-out;
+}
+
+.btn-success {
+    background: #198754;
+    border: none;
+}
+
+.btn-success:hover {
+    background: #157347;
+}
+
+.btn-warning {
+    background: #ffc107;
+    border: none;
+    color: #000;
+}
+
+.btn-warning:hover {
+    background: #e0a800;
+}
+
+.btn-secondary {
+    background: #6c757d;
+    border: none;
+}
+
+.btn-secondary:hover {
+    background: #565e64;
+}
+
+/* Page Spacing */
+.container {
+    max-width: 700px;
+}

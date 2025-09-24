@@ -1,0 +1,224 @@
+/* Global Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Body */
+body {
+    background: linear-gradient(135deg, #f5f7fa, #e3edf7);
+    color: #333;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+/* Navbar */
+.navbar-custom {
+    background: linear-gradient(90deg, #1a4d2e, #2e8b57);
+    color: #fff;
+    padding: 15px 25px;
+    border-radius: 12px;
+    margin-bottom: 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.15);
+}
+
+.navbar-custom span {
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+/* Logo */
+/* .logo {
+    height: 45px;
+    width: auto;
+} */
+.logo {
+    height: 45px;
+    width: auto;
+    border-radius: 50%;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+/* Center content and make form smaller */
+.content {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+/* Smaller form card */
+.card form {
+    max-width: 700px;
+    margin: 0 auto;
+}
+h2,h4 {
+    color: #1a4d2e;
+    font-weight: 700;
+}
+
+/* Page Heading */
+.content h2 {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #1a4d2e;
+    margin-bottom: 20px;
+    text-align: center;
+    letter-spacing: 1px;
+}
+
+/* Card Styling (Glassmorphism) */
+/* .card {
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 16px;
+    padding: 25px;
+    margin-bottom: 25px;
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0px 6px 18px rgba(0, 0, 0, 0.1);
+} */
+.card {
+    border-radius: 18px;
+    background: #fff;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+    transition: transform 0.2s ease;
+    margin-bottom: 205px;
+
+}
+
+.card:hover {
+    transform: translateY(-3px);
+}
+
+/* Form Styling */
+.form-control {
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    transition: all 0.2s ease;
+}
+
+.form-control:focus {
+    border-color: #1a4d2e;
+    box-shadow: 0 0 6px rgba(26, 77, 46, 0.4);
+}
+form .form-label {
+    font-weight: 600;
+    color: #1a4d2e;
+}
+
+form .form-control {
+    border-radius: 10px;
+    padding: 5px;
+    border: 1px solid #ccc;
+    transition: border 0.3s ease, box-shadow 0.3s ease;
+}
+
+form .form-control:focus {
+    border: 1px solid #2e8b57;
+    box-shadow: 0px 0px 8px rgba(46, 139, 87, 0.4);
+    outline: none;
+}
+
+/* Buttons */
+button.btn {
+    border-radius: 8px;
+    font-weight: 600;
+    padding: 10px 18px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+
+}
+
+/* .btn-success {
+    background: linear-gradient(90deg, #1a4d2e, #2e8b57);
+    border: none;
+} */
+
+/* .btn-success:hover {
+    background: linear-gradient(90deg, #14592c, #237d4a);
+    transform: scale(1.05);
+} */
+ .btn-success {
+     background: linear-gradient(135deg, #1a4d2e, #26734d);
+     border: none;
+     font-weight: 600;
+     padding: 8px 18px;
+     border-radius: 8px;
+     transition: background 0.3s;
+ }
+
+ .btn-success:hover {
+     background: linear-gradient(135deg, #145a34, #1a4d2e);
+     transform: scale(1.05);
+ }
+
+.btn-secondary {
+    background-color: #6c757d;
+    border: none;
+}
+
+.btn-secondary:hover {
+    background-color: #565e64;
+    transform: scale(1.05);
+}
+
+.btn-primary {
+    background-color: #0d6efd;
+    border: none;
+}
+
+.btn-warning {
+    background-color: #ffc107;
+    border: none;
+}
+
+.btn-danger {
+    background-color: #dc3545;
+    border: none;
+}
+
+/* Table */
+.table {
+    border-radius: 12px;
+    overflow: hidden;
+    background: #fff;
+}
+
+.table thead {
+    background: linear-gradient(90deg, #1a4d2e, #2e8b57);
+    color: #fff;
+}
+
+.table tbody tr {
+    transition: background 0.3s ease;
+}
+
+.table tbody tr:hover {
+    background: rgba(46, 139, 87, 0.08);
+}
+
+.table-striped tbody tr:hover {
+    background-color: #e8f5ec;
+    cursor: pointer;
+}
+
+.card table {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+}
+
+.fade-in {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+}

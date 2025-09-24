@@ -1,0 +1,87 @@
+doctype html
+html
+  head
+    meta(charset='UTF-8')
+    meta(name='viewport' content='width=device-width, initial-scale=1.0')
+    title MWF - Suppliers
+    link(href='https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css' rel='stylesheet')
+    link(rel='stylesheet' href='/css/suppliers.css')
+    script(src='https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js')
+  body
+    // Sidebar
+    .sidebar
+      h2 MWF
+      a(href='/dashboard') Dashboard
+      a(href='/products') Products
+      a(href='/sales') Sales
+      a.active(href='/suppliers') Suppliers
+      a(href='/reports') Reports
+
+    // Navbar with toggle button
+    .navbar-custom.d-flex.justify-content-between.align-items-center
+      .d-flex.align-items-center
+        button#sidebarToggle.toggle-btn ☰
+        img.navbar-logo(src="/images/mwf-logo.png", alt="MWF Logo")
+        span.company-name Mayondo Wood & Furniture Ltd
+      span.user-role Manager
+
+    // Content
+    .content
+      h2.mb-4 Suppliers
+      button.btn.btn-primary.mb-3(data-bs-toggle="modal" data-bs-target="#addSupplierModal") + Add Supplier
+
+      // Suppliers Table
+      table.table.table-bordered.table-hover
+        thead.table-dark
+          tr
+            th #
+            th Name
+            th Phone
+            th Email
+            th Address
+            th Actions
+        tbody
+          tr
+            td 1
+            td ABC Timber Ltd
+            td +256 700 123456
+            td info@abctimber.com
+            td Kampala
+            td
+              button.btn.btn-sm.btn-warning Edit
+              button.btn.btn-sm.btn-danger Delete
+
+    // Add Supplier Modal
+    .modal.fade#addSupplierModal(tabindex='-1' aria-hidden='true')
+      .modal-dialog
+        .modal-content
+          .modal-header
+            h5.modal-title Add New Supplier
+            button.btn-close(type='button' data-bs-dismiss='modal' aria-label='Close')
+          .modal-body
+            form(action='/suppliers/add' method='POST')
+              .mb-3
+                label.form-label(for='name') Supplier Name
+                input.form-control(type='text' id='name' name='name' required)
+              .mb-3
+                label.form-label(for='phone') Phone Number
+                input.form-control(type='text' id='phone' name='phone' required)
+              .mb-3
+                label.form-label(for='email') Email
+                input.form-control(type='email' id='email' name='email')
+              .mb-3
+                label.form-label(for='address') Address
+                input.form-control(type='text' id='address' name='address')
+              button.btn.btn-success(type='submit') Save Supplier
+
+    // JS for sidebar toggle
+    script.
+      document.addEventListener("DOMContentLoaded", () => {
+        const toggleBtn = document.getElementById("sidebarToggle");
+        const sidebar = document.querySelector(".sidebar");
+        toggleBtn.addEventListener("click", () => {
+          sidebar.classList.toggle("collapsed");
+          document.querySelector(".content").classList.toggle("collapsed");
+          document.querySelector(".navbar-custom").classList.toggle("collapsed");
+        });
+      });

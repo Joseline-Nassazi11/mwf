@@ -1,0 +1,64 @@
+doctype html
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport" content="width=device-width, initial-scale=1.0")
+    title #{agentName} - Dashboard
+    link(href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet")
+    link(rel="stylesheet" href="/css/agent-dashboard.css")
+    script(src="https://cdn.jsdelivr.net/npm/chart.js")
+  body
+    .dashboard-container
+
+      .navbar-custom.d-flex.justify-content-between.align-items-center.p-3
+        .d-flex.align-items-center.gap-3
+          img.logo(src="/images/mwf-logo.png", alt="MWF Logo")
+          h3.text-light.mb-0 #{agentName} Agent Dashboard
+        a.btn.btn-light(href="/Addsale") Back to Sales
+        a.btn.btn-light(href="/salestable") Back to Sales Table
+        a.btn.btn-danger(href="/logout") Logout
+
+      .container.mt-4
+        .row.g-4
+          .col-md-4
+            .card.summary-card.text-center.shadow
+              .card-body
+                h5.card-title Total Sales
+                h2.text-success #{totalSales}
+          .col-md-4
+            .card.summary-card.text-center.shadow
+              .card-body
+                h5.card-title Total Quantity
+                h2.text-info #{totalQuantity}
+          .col-md-4
+            .card.summary-card.text-center.shadow
+              .card-body
+                h5.card-title Total Revenue
+                h2.text-warning UGX #{totalAmount.toLocaleString()}
+
+      //  CHART 
+      .container.mt-5
+        h4.mb-3 Sales Overview
+        canvas#salesChart(style="max-height:400px;")
+
+    script.
+      const ctx = document.getElementById('salesChart').getContext('2d');
+      new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels: !{JSON.stringify(chartLabels)},
+          datasets: [{
+            label: 'Sales Amount',
+            data: !{JSON.stringify(chartData)},
+            backgroundColor: 'rgba(54, 162, 235, 0.6)',
+            borderColor: 'rgba(54, 162, 235, 1)',
+            borderWidth: 1
+          }]
+        },
+        options: {
+          responsive: true,
+          scales: {
+            y: { beginAtZero: true }
+          }
+        }
+      });

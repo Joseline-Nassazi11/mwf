@@ -1,0 +1,34 @@
+doctype html
+head
+  meta(charset='UTF-8')
+  meta(name='viewport' content='width=device-width, initial-scale=1.0')
+  title MWF POS
+  link(rel='stylesheet' href='/css/pos.css')
+  link(rel='preconnect' href='https://fonts.googleapis.com')
+  link(rel='preconnect' href='https://fonts.gstatic.com' crossorigin='')
+  link(href='https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap' rel='stylesheet')
+.container
+  .header
+    .brand
+      h1 Mayondo Wood &amp; Furniture
+      p POS Terminal
+  .main
+    section#products-grid.products
+    aside.cart
+      h3 Cart
+      #cartList.cart-list
+      #emptyMsg.empty Cart is empty
+      .totals
+        .total-row
+          span.total-label Subtotal
+          span#subtotal.total-amount UGX 0
+        .total-row
+          span.total-label Transport (5%)
+          span#transport-fee.total-amount UGX 0
+        .total-row.grand-total
+          span.total-label Total
+          span#total.total-amount UGX 0
+      .checkout-row
+        button#checkout-btn.btn.btn-pay Checkout
+        button.btn.btn-print(onclick='window.print()') Print Receipt
+script(src='pos.js')

@@ -1,0 +1,43 @@
+doctype html
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport" content="width=device-width, initial-scale=1.0")
+    title Receipt - MWF
+    link(rel="stylesheet", href="/css/receipt.css")
+  body
+    .receipt-container
+      .header
+        img.logo(src="/images/mwf-logo.png" alt="MWF Logo")
+        h1 Receipt
+        p.company-name Mayondo Wood & Furniture Ltd
+
+      .details
+        p
+          strong Customer: 
+          | #{sale.customerName}
+        p
+          strong Product: 
+          | #{sale.product}
+        p
+          strong Quantity: 
+          | #{sale.quantity}
+        p
+          strong Payment Type: 
+          | #{sale.paymentType}
+        p
+          strong Transport: 
+          | #{sale.transport ? "Yes (5% added)" : "No"}
+        p
+          strong Sales Agent: 
+          | #{sale.agent}
+        p
+          strong Date: 
+          | #{sale.date.toDateString()}
+
+      .total
+        h2 Total: UGX #{total.toLocaleString()}
+
+      .actions
+        button.btn(onclick="window.print()") Print Receipt
+        a.btn(href="/sales") Back to Sales

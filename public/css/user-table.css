@@ -1,0 +1,76 @@
+body {
+    background: #f4f6f9;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.logo {
+    height: 40px;
+}
+
+.navbar-custom {
+    background: linear-gradient(90deg, #1a4d2e, #2c6b4f);
+    color: #fff;
+}
+
+.navbar-custom .user-role {
+    font-weight: bold;
+}
+
+.card {
+    border-radius: 12px;
+    background: #fff;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+h4 {
+    color: #1a4d2e;
+    font-weight: bold;
+}
+
+.table th {
+    background: #1a4d2e !important;
+    color: #fff;
+}
+
+.table-hover tbody tr:hover {
+    background-color: #e9f5ef;
+    transition: background 0.3s;
+}
+
+.btn-primary {
+    background-color: #1a4d2e;
+    border: none;
+}
+
+.btn-primary:hover {
+    background-color: #144226;
+}
+
+.btn-danger {
+    background-color: #d9534f;
+    border: none;
+}
+
+.btn-danger:hover {
+    background-color: #b52b27;
+}
+form.d-flex {
+    gap: 10px;
+}
+
+input.form-control {
+    max-width: 300px;
+}
+
+select.form-select {
+    max-width: 180px;
+}
+
+.btn-success {
+    background-color: #2c6b4f;
+    border: none;
+}
+
+.btn-success:hover {
+    background-color: #24553f;
+}
