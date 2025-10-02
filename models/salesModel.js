@@ -2,6 +2,7 @@ const mongoose = require("mongoose");
 
 const saleSchema = new mongoose.Schema({
   customerName: { type: String, required: true },
+  productType: { type: String, required: true },
   product: { type: String, required: true },
   unitPrice: {
   type: Number,
@@ -13,6 +14,8 @@ const saleSchema = new mongoose.Schema({
     enum: ["Cash", "Cheque", "Bank Overdraft"],
     required: true,
   },
+  totalPrice: { type: Number,
+     required: true },
   transport: { type: Boolean, default: false },
   agent: { type: mongoose.Schema.Types.ObjectId,
     ref: 'UserModel',

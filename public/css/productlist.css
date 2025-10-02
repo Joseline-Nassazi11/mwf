@@ -1,62 +1,171 @@
+/* ===== General ===== */
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f4f6f8;
+    color: #333;
     margin: 0;
-    background: #f9f9f9;
+    padding: 0;
 }
 
-header {
-    background: linear-gradient(180deg, #1a4d2e, #133d27);
-    color: white;
-    text-align: center;
-    padding: 1.5rem;
+.container {
+    max-width: 1200px;
+    margin: auto;
+    padding: 20px;
 }
 
-header h1 {
-    margin: 0;
-    font-size: 1.8rem;
+/* ===== Navbar ===== */
+.navbar {
+    background: linear-gradient(90deg, #1a4d2e, #2e8b57);
+    padding: 10px 15px !important;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
 }
 
-header p {
-    margin: 0.3rem 0 0;
-    font-size: 1rem;
-    font-weight: 300;
-}
-
-.toolbar {
+.navbar-brand {
     display: flex;
-    justify-content: center;
-    gap: 1rem;
-    padding: 1rem;
-    background: #fff;
-    border-bottom: 1px solid #ddd;
-}
-
-.toolbar input,
-.toolbar select {
-    padding: 0.5rem;
-    font-size: 1rem;
-}
-
-.grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-    gap: 1rem;
-    padding: 1.5rem;
-}
-
-.card {
-    background: #fff;
-    padding: 1rem;
-    border-radius: 8px;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-    transition: transform 0.2s;
-}
-
-.card:hover {
-    transform: scale(1.02);
-}
-
-.price {
+    align-items: center;
+    gap: 10px;
+    font-size: 1.2rem;
     font-weight: bold;
-    color: #27ae60;
+    color: white;
+}
+
+.navbar-brand img.logo {
+    height: 40px !important;
+    width: 40px !important;
+    object-fit: contain;
+    border: 3px solid white;
+    border-radius: 50%;
+    padding: 2px;
+    box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.3);
+}
+
+.navbar .form-control {
+    height: 38px;
+    font-size: 0.9rem;
+    border-radius: 5px;
+    border: 1px solid #2e8b57;
+}
+
+.navbar .btn {
+    height: 38px;
+    font-size: 0.9rem;
+    border-radius: 5px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.navbar .btn-success {
+    background: linear-gradient(90deg, #28a745, #2ecc71);
+    border-color: #28a745;
+    color: white;
+}
+
+.navbar .btn-warning {
+    background: linear-gradient(90deg, #ffc107, #ffca2c);
+    border-color: #ffc107;
+    color: white;
+}
+
+.navbar .btn-light {
+    color: #333;
+    background-color: white;
+    border-color: #ccc;
+}
+
+.navbar .btn:hover {
+    opacity: 0.9;
+}
+
+/* ===== Product List Heading ===== */
+h2.text-success {
+    color: #2e8b57 !important;
+    font-size: 2rem;
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+
+/* ===== Table Styling ===== */
+.table {
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+}
+
+.table-success {
+    background: #1a4d2e !important;
+    color: white;
+    font-weight: bold;
+}
+
+.table-danger {
+    background-color: #f8d7da !important;
+    color: #721c24;
+    font-weight: bold;
+}
+
+.table-striped tbody tr:nth-of-type(odd) {
+    background-color: #f9f9f9;
+}
+
+.table-bordered {
+    border: 1px solid #dee2e6;
+}
+
+.table-hover tbody tr:hover {
+    background-color: #e8f5e9;
+}
+
+.table th,
+.table td {
+    padding: 12px;
+    border-color: #dee2e6;
+    vertical-align: middle;
+}
+
+/* ===== KPI Animation Styling ===== */
+.kpi-number {
+    font-weight: bold;
+    color: #1a4d2e;
+}
+
+/* ===== Pagination Styling ===== */
+.pagination {
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.page-link {
+    color: #1a4d2e;
+}
+
+.page-item.active .page-link {
+    background-color: #1a4d2e;
+    border-color: #1a4d2e;
+    color: white;
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 992px) {
+    .navbar .d-flex {
+        flex-direction: column;
+        width: 100%;
+        margin-top: 10px;
+    }
+
+    .navbar .form-control,
+    .navbar .btn {
+        width: 100%;
+        margin-left: 0 !important;
+        margin-top: 5px;
+    }
+}
+
+/* ===== Hover Effects ===== */
+table tbody tr:hover {
+    background: rgba(46, 139, 87, 0.1);
+    transition: background 0.3s ease;
+}
+
+.btn {
+    box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.2);
 }

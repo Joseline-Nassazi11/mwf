@@ -10,6 +10,7 @@ const stockSchema = new mongoose.Schema(
     type: {
       type: String,
       trim: true,
+      // enum: ['timber', 'poles', 'hardwood', 'softwood']
     },
     supplier: {
       type: String,

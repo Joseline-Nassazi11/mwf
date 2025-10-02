@@ -1,0 +1,107 @@
+/* Global styles */
+body {
+    font-family: 'Poppins', sans-serif;
+    background: #f4f6f9;
+    margin: 0;
+    padding: 0;
+    color: #333;
+}
+
+/* Navbar */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #004d40;
+    padding: 15px 40px;
+    color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-left {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.logo {
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    background: #fff;
+    padding: 5px;
+}
+
+.brand {
+    font-weight: 600;
+    font-size: 18px;
+}
+
+.role {
+    font-size: 14px;
+    font-weight: 500;
+}
+
+/* Container */
+.container {
+    max-width: 1000px;
+    margin: 40px auto;
+    padding: 20px;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+    margin-bottom: 20px;
+    font-size: 24px;
+    color: #004d40;
+    text-align: center;
+}
+
+/* Table */
+.user-table {
+    width: 100%;
+    border-collapse: collapse;
+    overflow: hidden;
+    border-radius: 10px;
+}
+
+.user-table th,
+.user-table td {
+    padding: 14px;
+    text-align: left;
+}
+
+.user-table thead {
+    background: #00796b;
+    color: #fff;
+}
+
+.user-table tr:nth-child(even) {
+    background: #f9f9f9;
+}
+
+.user-table tr:hover {
+    background: #e0f7fa;
+    transition: background 0.3s ease;
+}
+
+/* Buttons */
+.promote-btn {
+    background: #ff9800;
+    border: none;
+    color: white;
+    padding: 8px 14px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.promote-btn:hover {
+    background: #e68900;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}

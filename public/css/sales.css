@@ -1,48 +1,56 @@
+/* Global reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 body {
     font-family: "Poppins", sans-serif;
     background: #f4f7fb;
-    margin: 0;
-    display: flex;
     color: #111827;
+    display: flex;
 }
 
+/* Sidebar */
 .sidebar {
-    width: 220px;
+    width: 230px;
     height: 100vh;
-    background: linear-gradient(180deg, #1f2937, #111827);
+    background: linear-gradient(180deg, #1a4d2e, #2e8b57);
     color: #fff;
     position: fixed;
     top: 0;
     left: 0;
-    padding: 20px;
+    padding: 25px 20px;
     display: flex;
     flex-direction: column;
-    box-shadow: 2px 0 12px rgba(0, 0, 0, 0.2);
+    box-shadow: 2px 0 15px rgba(0, 0, 0, 0.25);
 }
 
 .sidebar h2 {
-    font-size: 1.6rem;
-    font-weight: bold;
-    margin-bottom: 2rem;
+    font-size: 1.7rem;
+    font-weight: 700;
+    margin-bottom: 2.5rem;
     text-align: center;
-    background-clip: linear-gradient(90deg, #10b981, #34d399);
+    background: linear-gradient(90deg, #10b981, #34d399);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+    letter-spacing: 1px;
 }
 
 .sidebar a {
     color: #cbd5e1;
     text-decoration: none;
     padding: 12px 15px;
-    margin: 5px 0;
+    margin: 6px 0;
     border-radius: 8px;
-    transition: 0.3s;
+    transition: all 0.3s ease;
     font-weight: 500;
 }
 
 .sidebar a:hover {
-    background: rgba(16, 185, 129, 0.15);
-    color: #10b981;
+    background: rgba(255, 255, 255, 0.12);
+    color: #fff;
     transform: translateX(5px);
 }
 
@@ -50,21 +58,23 @@ body {
     background: #10b981;
     color: #fff;
     font-weight: 600;
+    box-shadow: 0 4px 12px rgba(16, 185, 129, 0.35);
 }
 
+/* Navbar */
 .navbar-custom {
-    height: 65px;
-    background: linear-gradient(90deg, #ffffff, #f9fafb);
+    height: 70px;
+    background: #fff;
     border-bottom: 1px solid #e5e7eb;
-    padding: 0 25px;
-    font-size: 1.1rem;
+    padding: 0 30px;
+    font-size: 1.05rem;
     font-weight: 500;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
 
     position: fixed;
     top: 0;
-    left: 220px;
-    /* same width as sidebar */
+    left: 230px;
+    /* match sidebar */
     right: 0;
     display: flex;
     align-items: center;
@@ -72,106 +82,158 @@ body {
     z-index: 1000;
 }
 
-/* Navbar left (logo + name) */
 .navbar-left {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 12px;
 }
 
 .navbar-logo {
-    height: 40px;
-    width: auto;
+    height: 42px;
+    width: 42px;
     border-radius: 50%;
+    object-fit: cover;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
 }
 
 .company-name {
     font-weight: 600;
     font-size: 1.2rem;
-    color: #111827;
+    color: #1a4d2e;
+    letter-spacing: 0.5px;
 }
 
 /* User role badge */
-.navbar-custom .user-role {
+.user-role {
     background: linear-gradient(90deg, #10b981, #34d399);
     color: #fff;
     padding: 6px 14px;
     border-radius: 20px;
-    font-size: 0.95rem;
+    font-size: 0.9rem;
     font-weight: 600;
-    box-shadow: 0 2px 6px rgba(16, 185, 129, 0.4);
-    transition: 0.3s;
+    box-shadow: 0 3px 8px rgba(16, 185, 129, 0.35);
+    transition: 0.3s ease;
 }
 
-.navbar-custom .user-role:hover {
+.user-role:hover {
     background: linear-gradient(90deg, #059669, #10b981);
     transform: translateY(-2px);
 }
 
-/* =========================
-   Content Area
-========================= */
+/* Content */
 .content {
-    margin-left: 240px;
-    /* space for sidebar */
-    margin-top: 90px;
-    /* space for navbar */
-    padding: 20px;
+    margin-left: 250px;
+    margin-top: 85px;
+    padding: 25px;
 }
 
 .content h2 {
     font-size: 1.8rem;
     font-weight: 600;
     margin-bottom: 20px;
-    color: #111827;
+    color: #1a4d2e;
 }
-
-/* =========================
-   Form Styling
-========================= */
+/* Form Card - Bigger & Spacious */
 form {
     background: #fff;
-    padding: 25px;
-    border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    padding: 40px;
+    border-radius: 18px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+    transition: 0.3s ease;
+    max-width: 900px;
+    /* wider form */
+    margin: auto;
+    /* center it in content */
+}
+
+form:hover {
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.12);
 }
 
 .form-label {
-    font-weight: 500;
-    color: #374151;
+    font-weight: 600;
+    color: #1a1a1a;
+    margin-bottom: 10px;
+    font-size: 1.1rem;
 }
 
 .form-control,
 .form-select {
-    border-radius: 10px;
+    border-radius: 12px;
     border: 1px solid #d1d5db;
-    padding: 10px;
-    transition: 0.2s;
+    padding: 14px 16px;
+    /* taller input */
+    font-size: 1rem;
+    height: 52px;
+    /* bigger field */
+    transition: 0.25s ease;
 }
 
 .form-control:focus,
 .form-select:focus {
     border-color: #10b981;
-    box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.25);
+    box-shadow: 0 0 0 4px rgba(16, 185, 129, 0.2);
 }
 
-.form-check-label {
-    color: #374151;
+/* Checkbox */
+.form-check {
+    margin-top: 20px;
+    font-size: 1rem;
+}
+
+.form-check-input {
+    width: 20px;
+    height: 20px;
 }
 
 /* Submit button */
 .btn-success {
-    background: #10b981;
+    background: linear-gradient(90deg, #10b981, #34d399);
     border: none;
-    padding: 10px 20px;
-    border-radius: 10px;
+    padding: 14px 28px;
+    /* bigger button */
+    border-radius: 12px;
     font-weight: 600;
-    transition: 0.3s;
+    font-size: 1.1rem;
+    margin-top: 25px;
+    transition: 0.3s ease;
 }
 
 .btn-success:hover {
-    background: #059669;
+    background: linear-gradient(90deg, #059669, #10b981);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 16px rgba(16, 185, 129, 0.35);
+}
+
+/* Buttons */
+.btn-success {
+    background: linear-gradient(90deg, #10b981, #34d399);
+    border: none;
+    padding: 12px 20px;
+    border-radius: 10px;
+    font-weight: 600;
+    transition: 0.3s ease;
+}
+
+.btn-success:hover {
+    background: linear-gradient(90deg, #059669, #10b981);
     transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(16, 185, 129, 0.4);
+    box-shadow: 0 6px 14px rgba(16, 185, 129, 0.35);
+}
+
+/* Table (if used later) */
+.table {
+    background: #fff;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.05);
+}
+
+.table thead {
+    background: #1a4d2e;
+    color: #fff;
+}
+
+.table-striped tbody tr:nth-of-type(odd) {
+    background-color: #f9fafb;
 }

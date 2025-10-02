@@ -1,76 +1,195 @@
-/* General page */
-body {
-    background: #f1f5f9;
-    /* light gray/blue background */
-    font-family: 'Poppins', sans-serif;
+/* ================================
+   GLOBAL RESET & TYPOGRAPHY
+================================ */
+* {
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
 }
 
-/* Top navbar */
+body {
+    font-family: 'Poppins', sans-serif;
+    background: #f4f6f9;
+    color: #2c3e50;
+    line-height: 1.6;
+}
+
+h3 {
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+/* ================================
+   NAVBAR
+================================ */
 .navbar-custom {
-    background: linear-gradient(90deg, #004d25, #0c6338);
-    /* deep green gradient */
-    color: #fff;
-    border-radius: 0 0 18px 18px;
-    /* rounded bottom */
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 12px 24px;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+    background: linear-gradient(90deg, #1a4d2e, #2e8b57);
+    color: white;
+    padding: 14px 25px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
 }
 
-.navbar-custom .logo {
-    height: 55px;
-    border-radius: 50%;
-    border: 2px solid #fff;
+.navbar-custom img.logo {
+    height: 45px;
+    border-radius: 8px;
 }
 
 .navbar-custom h3 {
-    font-weight: 600;
-    margin: 0;
+    color: white;
+    font-weight: 700;
+    letter-spacing: 1px;
 }
 
-.navbar-custom a.btn {
+.navbar-custom a.btn-danger {
+    font-weight: bold;
+    padding: 8px 18px;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+}
+
+.navbar-custom a.btn-danger:hover {
+    background: #c9302c;
+    transform: scale(1.05);
+}
+
+/* Navbar Buttons Styling */
+.navbar-custom .nav-link.btn {
+    color: white;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 8px 14px;
+    border-radius: 6px;
     font-weight: 500;
-    border-radius: 20px;
+    transition: all 0.3s ease;
+    text-decoration: none;
 }
 
-/* Cards */
-.summary-card {
-    border-radius: 14px;
-    border: none;
-    background: #fff;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-    transition: transform 0.2s ease-in-out;
+.navbar-custom .nav-link.btn:hover {
+    background: rgba(255, 255, 255, 0.3);
+    color: #fff;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 
-.summary-card:hover {
-    transform: translateY(-4px);
+/* Logout Button Styling */
+.navbar-custom .btn-danger {
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+.navbar-custom .btn-danger:hover {
+    background: #a83232;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* ================================
+   KPI CARDS
+================================ */
+.card.summary-card {
+    border-radius: 15px;
+    padding: 20px;
+    background: linear-gradient(145deg, #ffffff, #e9f5ef);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+}
+
+.card.summary-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+    background: linear-gradient(145deg, #e9f5ef, #d6ebdd);
+}
+
+/* Typography inside cards */
+.card-body {
+    padding: 20px;
+    text-align: center;
 }
 
 .card-title {
-    font-weight: 600;
-    color: #333;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #444;
 }
 
-h2.text-success,
-h2.text-info,
-h2.text-warning {
+h2 {
+    font-size: 2rem;
     font-weight: 700;
-    margin: 10px 0 0;
+    letter-spacing: 1px;
 }
 
-/* Chart section */
+/* ================================
+   COLORS FOR KPI TEXT
+================================ */
+.text-success {
+    color: #28a745 !important;
+    font-weight: 700;
+}
+
+.text-info {
+    color: #17a2b8 !important;
+    font-weight: 700;
+}
+
+.text-warning {
+    color: #ffc107 !important;
+    font-weight: 700;
+}
+
+/* ================================
+   CHART AREA
+================================ */
 .container.mt-5 {
-    background: #fff;
+    background: white;
     padding: 25px;
-    border-radius: 14px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    border-radius: 15px;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
 }
 
-canvas {
-    background: #fff;
-    border-radius: 12px;
+h4.mb-3 {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #1a4d2e;
+    letter-spacing: 0.5px;
+}
+
+/* ================================
+   RESPONSIVE DESIGN
+================================ */
+@media (max-width: 768px) {
+    .row.g-4 {
+        flex-direction: column;
+    }
+
+    .card.summary-card {
+        margin-bottom: 20px;
+    }
+}
+
+/* ================================
+   ADDITIONAL BEAUTY STYLING
+================================ */
+.card.summary-card h2 {
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.15);
+}
+
+.navbar-custom {
+    font-family: 'Poppins', sans-serif;
+}
+
+.dashboard-container {
+    padding: 20px;
+}
+
+.card.summary-card span {
+    display: block;
+    margin-top: 8px;
+    font-size: 1.4rem;
+}
+.kpi-number {
+    font-size: 2.2rem;
+    font-weight: bold;
+    color: #1a4d2e;
+    text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
 }

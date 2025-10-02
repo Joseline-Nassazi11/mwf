@@ -1,0 +1,119 @@
+doctype html
+html(lang='en')
+  head
+    meta(charset='UTF-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1.0')
+    title MWF Manager Dashboard
+    link(rel='stylesheet', href='/css/manager-dashboard.css')
+    script(src='https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js')
+
+  body
+    // --- TOP NAVBAR ---
+    nav.navbar
+      .navbar-brand
+        img.navbar-logo(src="/images/mwf-logo.png", alt="MWF Logo")
+        span MWF Management 📊
+      .navbar-user
+        span Manager: Joseline
+        a.btn.btn-outline-light.ms-3(href='/logout') Logout
+
+    // --- MAIN LAYOUT CONTAINER ---
+    .main-container
+      aside.sidebar
+        h4 Navigation
+        ul.sidebar-menu
+          li.active: a(href='/stocklist') Stock Management
+          li: a(href='/salestable') Sales
+          li: a(href='/reports') Stock & Sale Report
+          li: a(href='/product-list') Product List
+          li: a(href='/dashboard/suppliers') Suppliers & Sourcing
+          li: a(href='/manage-users') Staff Management
+
+      main.content
+        h1 Manager Overview & KPIs
+
+        // --- KPI CARDS ---
+        .insights-grid
+          .insight-card.revenue
+            p Total Revenue (30 Days)
+            span UGX #{totalRevenue ? totalRevenue.toLocaleString() : 0}
+          
+          .insight-card.profit
+            p Gross Profit (30 Days)
+            span UGX #{grossProfit ? grossProfit.toLocaleString() : 0}
+          
+          .insight-card.capital
+            p Capital in Stock
+            span UGX #{capitalInStock ? capitalInStock.toLocaleString() : 0}
+          
+          .insight-card.out-of-stock
+            p Out of Stock Items
+            span #{productsOutOfStock ? productsOutOfStock : 0}
+          
+          .insight-card.orders
+            p Total Open Orders
+            span #{totalOpenOrders ? totalOpenOrders : 0}
+
+          .insight-card.attendants
+            p Registered Attendants
+            span #{totalAttendants ? totalAttendants : 0}
+
+          .insight-card.suppliers
+            p Active Suppliers
+            span #{totalSuppliers ? totalSuppliers : 0}
+
+          .insight-card.losses
+            p Total Losses (30 Days)
+            span UGX #{totalLosses ? totalLosses.toLocaleString() : 0}
+
+        // --- GRAPH/CHART ---
+        .card.chart-area
+          h2 Sales Trend (Last 7 Days)
+          canvas#salesChart(width='400', height='150')
+
+        // --- RECENT ACTIVITY ---
+        .recent-activity-grid
+          .card
+            h2 Recent Sales Activity 💰
+            table.summary-table
+              thead
+                tr
+                  th Customer
+                  th Product ID
+                  th Quantity
+                  th Total Price (UGX)
+              tbody
+                if recentSales && recentSales.length
+                  each sale in recentSales
+                    tr
+                      td= sale.customerName || 'Unknown'
+                      td= sale.productId && sale.productId.toString ? sale.productId.toString().slice(-6) : 'N/A'
+                      td= sale.quantitySold || 0
+                      td= sale.totalPrice ? sale.totalPrice.toLocaleString() : 0
+                else
+                  tr
+                    td(colspan='4') No recent sales recorded.
+
+          .card
+            h2 Low Stock Alert 🚨
+            table.summary-table
+              thead
+                tr
+                  th Product Name
+                  th Type
+                  th Quantity
+                  th Supplier
+              tbody
+                if stockSummary && stockSummary.length
+                  each product in stockSummary
+                    if product.quantity <= 10 && product.quantity > 0
+                      tr.low-stock-row
+                        td= product.name || 'N/A'
+                        td= product.type || 'N/A'
+                        td= product.quantity || 0
+                        td= product.supplierName || 'Unknown'
+                else
+                  tr
+                    td(colspan='4') All stock levels appear healthy!
+
+    script(src='/js/manager-dashboard.js', defer)

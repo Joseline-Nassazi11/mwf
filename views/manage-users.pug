@@ -1,0 +1,33 @@
+doctype html
+html
+  head
+    title Manage Users
+    link(rel="stylesheet", href="/css/manage-users.css")
+    link(href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet")
+  body
+    // Navbar
+    .navbar
+      .navbar-left
+        img.logo(src="/images/mwf-logo.png" alt="MWF Logo")
+        span.brand Mayondo Wood & Furniture Ltd
+      .navbar-right
+        span.role Logged in as Manager
+
+    .container
+      h2 Manage Attendants
+      table.user-table
+        thead
+          tr
+            th Full Name
+            th Email
+            th Role
+            th Action
+        tbody
+          each attendant in attendants
+            tr
+              td= attendant.fullName
+              td= attendant.email
+              td= attendant.role
+              td
+                form(action=`/promote/${attendant._id}` method="POST")
+                  button.promote-btn(type="submit") Promote to Manager

@@ -1,0 +1,163 @@
+/* ===== General Styles ===== */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f4f6f8;
+    margin: 0;
+    padding: 0;
+    color: #333;
+}
+
+.container {
+    max-width: 1200px;
+    margin: auto;
+    padding: 20px;
+}
+
+/* ===== Navbar ===== */
+.navbar-custom {
+    background: linear-gradient(90deg, #1a4d2e, #2e8b57);
+    padding: 12px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.navbar-custom img.logo {
+    height: 45px;
+    width: auto;
+    border-radius: 8px;
+    box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.3);
+}
+
+.navbar-custom span {
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+.navbar-custom a.btn {
+    font-size: 0.9rem;
+    padding: 6px 12px;
+    border-radius: 5px;
+    transition: background 0.3s ease;
+}
+
+.navbar-custom a.btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+/* ===== Content ===== */
+h2 {
+    color: #1a4d2e;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+.card-custom {
+    border-radius: 12px;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+    background-color: white;
+    padding: 20px;
+    margin-bottom: 40px;
+}
+
+/* ===== Table Styles ===== */
+.table-green {
+    background: linear-gradient(90deg, #1a4d2e, #2e8b57);
+    color: white;
+    font-weight: bold;
+}
+
+.table-striped tbody tr:nth-of-type(odd) {
+    background-color: #f9f9f9;
+}
+
+.table-bordered {
+    border: 1px solid #dee2e6;
+}
+
+.table-hover tbody tr:hover {
+    background-color: #e8f5e9;
+}
+
+table {
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+
+
+/* ===== Search Inputs ===== */
+input#salesSearch,
+input#stockSearch {
+    width: 250px;
+    padding: 8px 12px;
+    border: 1px solid #ccc;
+    border-radius: 25px;
+    box-shadow: inset 0px 2px 4px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+input#salesSearch:focus,
+input#stockSearch:focus {
+    outline: none;
+    border-color: #2e8b57;
+    box-shadow: 0px 0px 8px rgba(46, 139, 87, 0.5);
+}
+
+/* ===== Buttons ===== */
+.btn-success {
+    background: linear-gradient(90deg, #28a745, #2ecc71);
+    border: none;
+    color: white;
+    font-weight: bold;
+}
+
+.btn-danger {
+    background: linear-gradient(90deg, #dc3545, #e74c3c);
+    border: none;
+    color: white;
+    font-weight: bold;
+}
+
+.btn-success:hover,
+.btn-danger:hover {
+    opacity: 0.9;
+}
+
+.btn-light {
+    background: white;
+    color: #1a4d2e;
+    border: 1px solid #1a4d2e;
+}
+
+.btn-light:hover {
+    background: #1a4d2e;
+    color: white;
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 768px) {
+    .navbar-custom {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    input#salesSearch,
+    input#stockSearch {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+}
+
+/* ===== Footer Styling (optional) ===== */
+footer {
+    text-align: center;
+    padding: 20px;
+    background: #2e8b57;
+    color: white;
+    margin-top: 40px;
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+}

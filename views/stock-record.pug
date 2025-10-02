@@ -1,0 +1,67 @@
+doctype html
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport" content="width=device-width, initial-scale=1.0")
+    title Stock Records
+    link(
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    )
+    link(rel="stylesheet" href="/css/stock-record.css") 
+  body
+    //- Navbar
+    nav.navbar.navbar-expand-lg.navbar-dark.bg-success.shadow-sm
+      .container-fluid
+        a.navbar-brand(href="/dashboard")
+          img(src="/images/mwf-logo.png" alt="Logo" height="40" class="d-inline-block align-text-top me-2")
+          | Mayondo Wood & Furniture
+        button.navbar-toggler(type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav")
+          span.navbar-toggler-icon
+        #navbarNav.collapse.navbar-collapse
+          ul.navbar-nav.ms-auto
+            li.nav-item
+              a.nav-link(href="/dashboard") Dashboard
+            li.nav-item
+              a.nav-link(href="/stocklist") Stock List
+            li.nav-item
+              a.nav-link.active(href="/stock-records") Records
+
+    //- Page Content
+    .container.mt-5
+      .card.p-3.shadow-lg
+        h4.mb-3.text-success Stock Records
+        table.table.table-striped.table-hover.mt-3
+          thead
+            tr
+              th #
+              th Product
+              th Type
+              th Supplier
+              th Cost (UGX)
+              th Price (UGX)
+              th Qty
+              th Quality
+              th Last Update
+              th Actions
+          tbody
+            if stockRecords && stockRecords.length > 0
+              each item, index in stockRecords
+                tr
+                  td #{index + 1}
+                  td #{item.name}
+                  td #{item.type}
+                  td #{item.supplier}
+                  td #{item.cost.toLocaleString()}
+                  td #{item.price.toLocaleString()}
+                  td #{item.quantity}
+                  td #{item.quality}
+                  td #{item.lastUpdate.toISOString().split('T')[0]}
+                  td
+                    a.btn.btn-sm.btn-primary.me-1(href=`/stock/edit/${item._id}`) Edit
+                    a.btn.btn-sm.btn-warning.me-1(href=`/stock/adjust/${item._id}`) Adjust
+                    form(action=`/stock/delete/${item._id}` method="POST" style="display:inline")
+                      button.btn.btn-sm.btn-danger(type="submit" onclick="return confirm('Are you sure?')") Delete
+            else
+              tr
+                td(colspan="10" class="text-center text-muted") No stock records found

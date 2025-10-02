@@ -1,104 +1,157 @@
-/* General reset */
+/* === BODY & LAYOUT === */
 body {
-    font-family: "Poppins", sans-serif;
-    background: #f5f6f8;
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #f0f4f8, #d9e6f2);
     margin: 0;
     padding: 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    opacity: 0;
+    animation: fadeInEffect 0.8s ease-in forwards;
 }
 
-/* Navbar */
+@keyframes fadeInEffect {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* === NAVBAR === */
 .navbar-custom {
-    background: #155d27;
-    color: #fff;
-    padding: 12px 24px;
+    background: linear-gradient(90deg, #1a4d2e, #2e8b57, #1a4d2e);
+    padding: 15px 25px;
+    border-radius: 0 0 12px 12px;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.2);
+}
+.navbar-custom a {
+    text-decoration: none;
+    color: inherit;
+    transition: color 0.3s ease;
 }
 
-.navbar-custom .logo {
-    width: 45px;
+.navbar-custom a:hover {
+    color: #c1ffc1;
+    /* soft green glow */
+}
+
+.logo {
     height: 45px;
+    width: auto;
     border-radius: 50%;
-    margin-right: 10px;
+    margin-right: 15px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease;
 }
 
-.navbar-custom .company-name {
-    font-weight: 600;
-    font-size: 20px;
-    color: #fff;
-
-
+.logo:hover {
+    transform: scale(1.05);
 }
 
-.navbar-custom .user-role {
-    font-weight: 100;
-    font-size: 15px;
+.company-name {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: white;
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.3);
 }
 
-/* Form Container */
+.user-role {
+    font-size: 1rem;
+    font-weight: 500;
+    color: white;
+    background: rgba(255, 255, 255, 0.2);
+    padding: 6px 12px;
+    border-radius: 8px;
+}
+
+/* === FORM CONTAINER === */
 .container {
-    background: #fff;
+    background: white;
+    max-width: 500px;
     margin: 40px auto;
     padding: 30px;
-    border-radius: 12px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-    max-width: 420px;
-    width: 100%;
+    border-radius: 15px;
+    box-shadow: 0px 8px 25px rgba(0, 0, 0, 0.15);
 }
 
-/* Heading */
 .container h2 {
-    text-align: center;
-    color: #155d27;
+    font-size: 26px;
     font-weight: 700;
-    font-size: 22px;
-    margin-bottom: 20px;
+    margin-bottom: 25px;
+    color: #2c3e50;
+    text-align: center;
 }
 
-/* Labels */
+/* === FORM FIELDS === */
+.mb-3 {
+    margin-bottom: 18px;
+}
+
 .form-label {
-    display: block;
     font-weight: 500;
+    color: #2c3e50;
     margin-bottom: 6px;
-    color: #333;
-    text-align: left;
 }
 
-/* Inputs & Selects */
 .form-control,
 .form-select {
-    width: 100%;
-    padding: 10px;
     border-radius: 8px;
-    border: 1px solid #ced4da;
-    margin-bottom: 15px;
-    font-size: 14px;
-    transition: border 0.3s, box-shadow 0.3s;
+    border: 1px solid #ccc;
+    padding: 12px;
+    font-size: 1rem;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 .form-control:focus,
 .form-select:focus {
-    border-color: #155d27;
-    box-shadow: 0 0 6px rgba(21, 93, 39, 0.25);
-    outline: none;
+    border-color: #28a745;
+    box-shadow: 0 0 8px rgba(40, 167, 69, 0.3);
 }
 
-/* Button */
-button.btn-success {
+/* === BUTTON === */
+.btn-success {
+    display: block;
     width: 100%;
-    padding: 12px;
-    font-size: 15px;
-    border-radius: 8px;
-    font-weight: 600;
-    background: #155d27;
+    background: linear-gradient(135deg, #28a745, #1e7e34);
     border: none;
-    color: #fff;
-    transition: all 0.3s ease;
+    border-radius: 8px;
+    padding: 12px;
+    font-weight: 600;
+    font-size: 1.1rem;
+    color: white;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.15);
 }
 
-button.btn-success:hover {
-    background: #0b3d20;
+.btn-success:hover {
+    background: linear-gradient(135deg, #1e7e34, #28a745);
     transform: translateY(-2px);
-    box-shadow: 0 5px 12px rgba(0, 0, 0, 0.15);
+    box-shadow: 0px 6px 14px rgba(0, 0, 0, 0.2);
+}
+
+/* === RESPONSIVE DESIGN === */
+@media (max-width: 600px) {
+    .container {
+        padding: 20px;
+        margin: 20px;
+    }
+
+    .navbar-custom {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .user-role {
+        margin-top: 10px;
+    }
 }

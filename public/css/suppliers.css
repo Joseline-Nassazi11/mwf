@@ -1,220 +1,218 @@
-/* ===== Base ===== */
+/* === BODY & LAYOUT === */
 body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #f4f7f6;
     margin: 0;
-    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-    background: #f8f9fa;
-    color: #212529;
+    padding: 0;
+    min-height: 100vh;
+    opacity: 0;
+    animation: fadeInEffect 0.8s ease-in forwards;
+    color: #2c3e50;
 }
 
-/* ===== Sidebar ===== */
-.sidebar {
-    width: 230px;
-    background: #343a40;
-    color: #fff;
-    position: fixed;
-    top: 0;
-    bottom: 0;
-    padding-top: 20px;
-    transition: width 0.3s ease;
-    overflow-x: hidden;
+@keyframes fadeInEffect {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
-.sidebar h2 {
-    text-align: center;
-    margin-bottom: 1.5rem;
-    font-size: 1.2rem;
-    font-weight: bold;
-    letter-spacing: 1px;
-}
-
-.sidebar a {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    padding: 12px 20px;
-    color: #fff;
-    text-decoration: none;
-    transition: background 0.2s;
-}
-
-.sidebar a:hover {
-    background: #495057;
-}
-
-.sidebar a.active {
-    background: #198754;
-}
-
-.sidebar.collapsed {
-    width: 70px;
-}
-
-.sidebar.collapsed h2,
-.sidebar.collapsed a span {
-    display: none;
-}
-
-.sidebar.collapsed a {
-    justify-content: center;
-    padding: 12px 0;
-}
-
-/* ===== Navbar ===== */
+/* === NAVBAR === */
 .navbar-custom {
-    height: 60px;
-    background: #fff;
-    border-bottom: 1px solid #dee2e6;
-    padding: 0 20px;
-    margin-left: 230px;
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-    transition: margin-left 0.3s ease;
+    background: linear-gradient(90deg, #1a4d2e, #2e8b57, #1a4d2e);
+    color: #fff;
+    padding: 15px 25px;
+    border-radius: 12px;
+    margin: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.2);
+    transition: background 0.4s ease-in-out;
 }
 
-.navbar-custom.collapsed {
-    margin-left: 70px;
+.navbar-custom:hover {
+    background: linear-gradient(90deg, #2e8b57, #1a4d2e, #2e8b57);
 }
 
 .navbar-logo {
-    height: 40px;
-    margin-right: 10px;
+    height: 50px;
+    width: auto;
+    border-radius: 50%;
+    margin-right: 15px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease;
+}
+
+.navbar-logo:hover {
+    transform: scale(1.05);
 }
 
 .company-name {
-    font-size: 1.1rem;
-    font-weight: 600;
-    color: #212529;
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin-left: 10px;
+    color: #fff;
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.3);
 }
 
 .user-role {
-    font-size: 0.95rem;
+    font-size: 1rem;
     font-weight: 500;
-    color: #6c757d;
-}
-
-/* Toggle button */
-.toggle-btn {
-    background: none;
-    border: none;
-    font-size: 1.5rem;
-    cursor: pointer;
-    color: #212529;
-    margin-right: 15px;
-}
-
-/* ===== Content ===== */
-.content {
-    margin-left: 230px;
-    padding: 20px;
-    transition: margin-left 0.3s ease;
-}
-
-.content.collapsed {
-    margin-left: 70px;
-}
-
-/* Headings */
-.content h2 {
-    font-weight: 600;
-    margin-bottom: 20px;
-}
-
-/* ===== Table ===== */
-.table {
-    background: #fff;
+    background: rgba(255, 255, 255, 0.2);
+    padding: 6px 12px;
     border-radius: 8px;
-    overflow: hidden;
+    box-shadow: inset 0px 2px 4px rgba(255, 255, 255, 0.2);
+    transition: background 0.3s ease;
 }
 
-.table th,
-.table td {
-    vertical-align: middle;
-    text-align: center;
+.user-role:hover {
+    background: rgba(255, 255, 255, 0.3);
 }
 
-.table th {
-    background: #212529 !important;
+/* === CONTENT === */
+.content {
+    padding: 25px 35px;
+    background: #ffffff;
+    border-radius: 12px;
+    margin: 20px auto;
+    max-width: 1200px;
+    box-shadow: 0px 6px 20px rgba(0, 0, 0, 0.1);
+}
+
+.content h2 {
+    font-size: 30px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #2c3e50;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* === BUTTONS === */
+.btn-primary {
+    background: linear-gradient(135deg, #28a745, #218838);
+    border: none;
+    border-radius: 8px;
+    font-weight: 500;
+    transition: all 0.3s ease-in-out;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.btn-primary:hover {
+    background: linear-gradient(135deg, #218838, #28a745);
+    transform: translateY(-2px);
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.btn-success {
+    background: linear-gradient(135deg, #28a745, #1e7e34);
+    border: none;
+    border-radius: 8px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.btn-success:hover {
+    background: linear-gradient(135deg, #1e7e34, #28a745);
+    transform: translateY(-2px);
+}
+
+.btn-warning {
+    background: linear-gradient(135deg, #ffc107, #e0a800);
+    border: none;
+    border-radius: 8px;
+    color: #212529;
+}
+
+.btn-warning:hover {
+    background: linear-gradient(135deg, #e0a800, #ffc107);
     color: #fff;
 }
 
-.table td button {
-    margin-right: 5px;
+.btn-danger {
+    background: linear-gradient(135deg, #dc3545, #c82333);
+    border: none;
+    border-radius: 8px;
 }
 
-/* ===== Modal ===== */
-.modal-content {
+.btn-danger:hover {
+    background: linear-gradient(135deg, #c82333, #dc3545);
+}
+
+/* === TABLES === */
+table {
+    width: 100%;
+    border-collapse: collapse;
     border-radius: 8px;
     overflow: hidden;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+table th {
+    background: linear-gradient(135deg, #28a745, #218838);
+    color: #fff;
+    padding: 14px;
+    text-align: left;
+    font-weight: 600;
+}
+
+table td {
+    padding: 12px;
+    border-bottom: 1px solid #eee;
+    color: #2c3e50;
+}
+
+table tbody tr:nth-child(even) {
+    background: #f9f9f9;
+}
+
+table tbody tr:nth-child(odd) {
+    background: #fff;
+}
+
+table tbody tr:hover {
+    background: #e6f4ea;
+    transition: background 0.3s ease-in-out;
+}
+
+/* === MODALS === */
+.modal-content {
+    border-radius: 12px;
+    box-shadow: 0px 8px 25px rgba(0, 0, 0, 0.15);
+    border: none;
+    animation: fadeInEffect 0.4s ease-in-out;
 }
 
 .modal-header {
-    background: #198754;
+    background: linear-gradient(135deg, #28a745, #1e7e34);
     color: #fff;
-    border-bottom: none;
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
 }
 
 .modal-title {
     font-weight: 600;
-}
-
-.btn-close {
-    filter: invert(1);
+    text-transform: uppercase;
 }
 
 .modal-body label {
     font-weight: 500;
+    color: #2c3e50;
 }
 
-.modal-body .form-control {
-    border-radius: 6px;
-    box-shadow: none;
-    border: 1px solid #ced4da;
+.modal-body input.form-control {
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    padding: 10px;
+    transition: border-color 0.3s ease-in-out;
 }
 
-/* ===== Buttons ===== */
-.btn-primary {
-    background: #198754;
-    border: none;
-}
-
-.btn-primary:hover {
-    background: #146c43;
-}
-
-.btn-success {
-    background: #0d6efd;
-    border: none;
-}
-
-.btn-success:hover {
-    background: #0b5ed7;
-}
-
-.btn-warning {
-    color: #212529;
-}
-
-.btn-danger {
-    color: #fff;
-}
-
-/* ===== Responsive ===== */
-@media (max-width: 768px) {
-    .sidebar {
-        position: fixed;
-        height: 100%;
-        z-index: 999;
-        left: -230px;
-    }
-
-    .sidebar.collapsed {
-        left: 0;
-        width: 230px;
-    }
-
-    .navbar-custom,
-    .content {
-        margin-left: 0 !important;
-    }
+.modal-body input.form-control:focus {
+    border-color: #28a745;
+    box-shadow: 0 0 8px rgba(40, 167, 69, 0.3);
 }

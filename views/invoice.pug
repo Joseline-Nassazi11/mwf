@@ -1,0 +1,33 @@
+doctype html
+html
+  head
+    title Invoice
+    link(rel="stylesheet" href="/css/invoice.css")
+  body
+    .invoice-container
+      h2 Invoice #{invoice.invoiceNumber}
+      p Date: #{invoice.createdAt.toDateString()}
+
+      h4 Customer: #{invoice.sale.customerName}
+      p Payment Method: #{invoice.sale.paymentType}
+
+      table.table.table-bordered
+        thead
+          tr
+            th Product Type
+            th Product
+            th Unit Price
+            th Qty
+            th Transport
+            th Total
+        tbody
+          tr
+            td #{invoice.sale.productType}
+            td #{invoice.sale.product}
+            td UGX #{invoice.sale.unitPrice}
+            td #{invoice.sale.quantity}
+            td #{invoice.sale.transport ? "Yes (+5%)" : "No"}
+            td UGX #{invoice.sale.totalPrice}
+
+      h3.text-end Grand Total: UGX #{invoice.sale.totalPrice}
+      button.btn.btn-primary(onclick="window.print()") Print Invoice

@@ -1,55 +1,77 @@
 doctype html
-html
+html(lang="en")
   head
-    meta(charset='UTF-8')
-    meta(name='viewport' content='width=device-width, initial-scale=1.0')
-    title MWF - Suppliers
-    link(href='https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css' rel='stylesheet')
-    link(rel='stylesheet' href='/css/suppliers.css')
-    script(src='https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js')
-  body
-    // Sidebar
-    .sidebar
-      h2 MWF
-      a(href='/dashboard') Dashboard
-      a(href='/products') Products
-      a(href='/sales') Sales
-      a.active(href='/suppliers') Suppliers
-      a(href='/reports') Reports
+    meta(charset="UTF-8")
+    meta(name="viewport" content="width=device-width, initial-scale=1.0")
+    title= title
+    link(href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet")
+    link(rel="stylesheet" href="/css/suppliers.css")
+    script(src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js")
 
-    // Navbar with toggle button
+    style.
+      .navbar-custom {
+        background: linear-gradient(90deg, #1a4d2e, #2e8b57);
+        padding: 10px 20px;
+      }
+      .navbar-logo {
+        height: 40px;
+      }
+      .company-name {
+        font-size: 1.2rem;
+        font-weight: bold;
+        color: white;
+      }
+      .user-role {
+        color: white;
+        font-weight: bold;
+      }
+
+  body
+    // Navbar
     .navbar-custom.d-flex.justify-content-between.align-items-center
       .d-flex.align-items-center
-        button#sidebarToggle.toggle-btn ☰
-        img.navbar-logo(src="/images/mwf-logo.png", alt="MWF Logo")
-        span.company-name Mayondo Wood & Furniture Ltd
-      span.user-role Manager
+        a(href="/dashboard" class="d-flex align-items-center text-decoration-none")
+          img.navbar-logo(src="/images/mwf-logo.png", alt="MWF Logo")
+          span.company-name.ms-2 Mayondo Wood & Furniture Ltd
+      .d-flex.align-items-center
+        a.btn.btn-outline-light.me-3(href="/dashboard") Dashboard
+        span.user-role Manager
 
     // Content
-    .content
+    .content.container.mt-4
       h2.mb-4 Suppliers
+
+      // Add Supplier Button
       button.btn.btn-primary.mb-3(data-bs-toggle="modal" data-bs-target="#addSupplierModal") + Add Supplier
 
       // Suppliers Table
-      table.table.table-bordered.table-hover
-        thead.table-dark
-          tr
-            th #
-            th Name
-            th Phone
-            th Email
-            th Address
-            th Actions
-        tbody
-          tr
-            td 1
-            td ABC Timber Ltd
-            td +256 700 123456
-            td info@abctimber.com
-            td Kampala
-            td
-              button.btn.btn-sm.btn-warning Edit
-              button.btn.btn-sm.btn-danger Delete
+      if suppliers && suppliers.length
+        table.table.table-bordered.table-hover
+          thead.table-dark
+            tr
+              th #
+              th Name
+              th Phone
+              th Email
+              th Address
+              th Actions
+          tbody
+            each supplier, i in suppliers
+              tr
+                td #{i + 1}
+                td #{supplier.name}
+                td #{supplier.phone}
+                td #{supplier.email}
+                td #{supplier.address}
+                td
+                  button.btn.btn-sm.btn-warning(
+                    data-bs-toggle="modal"
+                    data-bs-target=`#editSupplierModal-${supplier._id}`
+                  ) Edit
+                  form(action=`/dashboard/suppliers/delete/${supplier._id}` method="POST" style="display:inline;")
+                    button.btn.btn-sm.btn-danger(type="submit") Delete
+      else
+        p.text-muted No suppliers found.
 
     // Add Supplier Modal
     .modal.fade#addSupplierModal(tabindex='-1' aria-hidden='true')
@@ -59,7 +81,7 @@ html
             h5.modal-title Add New Supplier
             button.btn-close(type='button' data-bs-dismiss='modal' aria-label='Close')
           .modal-body
-            form(action='/suppliers/add' method='POST')
+            form(action='/dashboard/suppliers/add' method='POST')
               .mb-3
                 label.form-label(for='name') Supplier Name
                 input.form-control(type='text' id='name' name='name' required)
@@ -74,14 +96,27 @@ html
                 input.form-control(type='text' id='address' name='address')
               button.btn.btn-success(type='submit') Save Supplier
 
-    // JS for sidebar toggle
-    script.
-      document.addEventListener("DOMContentLoaded", () => {
-        const toggleBtn = document.getElementById("sidebarToggle");
-        const sidebar = document.querySelector(".sidebar");
-        toggleBtn.addEventListener("click", () => {
-          sidebar.classList.toggle("collapsed");
-          document.querySelector(".content").classList.toggle("collapsed");
-          document.querySelector(".navbar-custom").classList.toggle("collapsed");
-        });
-      });
+    // Edit Supplier Modals
+    if suppliers && suppliers.length
+      each supplier in suppliers
+        .modal.fade(id=`editSupplierModal-${supplier._id}` tabindex='-1' aria-hidden='true')
+          .modal-dialog
+            .modal-content
+              .modal-header
+                h5.modal-title Edit Supplier
+                button.btn-close(type='button' data-bs-dismiss='modal' aria-label='Close')
+              .modal-body
+                form(action=`/dashboard/suppliers/edit/${supplier._id}` method='POST')
+                  .mb-3
+                    label.form-label(for='name') Supplier Name
+                    input.form-control(type='text' id='name' name='name' required value=supplier.name)
+                  .mb-3
+                    label.form-label(for='phone') Phone Number
+                    input.form-control(type='text' id='phone' name='phone' required value=supplier.phone)
+                  .mb-3
+                    label.form-label(for='email') Email
+                    input.form-control(type='email' id='email' name='email' value=supplier.email)
+                  .mb-3
+                    label.form-label(for='address') Address
+                    input.form-control(type='text' id='address' name='address' value=supplier.address)
+                  button.btn.btn-success(type='submit') Update Supplier

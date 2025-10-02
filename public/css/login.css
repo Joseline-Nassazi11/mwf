@@ -1,91 +1,113 @@
-/* Reset */
+/* Reset some basics */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
 }
 
 body {
-    font-family: Arial, sans-serif;
-    height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    background: url('https://images.unsplash.com/photo-1615874959474-d609969a20ed?auto=format&fit=crop&w=1600&q=80') no-repeat center center/cover;
-    position: relative;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #1a4d2e, #2e8b57);
 }
 
-/* Dark overlay */
-body::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(0, 0, 0, 0.6);
-    z-index: 0;
-}
-
-/* Container */
+/* Login container */
 .login-container {
-    position: relative;
-    z-index: 1;
     width: 100%;
     max-width: 400px;
+    padding: 20px;
 }
 
 /* Login box */
 .login-box {
-    background: rgba(255, 255, 255, 0.95);
-    padding: 30px;
-    border-radius: 12px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    background: #fff;
+    border-radius: 15px;
+    padding: 40px 30px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
     text-align: center;
+    animation: fadeIn 1s ease;
 }
 
-/* Title */
+/* Heading */
 .login-box h2 {
-    margin-bottom: 20px;
-    color: #134b2c;
-    font-weight: bold;
+    margin-bottom: 25px;
+    font-size: 28px;
+    font-weight: 700;
+    color: #1a4d2e;
+    letter-spacing: 1px;
 }
 
-/* Labels */
-label {
-    display: block;
+/* Input groups */
+.input-group {
     text-align: left;
-    margin-bottom: 5px;
-    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.input-group label {
+    display: block;
+    font-size: 14px;
+    margin-bottom: 6px;
     color: #333;
 }
 
-/* Inputs */
-input[type="email"],
-input[type="password"] {
+.input-group input {
     width: 100%;
-    padding: 10px;
-    margin-bottom: 15px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    background-color: #f5faff;
-    font-size: 14px;
+    padding: 12px 15px;
+    border: 2px solid #ddd;
+    border-radius: 10px;
+    font-size: 15px;
+    outline: none;
+    transition: 0.3s;
+}
+
+.input-group input:focus {
+    border-color: #2e8b57;
+    box-shadow: 0 0 8px rgba(46, 139, 87, 0.3);
 }
 
 /* Button */
-button {
+.btn {
     width: 100%;
     padding: 12px;
-    background-color: #134b2c;
-    color: #fff;
     font-size: 16px;
-    font-weight: bold;
+    font-weight: 600;
+    background: linear-gradient(90deg, #1a4d2e, #2e8b57);
+    color: #fff;
     border: none;
-    border-radius: 8px;
+    border-radius: 10px;
     cursor: pointer;
-    transition: background 0.3s ease;
+    transition: 0.3s ease;
 }
 
-button:hover {
-    background-color: #0f3c24;
+.btn:hover {
+    background: linear-gradient(90deg, #166b3a, #24965b);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsive */
+@media (max-width: 500px) {
+    .login-box {
+        padding: 30px 20px;
+    }
+
+    .login-box h2 {
+        font-size: 24px;
+    }
 }

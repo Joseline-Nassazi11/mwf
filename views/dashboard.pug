@@ -1,85 +1,116 @@
 doctype html
-head
-  meta(charset='UTF-8')
-  meta(name='viewport' content='width=device-width, initial-scale=1.0')
-  title MWF - Dashboard
-  link(href='https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css' rel='stylesheet')
-  link(href='https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css' rel='stylesheet')
-  link(rel='stylesheet' href='css/dashboard.css')
-  script(src='https://cdn.jsdelivr.net/npm/chart.js')
-// Sidebar
-.sidebar
-  h2 MWF
-  a.active(href='/salestable')
-    i.bi.bi-speedometer2.me-2
-    | Sales Table
-  a(href='products.html')
-    i.bi.bi-box-seam.me-2
-    | Products
-  a(href='/Addsale')
-    i.bi.bi-cash-coin.me-2
-    | Sales
-  a(href='/stock')
-    i.bi.bi-truck.me-2
-    | Stock Management
-  a(href='/')
-    i.bi.bi-bar-chart-line.me-2
-    | Reports
-  a(href='/register-attendant')
-    i.bi.bi-people.me-2
-    | Register Attendant
-  a(href='/Addsale')
-    i.bi.bi-cash-coin.me-2
-    | Sales
-  a(href='/Addsale')
-    i.bi.bi-cash-coin.me-2
-    | Sales    
-  a(href='/logout')
-    i.bi.bi-people.me-2
-    | Logout  
-// Navbar
-.navbar-custom
-  span Mayondo Wood &amp; Furniture Ltd
-  span.user-role
-    i.bi.bi-person-circle.me-1
-    |  Manager
-// Content
-.content
-  h2 Dashboard Overview
-  .row.g-4
-    .col-md-3
-      .card.text-center.p-3
-        .card-body
-          i.bi.bi-box-seam.fs-1.text-primary
-          h3 Purchase Costs
-          p#purchaseCost For Timber: #{new Intl.NumberFormat().format(totalExpenseTimber.totalCost)} Shs
-          p#purchaseCost For Poles: #{new Intl.NumberFormat().format(totalExpensePoles.totalCost)} Shs
-          p#purchaseCost For Softwood: #{new Intl.NumberFormat().format(totalExpenseSoftwood.totalCost)} Shs
-          p#purchaseCost For Hardwood: #{new Intl.NumberFormat().format(totalExpenseHardwood.totalCost)} Shs
-          h5#purchaseCost Total Expense: #{new Intl.NumberFormat().format(totalExpenseTimber.totalCost + totalExpensePoles.totalCost + totalExpenseSoftwood.totalCost + totalExpenseHardwood.totalCost)} Shs
-    .col-md-3
-      .card.text-center.p-3
-        .card-body
-          i.bi.bi-cash-coin.fs-1.text-success
-          h5 Total Sales
-          p#purchaseRevenue For Timber: #{new Intl.NumberFormat().format(totalRevenueTimber.totalCost)} Shs
-          p UGX 
-    .col-md-3
-      .card.text-center.p-3
-        .card-body
-          i.bi.bi-truck.fs-1.text-warning
-          h5 Suppliers
-          p= totalSuppliers
-    .col-md-3
-      .card.text-center.p-3
-        .card-body
-          i.bi.bi-people.fs-1.text-danger
-          h5 Attendants
-          p 8
-  // sales chart
-  .row.mt-5
-    .col-md-12
-      .card.p-4
-        h5.mb-3 Sales Overview
-        canvas#salesChart(height='100')
-script(src='/js/dashboard.js')
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport" content="width=device-width, initial-scale=1.0")
+    title Dashboard
+    link(rel="stylesheet", href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css")
+    link(rel="stylesheet", href="/css/dashboard.css")
+    script(src="https://cdn.jsdelivr.net/npm/chart.js")
+
+  body
+    nav.navbar.navbar-expand-lg.navbar-dark.bg-dark.mb-4
+      .container-fluid
+        //- a.navbar-brand(href="/dashboard") Dashboard
+        button.navbar-toggler(type="button", data-bs-toggle="collapse", data-bs-target="#navbarNav")
+          span.navbar-toggler-icon
+        #navbarNav.collapse.navbar-collapse
+          ul.navbar-nav.ms-auto
+            li.nav-item
+              a.nav-link(href="/stocklist") Stock List
+            li.nav-item
+              a.nav-link(href="/stock") Add Stock
+
+    .container
+      h1.mb-4.text-center Dashboard Overview
+
+      // Stats Cards
+      .row.mb-4
+        .col-md-4
+          .card.text-white.bg-primary.mb-3
+            .card-header Total Expenses
+            .card-body
+              h5.card-title #{totalExpenseFormatted}
+              p.card-text Total cost of stock purchased
+
+        .col-md-4
+          .card.text-white.bg-success.mb-3
+            .card-header Total Revenue
+            .card-body
+              h5.card-title #{totalRevenueFormatted}
+              p.card-text Total sales revenue
+
+        .col-md-4
+          .card.text-white.bg-warning.mb-3
+            .card-header Total Profit
+            .card-body
+              h5.card-title #{totalProfitFormatted}
+              p.card-text Revenue minus Expenses
+
+      // Expenses & Revenues by Product Type
+      .row.mb-4
+        .col-md-6
+          .card.mb-3
+            .card-header Expenses by Product
+            .card-body
+              table.table.table-striped
+                thead
+                  tr
+                    th Product Type
+                    th Quantity
+                    th Total Cost
+                tbody
+                  each value, key in expenseMap
+                    tr
+                      td #{key}
+                      td #{value.totalQuantity}
+                      td #{new Intl.NumberFormat("en-UG", { style: "currency", currency: "UGX" }).format(value.totalCost)}
+
+        .col-md-6
+          .card.mb-3
+            .card-header Revenues by Product
+            .card-body
+              table.table.table-striped
+                thead
+                  tr
+                    th Product Type
+                    th Quantity
+                    th Total Revenue
+                tbody
+                  each value, key in revenueMap
+                    tr
+                      td #{key}
+                      td #{value.totalQuantity}
+                      td #{new Intl.NumberFormat("en-UG", { style: "currency", currency: "UGX" }).format(value.totalRevenue)}
+
+      // Chart
+      .row.mb-4
+        .col-12
+          .card
+            .card-header Sales Chart
+            .card-body
+              canvas#salesChart(width="400" height="150")
+
+      script.
+        const ctx = document.getElementById('salesChart').getContext('2d');
+        const salesChart = new Chart(ctx, {
+          type: 'line',
+          data: {
+            labels: !{chartLabels},
+            datasets: [{
+              label: 'Monthly Sales',
+              data: !{chartData},
+              backgroundColor: 'rgba(54, 162, 235, 0.2)',
+              borderColor: 'rgba(54, 162, 235, 1)',
+              borderWidth: 2,
+              fill: true
+            }]
+          },
+          options: {
+            responsive: true,
+            plugins: {
+              legend: { display: true },
+              title: { display: true, text: 'Monthly Sales Chart' }
+            }
+          }
+        });

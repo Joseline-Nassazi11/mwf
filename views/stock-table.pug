@@ -13,6 +13,8 @@ html(lang="en")
       .d-flex.align-items-center
         img(src="/images/mwf-logo.png" alt="MWF Logo" class="logo")
         span.ms-2.fw-bold Mayondo Wood & Furniture Ltd
+        // Dashboard link
+        a.ms-4.text-white.text-decoration-none.fw-semibold(href="/dashboard") Dashboard
       span.user-role Manager
 
     // Stock Table
@@ -33,21 +35,18 @@ html(lang="en")
               th Actions
           tbody
             if items.length
-                each item in items
-                    tr
-                        td #{item.name}
-                        td #{item.type}
-                        td #{item.supplier}
-                        td #{item.quantity}
-                        td #{item.cost}
-                        td #{item.price}
-                        td #{item.quality}
-                        td #{moment(item.lastUpdate).format('YYYY-MM-DD') }
-                        td
-                           a.btn.btn-sm.btn-primary.me-1(href=`/stock/edit/${item._id}`) Edit
-                           a.btn.btn-sm.btn-warning.me-1(href=`/stock/adjust/${item._id}`) Adjust
-                           form(action=`/stock/delete/${item._id}` method="POST" style="display:inline")
-                            button.btn.btn-sm.btn-danger(type="submit" onclick="return confirm('Are you sure?')") Delete 
-                        
-                            
-            
+              each item in items
+                tr
+                  td #{item.name}
+                  td #{item.type}
+                  td #{item.supplier}
+                  td #{item.quantity}
+                  td #{item.cost}
+                  td #{item.price}
+                  td #{item.quality}
+                  td #{moment(item.lastUpdate).format('YYYY-MM-DD')}
+                  td
+                    a.btn.btn-sm.btn-primary.me-1(href=`/stock/edit/${item._id}`) Edit
+                    a.btn.btn-sm.btn-warning.me-1(href=`/stock/adjust/${item._id}`) Adjust
+                    form(action=`/stock/delete/${item._id}` method="POST" style="display:inline")
+                      button.btn.btn-sm.btn-danger(type="submit" onclick="return confirm('Are you sure?')") Delete

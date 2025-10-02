@@ -1,123 +1,180 @@
-/* Sidebar styling */
+/* Global Styles */
+body {
+    font-family: "Poppins", sans-serif;
+    background: #f4f6f9;
+    color: #333;
+}
+
+/* Sidebar */
 .sidebar {
-    height: 100vh;
-    width: 240px;
     position: fixed;
-    top: 0;
     left: 0;
-    background: linear-gradient(180deg, #1a4d2e, #133d27);
-    color: #fff;
-    padding-top: 20px;
-    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+    top: 0;
+    height: 100%;
+    width: 240px;
+    background: linear-gradient(90deg, #1a4d2e, #2e8b57);
+    /* green gradient */
+    color: white;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    z-index: 1000;
+}
+
+.sidebar .logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.sidebar .logo img {
+    width: 100px;
+    height: auto;
+    border-radius: 8px;
+    border: 2px solid white;
 }
 
 .sidebar h2 {
-    text-align: center;
-    margin-bottom: 30px;
     font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+    text-align: center;
+    color: white;
     font-weight: bold;
-    letter-spacing: 1px;
 }
 
 .sidebar a {
-    display: block;
-    padding: 12px 20px;
-    color: #ddd;
+    display: flex;
+    align-items: center;
+    padding: 12px;
+    margin-bottom: 10px;
     text-decoration: none;
-    transition: all 0.3s;
-    border-radius: 6px;
-    margin: 5px 10px;
-    font-weight: 500;
+    color: white;
+    border-radius: 8px;
+    transition: background 0.3s ease;
 }
 
 .sidebar a:hover {
-    background-color: #0d6efd;
-    color: #fff;
+    background: rgba(255, 255, 255, 0.1);
 }
 
-.sidebar .active {
-    background-color: #0d6efd;
-    color: #fff;
+.sidebar a.active {
+    background: rgba(255, 255, 255, 0.2);
 }
 
+.sidebar i {
+    margin-right: 10px;
+}
+
+.sidebar .btn-primary {
+    margin-top: auto;
+    background: white;
+    color: #047857;
+    font-weight: bold;
+}
+
+.sidebar .btn-primary:hover {
+    background: #e6f4ea;
+    color: #047857;
+}
 /* Navbar */
 .navbar-custom {
-    margin-left: 240px;
-    background: #fff;
-    border-bottom: 1px solid #eee;
-    padding: 15px 25px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    position: sticky;
+    position: fixed;
+    left: 240px;
     top: 0;
-    z-index: 10;
+    height: 60px;
+    width: calc(100% - 240px);
+    background: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+    border-bottom: 2px solid #10b981;
+    z-index: 900;
 }
 
-.navbar-custom span {
-    font-size: 1.1rem;
-    font-weight: 600;
-    color: #1a4d2e;
+.navbar-logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.navbar-logo img {
+    height: 40px;
+    width: auto;
+    border-radius: 6px;
+}
+
+.navbar-logo span {
+    font-weight: bold;
+    font-size: 1.2rem;
+    color: #047857;
 }
 
 .navbar-custom .user-role {
-    background: #0d6efd;
-    color: #fff;
-    padding: 6px 12px;
-    border-radius: 20px;
-    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    color: #6b7280;
 }
 
-/* Main content */
+.navbar-custom .user-role i {
+    font-size: 1.2rem;
+}
+
+/* Content */
 .content {
     margin-left: 240px;
-    padding: 25px;
-    background: #f4f6f9;
-    min-height: 100vh;
+    padding: 80px 20px 20px 20px;
 }
 
 .content h2 {
-    margin-bottom: 25px;
-    font-weight: bold;
-    color: #1a4d2e;
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+    color: #047857;
 }
 
 /* Cards */
 .card {
-    border-radius: 15px;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.05);
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
 }
 
-.card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0px 6px 20px rgba(0, 0, 0, 0.1);
+.card.text-center {
+    border-top: 4px solid #10b981;
 }
 
+.card-body {
+    padding: 20px;
+}
+
+.card h3,
 .card h5 {
-    font-size: 1rem;
-    color: #555;
+    font-weight: bold;
+    margin-bottom: 10px;
 }
 
 .card p {
-    font-size: -1.8rem;
-    font-weight: bold;
-    color: #1a4d2e;
+    font-size: 0.95rem;
 }
 
-/* Responsive */
+/* Chart */
+#salesChart {
+    max-height: 300px;
+}
+
+/* Responsive Adjustments */
 @media (max-width: 768px) {
     .sidebar {
-        width: 100%;
-        height: auto;
-        position: relative;
+        width: 200px;
     }
 
     .navbar-custom {
-        margin-left: 0;
+        left: 200px;
+        width: calc(100% - 200px);
     }
 
     .content {
-        margin-left: 0;
+        margin-left: 200px;
+        padding-top: 70px;
     }
 }

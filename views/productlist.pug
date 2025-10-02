@@ -1,84 +1,103 @@
 doctype html
-head
-  meta(charset='utf-8')
-  meta(name='viewport' content='width=device-width,initial-scale=1')
-  title Mayondo Wood &amp; Furniture &mdash; Product List
-  link(rel='stylesheet' href='css/productlist.css')
-header
-  h1 Mayondo Wood &amp; Furniture
-  p Available Products
-// Search & Filter
-.toolbar
-  input#searchInput(type='text' placeholder='Search products...')
-  select#categoryFilter
-    option(value='all') All Categories
-    option(value='Living Room') Living Room
-    option(value='Dining Room') Dining Room
-    option(value='Bedroom') Bedroom
-    option(value='Office Furniture') Office Furniture
-    option(value='Wood Products') Wood Products
-    option(value='Custom Orders') Custom Orders
-    option(value='Outdoor') Outdoor
-#productGrid.grid
-  // Example Cards
-  .card(data-category='Living Room')
-    h3 3-Seater Sofa
-    p Category: Living Room
-    p.price 650,000 UGX
-    p Comfortable sofa with solid frame and upholstery.
-  .card(data-category='Living Room')
-    h3 Coffee Table (Oak)
-    p Category: Living Room
-    p.price 180,000 UGX
-    p Solid oak coffee table with varnish finish.
-  .card(data-category='Dining Room')
-    h3 Dining Table (6-seater)
-    p Category: Dining Room
-    p.price 800,000 UGX
-    p Hardwood dining table, perfect for family meals.
-  .card(data-category='Dining Room')
-    h3 Dining Chair
-    p Category: Dining Room
-    p.price 75,000 UGX
-    p Cushioned dining chair with hardwood legs.
-  .card(data-category='Bedroom')
-    h3 Double Bed Frame
-    p Category: Bedroom
-    p.price 700,000 UGX
-    p Durable bed with headboard and slats.
-  .card(data-category='Bedroom')
-    h3 Wardrobe (3-door)
-    p Category: Bedroom
-    p.price 950,000 UGX
-    p Spacious wardrobe with hanging rail and shelves.
-  .card(data-category='Office Furniture')
-    h3 Office Desk
-    p Category: Office Furniture
-    p.price 320,000 UGX
-    p Wooden office desk with drawer and cable hole.
-  .card(data-category='Office Furniture')
-    h3 Executive Chair
-    p Category: Office Furniture
-    p.price 260,000 UGX
-    p Ergonomic chair with swivel and tilt.
-  .card(data-category='Wood Products')
-    h3 Plywood Sheet (4x8)
-    p Category: Wood Products
-    p.price 120,000 UGX
-    p Standard plywood sheet, 18mm.
-  .card(data-category='Wood Products')
-    h3 Hardwood Timber
-    p Category: Wood Products
-    p.price 90,000 UGX
-    p Seasoned hardwood timber (per piece).
-  .card(data-category='Custom Orders')
-    h3 Custom Cabinet
-    p Category: Custom Orders
-    p.price Price on request
-    p Made-to-order based on measurements.
-  .card(data-category='Outdoor')
-    h3 Garden Bench
-    p Category: Outdoor
-    p.price 220,000 UGX
-    p Wooden bench treated for outdoor use.
-script(src='js/productlist.js')
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    title= title
+    link(href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet")
+    link(rel="stylesheet", href="/css/productlist.css")
+
+  body
+    // Navbar
+    nav.navbar.navbar-expand-lg.navbar-dark.bg-dark
+      .container
+        a.navbar-brand(href="/dashboard")
+          img.logo(src="/images/mwf-logo.png", alt="MWF Logo")
+          span Mayondo Wood & Furniture
+        form.d-flex(method="GET", action="/product-list")
+          input.form-control.me-2(type="text", name="search", placeholder="Search products...", value=search)
+          button.btn.btn-success(type="submit") Search
+        a.btn.btn-light.ms-2(href="/salestable") Sales Table
+        a.btn.btn-light.ms-2(href="/product-list") Product List
+        a.btn.btn-warning.ms-2(href="/product-list?filter=out-of-stock") Out of Stock
+        a.btn.btn-success.ms-2(href="/Addsale") Add Sale
+
+    // Main Content
+    .container.mt-4
+      h2.mb-4.text-success Product List
+
+      if products.length
+        table.table.table-striped.table-bordered.table-hover
+          thead.table-success
+            tr
+              th #
+              th Name
+              th Type
+              th Supplier
+              th Quantity
+              th Cost (UGX)
+              th Price (UGX)
+              th Quality
+              th Last Update
+          tbody
+            each product, i in products
+              tr(class=product.quantity <= 0 ? "table-danger" : "")
+                td= (page - 1) * 10 + i + 1
+                td= product.name
+                td= product.type || "N/A"
+                td= product.supplier || "N/A"
+                td
+                  span.kpi-number(data-target=product.quantity)= 0
+                td
+                  span.kpi-number(data-target=product.cost.toLocaleString())= 0
+                td
+                  span.kpi-number(data-target=product.price.toLocaleString())= 0
+                td= product.quality || "N/A"
+                td= new Date(product.lastUpdate).toLocaleDateString()
+
+        // Pagination
+        nav
+          ul.pagination
+            if page > 1
+              li.page-item
+                a.page-link(href=`/product-list?search=${search}&filter=${filter}&page=${page-1}`) Previous
+            else
+              li.page-item.disabled
+                span.page-link Previous
+
+            each p in [...Array(totalPages).keys()].map(x => x + 1)
+              if p === page
+                li.page-item.active
+                  span.page-link= p
+              else
+                li.page-item
+                  a.page-link(href=`/product-list?search=${search}&filter=${filter}&page=${p}`)= p
+
+            if page < totalPages
+              li.page-item
+                a.page-link(href=`/product-list?search=${search}&filter=${filter}&page=${page+1}`) Next
+            else
+              li.page-item.disabled
+                span.page-link Next
+      else
+        p.text-center.mt-4 No products found.
+
+    script(src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js")
+    script.
+      document.addEventListener("DOMContentLoaded", () => {
+        const counters = document.querySelectorAll('.kpi-number');
+        counters.forEach(counter => {
+          const updateCount = () => {
+            const target = +counter.getAttribute('data-target');
+            const count = +counter.innerText;
+            const increment = target / 50;
+            if (count < target) {
+              counter.innerText = Math.ceil(count + increment);
+              setTimeout(updateCount, 20);
+            } else {
+              counter.innerText = target.toLocaleString();
+            }
+          };
+          updateCount();
+        });
+      });

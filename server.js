@@ -11,13 +11,15 @@ const methodOverride = require("method-override");
 require("dotenv").config();
 const UserModel = require("./models/userModel");
 // Import routes
-const classRoutes = require("./routes/classRoutes");
+const managerRoutes = require("./routes/managerRoutes");
 const authRoutes = require("./routes/authRoutes");
 const stockRoutes = require("./routes/stockRoutes");
 const salesRoutes = require("./routes/salesRoutes");
-const productRoutes = require("./routes/productlistRoutes");
+const productlistRoutes = require("./routes/productlistRoutes");
 const userRoutes = require("./routes/userRoutes");
 const dashboardRoutes = require("./routes/dashboardRoutes");
+const classRoutes = require("./routes/classRoutes");
+const supplierRoutes = require("./routes/supplierRoutes")
 
 //2. Instantiations
 const app = express();
@@ -43,6 +45,10 @@ mongoose.connection
 app.set("view engine", "pug");
 app.set("views", path.join(__dirname, "views"))
 
+// app.use((req, res, next) => {
+//   console.log("REQUEST:", req.method, req.url);
+//   next();
+// });
 
 //4. Middleware
 // app.use(express.static("public")); 
@@ -69,14 +75,15 @@ passport.deserializeUser(UserModel.deserializeUser());
 
 //5.Routes
 // using imported routes
-app.use("/", classRoutes);
+app.use("/", managerRoutes);
 app.use("/", authRoutes);
 app.use("/", stockRoutes);
 app.use("/", salesRoutes);
-app.use("/", productRoutes);
+app.use("/", productlistRoutes);
 app.use("/", userRoutes);
 app.use("/", dashboardRoutes);
-
+app.use("/", classRoutes);
+app.use("/", supplierRoutes)
 
 
 

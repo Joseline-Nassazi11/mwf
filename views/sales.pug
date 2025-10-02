@@ -9,7 +9,7 @@ head
 // Sidebar
 .sidebar
   h2 MWF
-  a(href='/dashboard') Dashboard
+  a(href='/agent-dashboard') Dashboard
   a(href='/products') Products
   a.active(href='/sales') Sales
   a(href='/suppliers') Suppliers
@@ -28,29 +28,40 @@ head
       label.form-label Customer Name
       input.form-control(type='text' name='customerName' placeholder='Enter customer name' required='')
     .mb-3
+      label.form-label Product Type
+      select#productType.form-select(name='productType' required='')
+        option(value='') -- Select Product Type --
+        option(value='Furniture') Furniture
+        option(value='Raw Material') Raw Material
+        option(value='Wood') Wood
+    .mb-3
       label.form-label Select Product
       select.form-select(name='product' required='')
-        option(value='') -- Select Product --
-        option(value='Timber') Timber
-        option(value='Sofa Set') Sofa Set
-    .mb-3
-      label.form-label Unit Price
-      input.form-control(type='number' name='unitPrice' placeholder='Enter unit price' required='')
+        if stocks.length
+          each stock in stocks
+            option(value=stock.name)= stock.name
+        //- option(value='') -- Select Product --
+        //- option(value='Timber') Timber
+        //- option(value='Sofa Set') Sofa Set
+        //- option(value='chair') chair
     .mb-3
       label.form-label Quantity
-      input.form-control(type='number' name='quantity' value='1' min='1' required='')
+      input#quantity.form-control(type='number' name='quantity' value='1' min='1' required='')    
+    .mb-3
+      label.form-label Unit Price
+      input#unitPrice.form-control(type='number' name='unitPrice' placeholder='Enter unit price' required='')
+    .mb-3
+      label.form-label Total Price
+      input#totalPrice.form-control(type='number' name='totalPrice' required='')    
+    .form-check.mb-3
+      input#transport.form-check-input(type='checkbox' name='transport')
+      label.form-check-label(for='transport') Add 5% for transport
     .mb-3
       label.form-label Payment Type
       select#paymentType.form-select(name="paymentType" required='')
         option(value="Cash") Cash
         option(value="Cheque") Cheque
-        option(value="Bank Overdraft") Bank Overdraft
-    .mb-3
-      label.form-label Total Price
-      input.form-control(type='number' name='quantity' value='1' min='1' required='')    
-    .form-check.mb-3
-      input#transport.form-check-input(type='checkbox' name='transport')
-      label.form-check-label(for='transport') Add 5% for transport
+        option(value="Bank Overdraft") Bank Overdraft  
     //- .mb-3
     //-   label Sales Agent / Attendant
     //-   select#salesAgentSelect.form-select(name='agent' required='')
@@ -90,3 +101,5 @@ head
 
   //- else
   //-   p.mt-4.text-muted No sales recorded yet.
+  script(src="/js/calctotal.js")
+

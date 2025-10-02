@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const passportLocalMongoose = require("passport-local-mongoose");
 
 const attendantSchema = new mongoose.Schema({
   fullName: { type: String, required: true, trim: true },

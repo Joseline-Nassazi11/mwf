@@ -1,76 +1,187 @@
+/* === BODY & LAYOUT === */
 body {
-    background: #f4f6f9;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #f0f4f8, #d9e6f2);
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    opacity: 0;
+    animation: fadeInEffect 0.8s ease-in forwards;
+}
+
+@keyframes fadeInEffect {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* === NAVBAR === */
+.navbar-custom {
+    background: linear-gradient(90deg, #1a4d2e, #2e8b57, #1a4d2e);
+    padding: 15px 25px;
+    border-radius: 0 0 12px 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.2);
 }
 
 .logo {
-    height: 40px;
+    height: 45px;
+    width: auto;
+    border-radius: 50%;
+    margin-right: 15px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease;
 }
 
-.navbar-custom {
-    background: linear-gradient(90deg, #1a4d2e, #2c6b4f);
-    color: #fff;
+.logo:hover {
+    transform: scale(1.05);
 }
 
-.navbar-custom .user-role {
-    font-weight: bold;
+.navbar-custom span {
+    color: white;
+    font-weight: 600;
+    font-size: 1.1rem;
+}
+
+.user-role {
+    font-size: 1rem;
+    font-weight: 500;
+    background: rgba(255, 255, 255, 0.2);
+    padding: 6px 12px;
+    border-radius: 8px;
+}
+
+/* === CONTENT === */
+.content {
+    padding: 20px 30px;
 }
 
 .card {
+    background: white;
     border-radius: 12px;
-    background: #fff;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    padding: 20px;
+    box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.1);
 }
 
-h4 {
-    color: #1a4d2e;
-    font-weight: bold;
+/* === HEADINGS === */
+.card h4 {
+    font-size: 24px;
+    font-weight: 700;
+    color: #2c3e50;
 }
 
-.table th {
-    background: #1a4d2e !important;
-    color: #fff;
-}
-
-.table-hover tbody tr:hover {
-    background-color: #e9f5ef;
-    transition: background 0.3s;
-}
-
-.btn-primary {
-    background-color: #1a4d2e;
-    border: none;
-}
-
-.btn-primary:hover {
-    background-color: #144226;
-}
-
-.btn-danger {
-    background-color: #d9534f;
-    border: none;
-}
-
-.btn-danger:hover {
-    background-color: #b52b27;
-}
+/* === FORM SEARCH === */
 form.d-flex {
     gap: 10px;
+    flex-wrap: wrap;
 }
 
-input.form-control {
-    max-width: 300px;
+.form-control,
+.form-select {
+    border-radius: 8px;
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    transition: all 0.3s ease;
 }
 
-select.form-select {
-    max-width: 180px;
+.form-control:focus,
+.form-select:focus {
+    border-color: #28a745;
+    box-shadow: 0 0 8px rgba(40, 167, 69, 0.3);
 }
 
 .btn-success {
-    background-color: #2c6b4f;
+    background: linear-gradient(135deg, #28a745, #1e7e34);
     border: none;
+    border-radius: 8px;
+    padding: 10px 18px;
+    font-weight: 600;
+    font-size: 1rem;
+    color: white;
+    transition: all 0.3s ease-in-out;
 }
 
 .btn-success:hover {
-    background-color: #24553f;
+    background: linear-gradient(135deg, #1e7e34, #28a745);
+    transform: translateY(-2px);
+    box-shadow: 0px 6px 14px rgba(0, 0, 0, 0.2);
+}
+
+/* === TABLE === */
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+table th {
+    background: linear-gradient(135deg, #28a745, #1e7e34);
+    color: white;
+    padding: 12px;
+    text-align: left;
+    font-weight: 600;
+}
+
+table td {
+    padding: 10px;
+    border-bottom: 1px solid #eee;
+}
+
+table tbody tr:hover {
+    background: #e6f4ea;
+    transition: background 0.3s ease;
+}
+
+/* === BUTTONS IN TABLE === */
+.btn-primary,
+.btn-danger {
+    border-radius: 6px;
+    padding: 6px 12px;
+    font-size: 0.9rem;
+}
+
+.btn-primary {
+    background: #007bff;
+    border: none;
+    color: white;
+    transition: background 0.3s ease;
+}
+
+.btn-primary:hover {
+    background: #0069d9;
+}
+
+.btn-danger {
+    background: #dc3545;
+    border: none;
+    color: white;
+}
+
+.btn-danger:hover {
+    background: #c82333;
+}
+
+/* === NO USERS TEXT === */
+.text-muted {
+    font-style: italic;
+    color: #888;
+}
+
+/* === RESPONSIVE DESIGN === */
+@media (max-width: 768px) {
+    form.d-flex {
+        flex-direction: column;
+    }
+
+    .btn-success {
+        width: 100%;
+    }
 }
