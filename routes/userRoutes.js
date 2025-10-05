@@ -102,6 +102,41 @@ router.get("/users", async (req, res) => {
     res.status(500).send("Error retrieving users");
   }
 });
+
+// EDIT USER FORM
+router.get("/users/edit/:id", async (req, res) => {
+  try {
+    const user = await UserModel.findById(req.params.id).lean();
+    if (!user) return res.status(404).send("User not found");
+    res.render("user-edit", { user }); // you'll create a user-edit.pug file
+  } catch (err) {
+    console.error("Error loading edit form:", err.message);
+    res.status(500).send("Error loading edit form");
+  }
+});
+// POST Update User
+router.post("/users/edit/:id", async (req, res) => {
+  try {
+    const { fullName, email, role } = req.body;
+    await UserModel.findByIdAndUpdate(req.params.id, { fullName, email, role });
+    res.redirect("/users");
+  } catch (err) {
+    console.error("Error updating user:", err.message);
+    res.status(500).send("Error updating user");
+  }
+});
+
+// POST Delete User
+router.post("/users/delete/:id", async (req, res) => {
+  try {
+    await UserModel.findByIdAndDelete(req.params.id);
+    res.redirect("/users");
+  } catch (err) {
+    console.error("Error deleting user:", err.message);
+    res.status(500).send("Error deleting user");
+  }
+});
+
 // List all attendants (for manager to manage)
 router.get("/manage-users", ensureManager, async (req, res) => {
   try {

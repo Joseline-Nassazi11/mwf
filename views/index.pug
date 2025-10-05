@@ -6,7 +6,9 @@ head
   link(rel='stylesheet' href='/css/index.css')
 // Navbar
 header.navbar
-  .logo Mayondo
+  .logo
+    img(src='/images/mwf-logo.png' alt='Mayondo Logo' height='40')
+    span Mayondo
   nav
     ul
       li
@@ -19,13 +21,13 @@ header.navbar
         a(href='#gallery') Gallery
       li
         a(href='#contact') Contact
-      li
-        a(href='/login') Login
-// Hero Section
-section#home.hero
-  .hero-content
+  
+// Head Section
+section#home.head
+  .head-content
     h1 Mayondo Wood &amp; Furniture Ltd.
     p Crafting elegant and durable furniture since 2025
+    a.btn.btn-primary(href='/login') Get Started →
 // About Section
 section#about.section.fade-in
   h2 About Us
@@ -45,10 +47,10 @@ section#services.section.fade-in
 section#gallery.section.fade-in
   h2 Gallery
   .gallery-grid
-    img(src='https://images.unsplash.com/photo-1582582494700-1a82869c594d' alt='Wood Chair')
-    img(src='https://images.unsplash.com/photo-1616628188502-df4c1f1ec1f3' alt='Table')
-    img(src='https://images.unsplash.com/photo-1505691938895-1758d7feb511' alt='Cupboard')
-    img(src='https://images.unsplash.com/photo-1628744448862-4b16a5fb6d5f' alt='Bed')
+    img(src='/images/green.jpeg' alt='')
+    img(src='/images/t-chair.jpeg' alt='')
+    img(src='/images/grey.jpeg' alt='')
+    img(src='/images/pink.jpeg' alt='')
 // Contact Section
 section#contact.section.fade-in
   h2 Contact Us

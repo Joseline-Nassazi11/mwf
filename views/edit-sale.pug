@@ -5,28 +5,36 @@ html(lang="en")
     meta(name="viewport" content="width=device-width, initial-scale=1.0")
     title Edit Sale
     link(href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet")
+    link(rel="stylesheet" href="/css/edit-sale.css")
 
   body
     .container.mt-4
-      h2 Edit Sale
-      form(action=`/editsales/${sale._id}` method="POST")
-        .mb-3
-          label.form-label Customer Name
-          input.form-control(type="text" name="customerName" value=sale.customerName required)
-        .mb-3
-          label.form-label Product
-          input.form-control(type="text" name="product" value=sale.product required)
-        .mb-3
-          label.form-label Unit Price
-          input.form-control(type="number" step="0.01" name="unitPrice" value=sale.unitPrice required)
-        .mb-3
-          label.form-label Quantity
-          input.form-control(type="number" name="quantity" value=sale.quantity required)
-        .mb-3
-          label.form-label Payment Type
-          input.form-control(type="text" name="paymentType" value=sale.paymentType required)
-        .mb-3.form-check
-          input.form-check-input(type="checkbox" name="transport" checked=sale.transport)
-          label.form-check-label Transport
-        button.btn.btn-primary(type="submit") Save Changes
-        a.btn.btn-secondary.ms-2(href="/salestable") Cancel
+      h3.mb-3.text-success Edit Sale
+      form(action=`/editsales/${sale._id}` method="POST" class="small-form p-3 shadow-sm rounded")
+        .mb-2
+          label.form-label(for="customerName") Customer Name
+          input.form-control.form-control-sm#customerName(type="text" name="customerName" value=sale.customerName required)
+
+        .mb-2
+          label.form-label(for="product") Product
+          input.form-control.form-control-sm#product(type="text" name="product" value=sale.product required)
+
+        .mb-2
+          label.form-label(for="unitPrice") Unit Price
+          input.form-control.form-control-sm#unitPrice(type="number" step="0.01" name="unitPrice" value=sale.unitPrice required)
+
+        .mb-2
+          label.form-label(for="quantity") Quantity
+          input.form-control.form-control-sm#quantity(type="number" name="quantity" value=sale.quantity required)
+
+        .mb-2
+          label.form-label(for="paymentType") Payment Type
+          input.form-control.form-control-sm#paymentType(type="text" name="paymentType" value=sale.paymentType required)
+
+        .mb-2.form-check
+          input.form-check-input#transport(type="checkbox" name="transport" checked=sale.transport)
+          label.form-check-label(for="transport") Transport
+
+        .button-group.mt-3
+          button.btn.btn-success.btn-sm(type="submit") Save
+          a.btn.btn-outline-success.btn-sm.ms-2(href="/salestable") Cancel

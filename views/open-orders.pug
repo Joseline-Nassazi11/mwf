@@ -1,0 +1,37 @@
+doctype html
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport" content="width=device-width, initial-scale=1.0")
+    title Open Orders
+    link(rel="stylesheet", href="/css/style.css")
+
+  body
+    nav
+      a(href="/dashboard") ← Back to Dashboard
+
+    h1 Open Orders 
+
+    if openOrders.length
+      table
+        thead
+          tr
+            th Order ID
+            th Customer
+            th Product
+            th Quantity
+            th Total Price
+            th Status
+            th Date
+        tbody
+          each order in openOrders
+            tr
+              td= order._id.toString().slice(-6)
+              td= order.customerName
+              td= order.productId.name || order.productId.toString()
+              td= order.quantity
+              td= order.totalPrice.toLocaleString()
+              td= order.status
+              td= new Date(order.date).toLocaleDateString()
+    else
+      p No open orders found.

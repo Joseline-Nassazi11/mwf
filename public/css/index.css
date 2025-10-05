@@ -18,7 +18,7 @@ body {
     top: 0;
     width: 100%;
     background: #133d27;
-    color: #fff;
+    color: yellow;
     padding: 15px 50px;
     display: flex;
     justify-content: space-between;
@@ -33,38 +33,86 @@ body {
 }
 
 .navbar a {
-    color: white;
+    color: yellow;
     text-decoration: none;
     transition: color 0.3s;
 }
 
 .navbar a:hover {
-    color: #ffd700;
+    color: white;
 }
 
-.logo {
+/* .logo {
     font-size: 22px;
     font-weight: bold;
-}
+} */
+ /* ===== LOGO ===== */
+ .logo {
+     display: flex;
+     align-items: center;
+     gap: 10px;
+     cursor: pointer;
+ }
 
+ .logo img {
+     height: 45px;
+     width: 45px;
+     border-radius: 8px;
+     border: 2px solid yellow;
+     /* outline glow */
+     transition: transform 0.3s, box-shadow 0.3s;
+ }
+
+ .logo img:hover {
+     transform: scale(1.1);
+     box-shadow: 0 0 10px yellow;
+ }
+
+ .logo span {
+     font-size: 1.5rem;
+     font-weight: bold;
+     color: yellow;
+     letter-spacing: 1px;
+ }
+
+ /* ===== GET STARTED BUTTON ===== */
+ .head-content .btn {
+     background-color: #198754;
+     color: white;
+     padding: 12px 30px;
+     border-radius: 30px;
+     text-decoration: none;
+     font-weight: 600;
+     font-size: 1.1rem;
+     transition: all 0.3s ease;
+     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+     border: 2px solid #198754;
+ }
+
+ .head-content .btn:hover {
+     background-color: #145c35;
+     transform: translateY(-3px);
+     box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
+ }
 /* Hero */
-.hero {
+.head {
     height: 100vh;
     background: url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c') no-repeat center center/cover;
     display: flex;
     justify-content: center;
     align-items: center;
     text-align: center;
-    color: white;
+    color: yellow;
 }
 
-.hero h1 {
+.head h1 {
     font-size: 48px;
     margin-bottom: 15px;
 }
 
-.hero p {
+.head p {
     font-size: 20px;
+    margin-bottom: 25px;
 }
 
 /* Sections */
@@ -120,7 +168,7 @@ body {
 /* Footer */
 footer {
     background: #133d27;
-    color: white;
+    color: yellow;
     text-align: center;
     padding: 15px;
     margin-top: 40px;

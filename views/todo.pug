@@ -1,0 +1,40 @@
+doctype html
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport" content="width=device-width, initial-scale=1.0")
+    title MWF - Task Manager
+    link(rel="stylesheet" href="/css/todo.css")
+  body
+    // Navbar
+    nav.navbar
+      .logo
+        img(src="/images/mwf-logo.png" alt="MWF Logo")
+        span Mayondo Wood & Furniture
+      ul.nav-links
+        li: a(href="/dashboard") Dashboard
+        li: a(href="/product-list") Products
+        li: a(href="/Addsale") Sales
+        li: a(href="/dashboard/suppliers") Suppliers
+        li: a(href="/reports") Reports
+        li: a.active(href="/todo") Tasks
+
+    // Content
+    .content
+      h2 Task Manager
+
+      // Task input
+      .task-input
+        input#taskInput(type='text' placeholder='Enter a task (e.g., Record new timber stock)')
+        button(onclick='addTask()') Add Task
+
+      // Filter buttons
+      .filters
+        button.filter-btn(onclick="setFilter('all')") All
+        button.filter-btn(onclick="setFilter('active')") Active
+        button.filter-btn(onclick="setFilter('completed')") Completed
+
+      // Task list
+      ul#taskList
+
+    script(src="/js/todo.js")

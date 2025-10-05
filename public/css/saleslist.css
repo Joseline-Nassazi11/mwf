@@ -40,6 +40,87 @@ body {
     font-weight: 600;
 }
 
+/* ===== Buttons Styling ===== */
+a.btn,
+button.btn {
+    font-weight: 500;
+    border-radius: 0.5rem;
+    padding: 0.45rem 0.9rem;
+    font-size: 0.9rem;
+    transition: all 0.2s ease-in-out;
+    text-decoration: none;
+}
+
+/* Primary buttons */
+a.btn-primary,
+button.btn-primary {
+    background-color: #1e3a8a;
+    color: #fff;
+    border: 1px solid #1e3a8a;
+}
+
+a.btn-primary:hover,
+button.btn-primary:hover {
+    background-color: #3749b0;
+    border-color: #3749b0;
+    color: #fff;
+}
+
+/* Warning buttons */
+a.btn-warning,
+button.btn-warning {
+    background-color: #ffc107;
+    color: #212529;
+    border: 1px solid #ffc107;
+}
+
+a.btn-warning:hover,
+button.btn-warning:hover {
+    background-color: #e0a800;
+    border-color: #d39e00;
+    color: #212529;
+}
+
+/* Danger buttons */
+a.btn-danger,
+button.btn-danger {
+    background-color: #dc3545;
+    color: #fff;
+    border: 1px solid #dc3545;
+}
+
+a.btn-danger:hover,
+button.btn-danger:hover {
+    background-color: #c82333;
+    border-color: #bd2130;
+    color: #fff;
+}
+
+/* Info buttons */
+a.btn-info,
+button.btn-info {
+    background-color: #17a2b8;
+    color: #fff;
+    border: 1px solid #17a2b8;
+}
+
+a.btn-info:hover,
+button.btn-info:hover {
+    background-color: #138496;
+    border-color: #117a8b;
+    color: #fff;
+}
+
+/* Small buttons */
+.btn-sm {
+    padding: 0.3rem 0.6rem;
+    font-size: 0.8rem;
+}
+
+/* Add some spacing between buttons */
+td a.btn {
+    margin-right: 0.3rem;
+}
 /* Add Sale Button */
 button.btn-primary {
     background-color: #1e3a8a;

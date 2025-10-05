@@ -43,17 +43,24 @@ html(lang="en")
             each product, i in products
               tr(class=product.quantity <= 0 ? "table-danger" : "")
                 td= (page - 1) * 10 + i + 1
-                td= product.name
+                td= product.name || "N/A"
                 td= product.type || "N/A"
                 td= product.supplier || "N/A"
+                // Quantity — animate safely
                 td
-                  span.kpi-number(data-target=product.quantity)= 0
+                  span.kpi-number(data-target=(Number(product.quantity) || 0))= 0
+                // Cost — protect against undefined or NaN
                 td
-                  span.kpi-number(data-target=product.cost.toLocaleString())= 0
+                  span.kpi-number(
+                    data-target=(Number(product.cost) ? Number(product.cost).toLocaleString() : "0")
+                  )= 0
+                // Price — protect against undefined or NaN
                 td
-                  span.kpi-number(data-target=product.price.toLocaleString())= 0
+                  span.kpi-number(
+                    data-target=(Number(product.price) ? Number(product.price).toLocaleString() : "0")
+                  )= 0
                 td= product.quality || "N/A"
-                td= new Date(product.lastUpdate).toLocaleDateString()
+                td= product.lastUpdate ? new Date(product.lastUpdate).toLocaleDateString() : "N/A"
 
         // Pagination
         nav
@@ -82,17 +89,20 @@ html(lang="en")
       else
         p.text-center.mt-4 No products found.
 
+    // Bootstrap JS
     script(src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js")
+
+    // Counter animation script
     script.
       document.addEventListener("DOMContentLoaded", () => {
         const counters = document.querySelectorAll('.kpi-number');
         counters.forEach(counter => {
           const updateCount = () => {
-            const target = +counter.getAttribute('data-target');
-            const count = +counter.innerText;
+            const target = +counter.getAttribute('data-target').replace(/,/g, '') || 0;
+            const count = +counter.innerText.replace(/,/g, '') || 0;
             const increment = target / 50;
             if (count < target) {
-              counter.innerText = Math.ceil(count + increment);
+              counter.innerText = Math.ceil(count + increment).toLocaleString();
               setTimeout(updateCount, 20);
             } else {
               counter.innerText = target.toLocaleString();

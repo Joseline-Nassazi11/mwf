@@ -30,7 +30,19 @@ html(lang="en")
     //- Page Content
     .container.mt-5
       .card.p-3.shadow-lg
-        h4.mb-3.text-success Stock Records
+        .d-flex.justify-content-between.align-items-center.mb-3
+          h4.text-success.mb-0 Stock Records
+          //- Add Stock dropdown
+          .btn-group
+            button.btn.btn-success.dropdown-toggle(type="button" data-bs-toggle="dropdown" aria-expanded="false")
+              | + Add Stock
+            ul.dropdown-menu.dropdown-menu-end
+              li
+                a.dropdown-item(href="/stock") ➕ Add Stock
+              //- li
+              //-   a.dropdown-item(href="/stock/add-finished") 🛠️ Add Finished Product
+
+        //- Table
         table.table.table-striped.table-hover.mt-3
           thead
             tr
@@ -52,11 +64,12 @@ html(lang="en")
                   td #{item.name}
                   td #{item.type}
                   td #{item.supplier}
-                  td #{item.cost.toLocaleString()}
-                  td #{item.price.toLocaleString()}
+                  td #{item.costFormatted}
+                  td #{item.priceFormatted}
                   td #{item.quantity}
                   td #{item.quality}
-                  td #{item.lastUpdate.toISOString().split('T')[0]}
+                  //- td #{item.lastUpdateFormatted}
+                  td #{moment(item.lastUpdate).format('YYYY-MM-DD')}
                   td
                     a.btn.btn-sm.btn-primary.me-1(href=`/stock/edit/${item._id}`) Edit
                     a.btn.btn-sm.btn-warning.me-1(href=`/stock/adjust/${item._id}`) Adjust
@@ -65,3 +78,5 @@ html(lang="en")
             else
               tr
                 td(colspan="10" class="text-center text-muted") No stock records found
+
+    script(src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js")

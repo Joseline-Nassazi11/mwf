@@ -4,6 +4,8 @@ const SaleModel = require("../models/salesModel");
 const StockModel = require("../models/stockModel");
 const SupplierModel = require("../models/supplierModel");
 const UserModel = require("../models/userModel");
+const OrderModel = require("../models/orderModel"); 
+const { ensureAuthenticated, ensureManager } = require("../middleware/auth");
 
 // Dashboard GET Route
 // router.get("/dashboard", async (req, res) => {
@@ -105,7 +107,7 @@ const UserModel = require("../models/userModel");
 // });
 
 
-router.get("/dashboard", async (req, res) => {
+router.get("/dashboard", ensureAuthenticated, ensureManager, async (req, res) => {
   try {
     const today = new Date();
     const sevenDaysAgo = new Date();
@@ -113,32 +115,31 @@ router.get("/dashboard", async (req, res) => {
     const thirtyDaysAgo = new Date();
     thirtyDaysAgo.setDate(today.getDate() - 30);
 
-    // --- 1. Revenue (last 30 days)
+    //Revenue (last 30 days)
     const salesLast30 = await SaleModel.find({ date: { $gte: thirtyDaysAgo } });
     const totalRevenue = salesLast30.reduce(
       (sum, s) => sum + (s.totalPrice || 0),
       0
     );
 
-    // --- 2. Gross Profit (placeholder: 30% of revenue)
+    // Gross Profit (placeholder: 30% of revenue)
     const grossProfit = totalRevenue * 0.3;
 
-    // --- 3. Capital in Stock
+    //  Capital in Stock
     const stock = await StockModel.find();
     const capitalInStock = stock.reduce(
       (sum, item) => sum + item.quantity * item.cost,
       0
     );
 
-    // --- 4. Out of Stock
-    const productsOutOfStock = await StockModel.countDocuments({
+    //Out of Stock
+    const productsOutOfStock = await StockModel.find({
       quantity: { $lte: 0 },
-    });
+    }).lean();
+    //Open Orders (placeholder since no model yet)
+    const totalOpenOrders = await OrderModel.countDocuments({ status: "open" });
 
-    // --- 5. Open Orders (placeholder since no model yet)
-    const totalOpenOrders = 0;
-
-    // --- 6. Recent Sales
+    //Recent Sales
     const recentSales = await SaleModel.find()
       .sort({ date: -1 })
       .limit(5)
@@ -147,15 +148,15 @@ router.get("/dashboard", async (req, res) => {
     // --- 7. Stock Summary
     const stockSummary = await StockModel.find().limit(10).lean();
 
-    // --- 8. Attendants (users with role = "Attendants")
+    // Attendants (users with role = "Attendants")
     const totalAttendants = await UserModel.countDocuments({
       role: "Attendants",
     });
 
-    // --- 9. Suppliers
+    // Suppliers
     const totalSuppliers = await SupplierModel.countDocuments();
 
-    // --- 10. Losses (placeholder: 10% of gross profit)
+    //  Losses (placeholder: 10% of gross profit)
     const totalLosses = grossProfit * 0.1;
 
     // --- 11. Sales Trend (last 7 days)
@@ -210,6 +211,7 @@ router.get("/dashboard", async (req, res) => {
       totalAttendants,
       totalSuppliers,
       totalLosses,
+      productsOutOfStock, //  pass to pug
       chartLabels: JSON.stringify(labels),
       chartRevenue: JSON.stringify(revenueData),
       chartTransactions: JSON.stringify(transactionsData),
@@ -245,4 +247,19 @@ router.get("/reports", async (req, res) => {
     res.status(500).send("Server Error");
   }
 });
+
+router.get("/open-orders", async (req, res) => {
+  try {
+    const openOrders = await OrderModel.find({ status: "open" })
+      .populate("productId") // optional, if you want product details
+      .lean();
+
+    res.render("open-orders", { openOrders });
+  } catch (err) {
+    console.error("Error loading open orders:", err);
+    res.status(500).send("Server error");
+  }
+});
+
+
 module.exports = router;

@@ -14,7 +14,7 @@ const stockSchema = new mongoose.Schema(
     },
     supplier: {
       type: String,
-      trim: true,
+      trim: false,
     },
     quantity: {
       type: Number,

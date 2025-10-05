@@ -6,7 +6,7 @@ const SaleModel = require("../models/salesModel");
 const StockModel = require("../models/stockModel");
 const InvoiceModel = require("../models/invoiceModel");
 
-// ==================== Add Sale ====================
+//  Add Sale 
 router.get("/Addsale", ensureAuthenticated, ensureAgent, async (req, res) => {
   try {
     const stocks = await StockModel.find();
@@ -17,6 +17,7 @@ router.get("/Addsale", ensureAuthenticated, ensureAgent, async (req, res) => {
   }
 });
 
+// Post Add sale
 router.post("/Addsale", ensureAuthenticated, ensureAgent, async (req, res) => {
   try {
     const {
@@ -49,7 +50,7 @@ router.post("/Addsale", ensureAuthenticated, ensureAgent, async (req, res) => {
 
     let total = Number(unitPrice) * Number(quantity);
     if (transport === "on") total += total * 0.05;
-
+    
     const newSale = new SaleModel({
       customerName,
       productType,
@@ -85,7 +86,7 @@ router.post("/Addsale", ensureAuthenticated, ensureAgent, async (req, res) => {
   }
 });
 
-// ==================== Edit Sale ====================
+//  Edit Sale 
 // GET edit form
 router.get("/editsales/:id", async (req, res) => {
   try {
@@ -135,7 +136,7 @@ router.post("/editsales/:id", async (req, res) => {
   }
 });
 
-// ==================== Delete Sale ====================
+// Delete Sale
 router.post("/deletesales/:id", async (req, res) => {
   try {
     await SaleModel.findByIdAndDelete(req.params.id);
@@ -146,7 +147,7 @@ router.post("/deletesales/:id", async (req, res) => {
   }
 });
 
-// ==================== Sales List ====================
+//  Sales List 
 router.get("/salestable", async (req, res) => {
   try {
     const sales = await SaleModel.find().populate("agent", "fullName");
@@ -158,7 +159,7 @@ router.get("/salestable", async (req, res) => {
   }
 });
 
-// ==================== Receipt ====================
+//  Receipt 
 router.get("/sales/:id/receipt", async (req, res) => {
   try {
     const sale = await SaleModel.findById(req.params.id);
@@ -190,10 +191,6 @@ router.get("/invoices/:id", async (req, res) => {
   }
 });
 
-// ==================== POS ====================
-router.get("/pos", (req, res) => {
-  res.render("pos", { title: "POS Terminal" });
-});
 
 router.post("/api/sales", async (req, res) => {
   try {

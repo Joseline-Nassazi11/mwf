@@ -1,0 +1,50 @@
+body {
+    font-family: "Poppins", sans-serif;
+    background: linear-gradient(135deg, #f0fdf4, #dcfce7);
+}
+
+.card {
+    border-radius: 20px;
+}
+
+.card-header h3 {
+    font-weight: 600;
+}
+
+label.form-label {
+    font-size: 0.95rem;
+}
+
+input.form-control,
+select.form-select {
+    padding: 10px 15px;
+    font-size: 0.95rem;
+    border: 1px solid #cbd5e1;
+    transition: all 0.3s ease;
+}
+
+input.form-control:focus,
+select.form-select:focus {
+    border-color: #16a34a;
+    box-shadow: 0 0 8px rgba(22, 163, 74, 0.3);
+}
+
+button.btn-success {
+    background: #16a34a;
+    border: none;
+    font-weight: 500;
+}
+
+button.btn-success:hover {
+    background: #15803d;
+}
+
+a.btn-outline-secondary {
+    font-weight: 500;
+    border: 2px solid #9ca3af;
+}
+
+a.btn-outline-secondary:hover {
+    background: #9ca3af;
+    color: white;
+}

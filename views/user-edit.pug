@@ -1,0 +1,32 @@
+doctype html
+html(lang="en")
+  head
+    title Edit User
+    link(href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet")
+    link(rel="stylesheet" href="/css/user-edit.css")
+
+  body.bg-light
+    .container.mt-5
+      .row.justify-content-center
+        .col-md-6
+          .card.shadow-lg.border-0.rounded-4
+            .card-header.bg-success.text-white.text-center.py-3.rounded-top-4
+              h3.mb-0 Edit User
+            .card-body.p-4
+              form(action=`/users/edit/${user._id}` method="POST")
+                .mb-3
+                  label.form-label.text-success.fw-semibold Full Name
+                  input.form-control.rounded-pill(type="text" name="fullName" value=user.fullName required)
+                .mb-3
+                  label.form-label.text-success.fw-semibold Email
+                  input.form-control.rounded-pill(type="email" name="email" value=user.email required)
+                .mb-3
+                  label.form-label.text-success.fw-semibold Role
+                  select.form-select.rounded-pill(name="role" required)
+                    option(value="Admin" selected=(user.role=="Admin")) Admin
+                    option(value="Manager" selected=(user.role=="Manager")) Manager
+                    option(value="Attendant" selected=(user.role=="Attendant")) Attendant
+
+                .d-flex.justify-content-between.mt-4
+                  a.btn.btn-outline-secondary.rounded-pill.px-4(href="/users") Cancel
+                  button.btn.btn-success.rounded-pill.px-4(type="submit") Save Changes

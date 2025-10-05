@@ -12,7 +12,7 @@ html(lang='en')
     nav.navbar
       .navbar-brand
         img.navbar-logo(src="/images/mwf-logo.png", alt="MWF Logo")
-        span MWF Management 📊
+        span MWF Management 
       .navbar-user
         span Manager: Joseline
         a.btn.btn-outline-light.ms-3(href='/logout') Logout
@@ -22,12 +22,17 @@ html(lang='en')
       aside.sidebar
         h4 Navigation
         ul.sidebar-menu
+          li.active: a(href='/') Index
           li.active: a(href='/stocklist') Stock Management
+          li.active: a(href='/stock-records') Stock Records
           li: a(href='/salestable') Sales
           li: a(href='/reports') Stock & Sale Report
           li: a(href='/product-list') Product List
           li: a(href='/dashboard/suppliers') Suppliers & Sourcing
-          li: a(href='/manage-users') Staff Management
+          li: a(href='/register-attendant') Register Attendant
+          li: a(href='/users') Staff Management
+          li: a(href='/manage-users') Manage Users
+          li: a(href='/') 
 
       main.content
         h1 Manager Overview & KPIs

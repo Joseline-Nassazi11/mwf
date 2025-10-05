@@ -20,6 +20,8 @@ const userRoutes = require("./routes/userRoutes");
 const dashboardRoutes = require("./routes/dashboardRoutes");
 const classRoutes = require("./routes/classRoutes");
 const supplierRoutes = require("./routes/supplierRoutes")
+const posRoutes = require("./routes/posRoutes");
+const todoRoutes = require("./routes/todoRoutes");
 
 //2. Instantiations
 const app = express();
@@ -84,8 +86,8 @@ app.use("/", userRoutes);
 app.use("/", dashboardRoutes);
 app.use("/", classRoutes);
 app.use("/", supplierRoutes)
-
-
+app.use("/", posRoutes);
+app.use("/", todoRoutes);
 
 
 //non existent route handler
