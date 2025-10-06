@@ -17,7 +17,8 @@ body {
     position: fixed;
     top: 0;
     width: 100%;
-    background: #133d27;
+    /* background: #133d27; */
+    background: linear-gradient(90deg, #1a4d2e, #2e8b57);
     color: yellow;
     padding: 15px 50px;
     display: flex;
@@ -167,7 +168,8 @@ body {
 
 /* Footer */
 footer {
-    background: #133d27;
+    /* background: #133d27; */
+    background: linear-gradient(90deg, #1a4d2e, #2e8b57);
     color: yellow;
     text-align: center;
     padding: 15px;

@@ -6,7 +6,11 @@ body {
 
 /* Navbar styling */
 .navbar {
+    background: linear-gradient(90deg, #1a4d2e, #2e8b57, #1a4d2e);
     padding: 0.75rem 1rem;
+    margin-top: 20px;
+    margin: 20px;
+    border-radius: 12px;
 }
 
 .navbar-brand img {
@@ -27,8 +31,7 @@ body {
 }
 /* Full green table header background */
 .table thead th {
-    background-color: #198754 !important;
-    /* Bootstrap green */
+    background: linear-gradient(135deg, #28a745, #1e7e34);
     color: white !important;
     text-align: center;
 }

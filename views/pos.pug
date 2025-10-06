@@ -2,7 +2,7 @@ doctype html
 html(lang="en")
   head
     meta(charset="UTF-8")
-    meta(name="viewport" content="width=device-width, initial-scale=1.0")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
     title MWF POS
     link(rel="stylesheet" href="/css/pos.css")
     link(rel="preconnect" href="https://fonts.googleapis.com")
@@ -47,7 +47,36 @@ html(lang="en")
               span.total-label Total
               span#total.total-amount UGX 0
           .checkout-row
+            input#customerName.form-control(type="text", placeholder="Customer name (optional)")
             button#checkout-btn.btn.btn-pay Checkout
-            button.btn.btn-print(onclick='window.print()') Print Receipt
+            button.btn.btn-print(type="button") Print Receipt
+
+    // --- RECEIPT SECTION ---
+    .receipt#print-section
+      .receipt-header
+        img(src="/images/mwf-logo.png", alt="MWF Logo")
+        h2 Mayondo Wood & Furniture
+        p 📍 Location: Kampala, Uganda
+        p 📞 Tel: +256 700 123456
+      hr
+      p Receipt No: <span id="receipt-number">MWF-XXXXXX</span>
+      p Date: #{new Date().toLocaleDateString()} #{new Date().toLocaleTimeString()}
+      p Customer: <span id="receipt-customer">Walk-in</span>
+      hr
+      table.receipt-table
+        thead
+          tr
+            th Item
+            th Qty
+            th Price
+        tbody#receipt-items
+      hr
+      .receipt-totals
+        p Subtotal: <span id="r-subtotal"></span>
+        p Transport: <span id="r-transport"></span>
+        p Total: <strong id="r-total"></strong>
+      hr
+      p.text-center Thank you for choosing MWF! 🙏
+      p.text-center Visit again soon.
 
     script(src="/js/pos.js")

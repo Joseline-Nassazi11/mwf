@@ -1,105 +1,87 @@
 doctype html
-head
-  meta(charset='UTF-8')
-  meta(name='viewport' content='width=device-width, initial-scale=1.0')
-  title MWF - Sales
-  link(href='https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css' rel='stylesheet')
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
-  link(rel='stylesheet' href='/css/sales.css')
-// Sidebar
-.sidebar
-  h2 MWF
-  a(href='/') Index
-  a(href='/agent-dashboard') Dashboard
-  a(href='/product-list') Products List
-  a.active(href='/salestable') Sales Table
-  a(href='/reports') Reports
-// Navbar
-.navbar-custom
-  .navbar-left
-    img.navbar-logo(src="images/mwf-logo.png", alt="MWF Logo")
-    span.company-name Mayondo Wood & Furniture Ltd
-  span.user-role Attendant
-// Content
-.content
-  h2.mb-4 Record Sale
-  form(action='/Addsale' method='POST')
-    .mb-3
-      label.form-label Customer Name
-      input.form-control(type='text' name='customerName' placeholder='Enter customer name' required='')
-    .mb-3
-      label.form-label Product Type
-      select#productType.form-select(name='productType' required='')
-        option(value='') -- Select Product Type --
-        option(value='Furniture') Furniture
-        option(value='Raw Material') Raw Material
-        option(value='Wood') Wood
-    .mb-3
-      label.form-label Select Product
-      select.form-select(name='product' required='')
-        if stocks.length
-          each stock in stocks
-            option(value=stock.name)= stock.name
-        //- option(value='') -- Select Product --
-        //- option(value='Timber') Timber
-        //- option(value='Sofa Set') Sofa Set
-        //- option(value='chair') chair
-    .mb-3
-      label.form-label Quantity
-      input#quantity.form-control(type='number' name='quantity' value='1' min='1' required='')    
-    .mb-3
-      label.form-label Unit Price
-      input#unitPrice.form-control(type='number' name='unitPrice' placeholder='Enter unit price' required='')
-    .mb-3
-      label.form-label Total Price
-      input#totalPrice.form-control(type='number' name='totalPrice' required='')    
-    .form-check.mb-3
-      input#transport.form-check-input(type='checkbox' name='transport')
-      label.form-check-label(for='transport') Add 5% for transport
-    .mb-3
-      label.form-label Payment Type
-      select#paymentType.form-select(name="paymentType" required='')
-        option(value="Cash") Cash
-        option(value="Cheque") Cheque
-        option(value="Bank Overdraft") Bank Overdraft  
-    //- .mb-3
-    //-   label Sales Agent / Attendant
-    //-   select#salesAgentSelect.form-select(name='agent' required='')
-    //-     option(value="") Agent
-    //-     option(value="Agent1") Agent 1
-    //-     option(value="Agent2") Agent 2
-    button.btn.btn-success(type='submit') Submit Sale
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport" content="width=device-width, initial-scale=1.0")
+    title MWF - Sales
+    link(href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet")
+    link(href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet")
+    link(href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet")
+    link(rel="stylesheet" href="/css/sales.css")
 
-  // Sales Table
-  //- if sales && sales.length
-  //-   h2.mt-5 Sales Records
-  //-   table.table.table-striped.mt-3
-  //-     thead.table-dark
-  //-       tr
-  //-         th #
-  //-         th Customer
-  //-         th Product
-  //-         th Quantity
-  //-         th Payment Type
-  //-         th Transport
-  //-         th Agent
-  //-         th Date
-  //-         th Actions
-  //-     tbody
-  //-       each sale, index in sales
-  //-         tr
-  //-           td #{index + 1}
-  //-           td #{sale.customerName}
-  //-           td #{sale.product}
-  //-           td #{sale.quantity}
-  //-           td #{sale.paymentType}
-  //-           td #{sale.transport ? "Yes" : "No"}
-  //-           td #{sale.agent}
-  //-           td #{sale.date.toDateString()}
-  //-           td
-  //-               a.btn.btn-primary.btn-sm(href=`/sales/${sale._id}/receipt`) Receipt
+  body
+    // Sidebar
+    .sidebar
+      h2 MWF
+      a(href='/') Index
+      a(href='/agent-dashboard') Dashboard
+      a(href='/product-list') Products List
+      a.active(href='/salestable') Sales Table
+      a(href='/reports') Reports
 
-  //- else
-  //-   p.mt-4.text-muted No sales recorded yet.
-  script(src="/js/calctotal.js")
+    // Navbar
+    .navbar-custom
+      .navbar-left
+        img.navbar-logo(src="/images/mwf-logo.png" alt="MWF Logo")
+        span.company-name Mayondo Wood & Furniture Ltd
+      span.user-role Attendant
 
+    // Content
+    .content
+      h2.mb-4 Record Sale
+
+      form(action='/Addsale' method='POST')
+        .form-grid
+          // Left column
+          .form-group
+            label.form-label(for='customerName') Customer Name
+            input#customerName.form-control(type='text' name='customerName' placeholder='Enter customer name' required)
+
+          .form-group
+            label.form-label(for='productType') Product Type
+            select#productType.form-select(name='productType' required)
+              option(value='') -- Select Product Type --
+              option(value='Furniture') Furniture
+              option(value='Raw Material') Raw Material
+              option(value='Wood') Wood
+
+          .form-group
+            label.form-label(for='product') Select Product
+            select#product.form-select(name='product' required)
+              if stocks.length
+                each stock in stocks
+                  option(value=stock.name)= stock.name
+              else
+                option(value='') No products available
+
+          .form-group
+            label.form-label(for='quantity') Quantity
+            input#quantity.form-control(type='number' name='quantity' value='1' min='1' required)
+
+          .form-group
+            label.form-label(for='unitPrice') Unit Price
+            input#unitPrice.form-control(type='number' name='unitPrice' placeholder='Enter unit price' required)
+
+          .form-group
+            label.form-label(for='totalPrice') Total Price
+            input#totalPrice.form-control(type='number' name='totalPrice' required)
+
+          .form-group.full
+            .form-check
+              input#transport.form-check-input(type='checkbox' name='transport')
+              label.form-check-label(for='transport') Add 5% for transport
+
+          .form-group
+            label.form-label(for='paymentType') Payment Type
+            select#paymentType.form-select(name='paymentType' required)
+              option(value='')
+              option(value='Cash') Cash
+              option(value='Cheque') Cheque
+              option(value='Bank Overdraft') Bank Overdraft
+
+          // Submit button
+          .form-group.full
+            button.btn.btn-success(type='submit')
+              i.bi.bi-check-circle.me-2
+              | Submit Sale
+      script(src='/js/calctotal.js')

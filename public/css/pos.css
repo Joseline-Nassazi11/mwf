@@ -338,3 +338,135 @@ body {
     font-size: 13px;
     margin-bottom: 10px;
 }
+
+/* ========================================= */
+/* === RECEIPT PRINT STYLING (The Fix!) === */
+/* ========================================= */
+
+/* By default, hide the receipt section on screen */
+.receipt {
+    display: none;
+}
+
+/* Style the main POS application for screen viewing */
+.container,
+.header,
+.main {
+    /* Set max width and box shadows for screen display */
+    /* If you haven't explicitly set width on .container, this is fine */
+}
+
+
+/* --- PRINT MEDIA QUERY --- */
+@media print {
+
+    /* 1. Hide the Main POS UI */
+    body>.container {
+        display: none;
+        /* Hide the entire POS screen content */
+    }
+
+    /* 2. Display and Style the Receipt */
+    .receipt {
+        display: block;
+        /* Make the receipt visible */
+        width: 80mm;
+        /* Standard thermal receipt paper width (adjust as needed) */
+        max-width: 300px;
+        /* Max width if printing to a standard printer */
+        margin: 0 auto;
+        padding: 0;
+        font-family: monospace;
+        /* Often used for receipts */
+        font-size: 10px;
+        /* Small, receipt-like font size */
+        color: #000;
+    }
+
+    /* Ensure all elements within the receipt are simple and compact */
+    .receipt-header {
+        text-align: center;
+        margin-bottom: 5px;
+    }
+
+    .receipt-header img {
+        max-width: 50px;
+        /* Small logo size */
+        height: auto;
+        margin-bottom: 5px;
+        /* Optionally remove the green ring style if it was there */
+        border: none;
+        box-shadow: none;
+    }
+
+    .receipt-header h2 {
+        font-size: 12px;
+        margin: 0;
+    }
+
+    .receipt-header p {
+        font-size: 9px;
+        margin: 1px 0;
+    }
+
+    .receipt p {
+        font-size: 10px;
+        line-height: 1.3;
+        margin: 2px 0;
+    }
+
+    hr {
+        border: 0.5px dashed #333;
+        /* Dashed line for clean separation */
+        margin: 5px 0;
+    }
+
+    /* Receipt Table Styling */
+    .receipt-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 5px 0;
+    }
+
+    .receipt-table th,
+    .receipt-table td {
+        padding: 1px 0;
+        text-align: left;
+        font-size: 10px;
+    }
+
+    .receipt-table th:nth-child(2),
+    /* Qty column */
+    .receipt-table td:nth-child(2) {
+        text-align: center;
+        width: 15%;
+    }
+
+    .receipt-table th:nth-child(3),
+    /* Price column */
+    .receipt-table td:nth-child(3) {
+        text-align: right;
+        width: 30%;
+    }
+
+    .receipt-totals p {
+        display: flex;
+        justify-content: space-between;
+        font-weight: 500;
+    }
+
+    .receipt-totals strong {
+        font-size: 12px;
+        /* Emphasize the total */
+    }
+
+    .text-center {
+        text-align: center;
+        margin-top: 5px;
+    }
+
+    /* Force page break AFTER the receipt if necessary (e.g., if printing multiple receipts) */
+    .receipt {
+        page-break-after: always;
+    }
+}

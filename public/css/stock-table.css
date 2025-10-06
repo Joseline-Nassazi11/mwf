@@ -25,13 +25,14 @@ body {
 .navbar-custom {
     background: linear-gradient(90deg, #1a4d2e, #2e8b57, #1a4d2e);
     padding: 15px 25px;
-    border-radius: 0 0 12px 12px;
+    border-radius: 12px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.2);
+    margin: 20px;
 }
-/* === NAVBAR LINKS === */
+
 .navbar-custom a {
     color: white;
     text-decoration: none;
@@ -42,7 +43,6 @@ body {
 
 .navbar-custom a:hover {
     color: #ffd700;
-    /* Gold highlight on hover */
     transform: translateY(-2px);
 }
 
@@ -83,23 +83,102 @@ body {
     border-radius: 12px;
     padding: 20px;
     box-shadow: 0px 8px 25px rgba(0, 0, 0, 0.15);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0px 12px 28px rgba(0, 0, 0, 0.2);
+}
+
+/* === HEADINGS === */
 /* === HEADINGS === */
 .card h4 {
     font-size: 24px;
     font-weight: 700;
     color: #2c3e50;
     margin-bottom: 20px;
-    text-align: center;
+    text-align: left;
+    /* Aligns with the new flex layout */
+    /* Remove text-align: center; or set to left if you want the header left-aligned */
 }
 
-/* === TABLE === */
+/* === BUTTONS === */
+.btn {
+    border-radius: 20px;
+    padding: 5px 12px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    transition: all 0.3s ease, box-shadow 0.3s ease, transform 0.2s ease;
+    margin-right: 8px;
+    /* space between buttons */
+}
+
+.btn i {
+    margin-right: 4px;
+}
+
+.btn-primary {
+    background: #007bff;
+    border: none;
+    color: white;
+}
+
+.btn-primary:hover {
+    background: linear-gradient(90deg, #0056b3, #007bff);
+    box-shadow: 0px 4px 12px rgba(0, 123, 255, 0.4);
+    transform: translateY(-2px);
+}
+
+.btn-warning {
+    background: #ffc107;
+    border: none;
+    color: #212529;
+}
+
+.btn-warning:hover {
+    background: linear-gradient(90deg, #d39e00, #ffc107);
+    box-shadow: 0px 4px 12px rgba(255, 193, 7, 0.4);
+    transform: translateY(-2px);
+}
+
+.btn-danger {
+    background: #dc3545;
+    border: none;
+    color: white;
+}
+
+.btn-danger:hover {
+    background: linear-gradient(90deg, #a71d2a, #dc3545);
+    box-shadow: 0px 4px 12px rgba(220, 53, 69, 0.4);
+    transform: translateY(-2px);
+}
+
+.btn-success {
+    background: linear-gradient(90deg, #1a4d2e, #2e8b57, #1a4d2e);
+    border: none;
+    color: white;
+}
+
+.btn-success:hover {
+    background: linear-gradient(90deg, #166033, #289e63, #166033);
+    box-shadow: 0px 4px 12px rgba(46, 139, 87, 0.5);
+    transform: translateY(-2px);
+}
+
+/* === TABLE STYLING === */
 table {
     width: 100%;
     border-collapse: collapse;
     border-radius: 10px;
     overflow: hidden;
+    background: white;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.05);
+    transition: box-shadow 0.3s ease;
+}
+
+table:hover {
+    box-shadow: 0px 6px 20px rgba(0, 0, 0, 0.1);
 }
 
 table th {
@@ -124,51 +203,8 @@ table tbody tr:nth-child(even) {
 }
 
 table tbody tr:hover {
-    background: #e6f4ea;
+    background: linear-gradient(90deg, rgba(26, 77, 46, 0.1), rgba(46, 139, 87, 0.15), rgba(26, 77, 46, 0.1));
     transition: background 0.3s ease;
-}
-
-/* === ACTION BUTTONS === */
-.btn {
-    border-radius: 6px;
-    padding: 6px 12px;
-    font-size: 0.85rem;
-    font-weight: 500;
-    transition: all 0.3s ease;
-}
-
-.btn-primary {
-    background: #007bff;
-    border: none;
-    color: white;
-}
-
-.btn-primary:hover {
-    background: #0069d9;
-    transform: translateY(-2px);
-}
-
-.btn-warning {
-    background: #ffc107;
-    border: none;
-    color: #212529;
-}
-
-.btn-warning:hover {
-    background: #e0a800;
-    color: white;
-    transform: translateY(-2px);
-}
-
-.btn-danger {
-    background: #dc3545;
-    border: none;
-    color: white;
-}
-
-.btn-danger:hover {
-    background: #c82333;
-    transform: translateY(-2px);
 }
 
 /* === RESPONSIVE DESIGN === */
@@ -196,4 +232,56 @@ table tbody tr:hover {
     .card {
         padding: 15px;
     }
+
+    table th,
+    table td {
+        font-size: 0.8rem;
+        padding: 8px;
+    }
+
+    .btn {
+        margin-bottom: 5px;
+    }
+}
+
+.btn-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    /* space between buttons */
+    justify-content: center;
+    /* center buttons, change to flex-start if you want them left-aligned */
+    align-items: center;
+}
+
+.btn-info {
+    background: linear-gradient(90deg, #17a2b8, #20c997);
+    border: none;
+    color: white;
+    font-weight: 500;
+    padding: 6px 12px;
+    border-radius: 6px;
+    transition: all 0.3s ease, box-shadow 0.3s ease, transform 0.2s ease;
+}
+
+.btn-info:hover {
+    background: linear-gradient(90deg, #138496, #1ca99c);
+    box-shadow: 0px 4px 12px rgba(23, 162, 184, 0.4);
+    transform: translateY(-2px);
+}
+
+.btn-dark {
+    background: linear-gradient(90deg, #343a40, #495057);
+    border: none;
+    color: white;
+    font-weight: 500;
+    padding: 6px 12px;
+    border-radius: 6px;
+    transition: all 0.3s ease, box-shadow 0.3s ease, transform 0.2s ease;
+}
+
+.btn-dark:hover {
+    background: linear-gradient(90deg, #23272b, #3e444a);
+    box-shadow: 0px 4px 12px rgba(52, 58, 64, 0.4);
+    transform: translateY(-2px);
 }

@@ -1,17 +1,65 @@
+//- doctype html
+//- head
+//-   meta(charset='UTF-8')
+//-   meta(name='viewport' content='width=device-width, initial-scale=1.0')
+//-   title MWF - Login
+//-   link(rel='stylesheet' href='/css/login.css')
+//- .login-container
+//-   .login-box
+//-     h2 MWF Login
+//-     form(action='/login' method='post')
+//-       .input-group
+//-         label(for='email') Email Address
+//-         input#email(type='email' name='email' placeholder='Enter email' required='')
+//-       .input-group
+//-         label(for='password') Password
+//-         input#password(type='password' name='password' placeholder='Enter password' required='')
+//-       button.btn(type='submit') Login
+
 doctype html
-head
-  meta(charset='UTF-8')
-  meta(name='viewport' content='width=device-width, initial-scale=1.0')
-  title MWF - Login
-  link(rel='stylesheet' href='/css/login.css')
-.login-container
-  .login-box
-    h2 MWF Login
-    form(action='/login' method='post')
-      .input-group
-        label(for='email') Email Address
-        input#email(type='email' name='email' placeholder='Enter email' required='')
-      .input-group
-        label(for='password') Password
-        input#password(type='password' name='password' placeholder='Enter password' required='')
-      button.btn(type='submit') Login
+html(lang="en")
+  head
+    meta(charset='UTF-8')
+    meta(name='viewport' content='width=device-width, initial-scale=1.0')
+    title MWF - Login
+    link(rel='stylesheet' href='/css/login.css')
+    // Link for social icons (Font Awesome)
+    link(rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css')
+  body
+    .login-container
+      .login-box
+        .logo-area
+          // --- CHANGE HERE: Use img tag instead of span ---
+          img(src="/images/mwf-logo.png", alt="MWF Logo") 
+          // Make sure the src path is correct for your logo file
+        
+        h3 Welcome Back!
+        
+        form(action='/login' method='post')
+          .input-group
+            label(for='email') Email Address
+            input#email(type='email' name='email' placeholder='Enter your email' required='')
+          
+          .input-group
+            label(for='password') Password
+            input#password(type='password' name='password' placeholder='Enter your password' required='')
+          
+          .forgot-password
+            a(href='/forgot-password') Forgot Password?
+          
+          button.btn.btn-primary(type='submit') LOGIN
+          
+          //- .or-continue
+          //-   span or continue with
+          
+          //- .social-login
+          //-   a.social-btn.google(href='/auth/google')
+          //-     i.fab.fa-google
+          //-   a.social-btn.github(href='/auth/github')
+          //-     i.fab.fa-github
+          //-   a.social-btn.facebook(href='/auth/facebook')
+          //-     i.fab.fa-facebook-f
+          
+          .register-link
+            span Don't have an account yet? 
+            a(href='/register') Register for free

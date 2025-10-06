@@ -23,9 +23,8 @@ html(lang="en")
                 .mb-3
                   label.form-label.text-success.fw-semibold Role
                   select.form-select.rounded-pill(name="role" required)
-                    option(value="Admin" selected=(user.role=="Admin")) Admin
                     option(value="Manager" selected=(user.role=="Manager")) Manager
-                    option(value="Attendant" selected=(user.role=="Attendant")) Attendant
+                    option(value="Attendants" selected=(user.role=="Attendants")) Attendants
 
                 .d-flex.justify-content-between.mt-4
                   a.btn.btn-outline-secondary.rounded-pill.px-4(href="/users") Cancel

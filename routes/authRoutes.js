@@ -76,4 +76,24 @@ router.get("/logout", (req,res) => {
   }
 });
 
+// routes/authRoutes.js (or wherever you handle authentication)
+
+// 1. GET route to display the Forgot Password form view
+router.get('/forgot-password', (req, res) => {
+    // Assuming you have a 'forgot-password.pug' file
+    res.render('forgot-password', { title: 'Reset Password' });
+});
+
+// 2. POST route to handle the email submission for password reset
+router.post('/forgot-password', async (req, res) => {
+    // Logic: 
+    // a) Validate email
+    // b) Find user
+    // c) Generate token
+    // d) Email the reset link to the user
+    // e) Redirect to a success page
+    // ...
+});
+
+
 module.exports = router;

@@ -1,56 +1,63 @@
-// public/js/dashboard_scripts.js
+document.addEventListener("DOMContentLoaded", () => {
+  const ctx = document.getElementById("salesChart").getContext("2d");
 
-document.addEventListener("DOMContentLoaded", function () {
-  const ctx = document.getElementById("salesChart");
-
-  // MOCK DATA for the graph (In a real app, this would be passed from the backend)
-  const salesData = {
-    labels: [
-      "Day -6",
-      "Day -5",
-      "Day -4",
-      "Day -3",
-      "Day -2",
-      "Yesterday",
-      "Today",
-    ],
-    datasets: [
-      {
-        label: "Total Daily Revenue (UGX)",
-        data: [2000000, 3500000, 1500000, 4200000, 2800000, 5100000, 4800000], // Example data
-        borderColor: "#28a745",
-        backgroundColor: "rgba(40, 167, 69, 0.1)",
-        tension: 0.3,
-        fill: true,
-      },
-    ],
-  };
-
-  if (ctx) {
-    new Chart(ctx, {
-      type: "line",
-      data: salesData,
-      options: {
-        responsive: true,
-        plugins: {
-          legend: {
-            display: false,
-          },
-          title: {
-            display: true,
-            text: "Daily Sales Performance",
-          },
-        },
-        scales: {
-          y: {
-            beginAtZero: true,
-            title: {
-              display: true,
-              text: "Revenue (UGX)",
-            },
-          },
-        },
-      },
-    });
+  if (!chartLabels || !chartRevenue) {
+    console.error("Chart data not found");
+    return;
   }
+
+  new Chart(ctx, {
+    type: "bar",
+    data: {
+      labels: chartLabels,
+      datasets: [
+        {
+          label: "Revenue (UGX)",
+          data: chartRevenue,
+          borderColor: "#4CAF50",
+          backgroundColor: "rgba(76, 175, 80, 0.2)",
+          fill: true,
+          tension: 0.3,
+          borderWidth: 2,
+          pointRadius: 4,
+        },
+        {
+          label: "Transactions",
+          data: chartTransactions,
+          borderColor: "#2196F3",
+          backgroundColor: "rgba(33, 150, 243, 0.2)",
+          fill: true,
+          tension: 0.3,
+          borderWidth: 2,
+          pointRadius: 4,
+          yAxisID: "y1", // second axis
+        },
+      ],
+    },
+    options: {
+      responsive: true,
+      interaction: { mode: "index", intersect: false },
+      plugins: {
+        legend: { display: true },
+        title: { display: true, text: "Sales Trend (Last 7 Days)" },
+      },
+      scales: {
+        y: {
+          type: "linear",
+          display: true,
+          position: "left",
+          title: { display: true, text: "Revenue (UGX)" },
+          beginAtZero: true,
+        },
+        y1: {
+          type: "linear",
+          display: true,
+          position: "right",
+          title: { display: true, text: "Transactions" },
+          grid: { drawOnChartArea: false },
+          beginAtZero: true,
+        },
+      },
+    },
+  });
 });

@@ -55,7 +55,7 @@ html(lang="en")
               th Qty
               th Quality
               th Last Update
-              th Actions
+              //- th Actions
           tbody
             if stockRecords && stockRecords.length > 0
               each item, index in stockRecords
@@ -70,11 +70,11 @@ html(lang="en")
                   td #{item.quality}
                   //- td #{item.lastUpdateFormatted}
                   td #{moment(item.lastUpdate).format('YYYY-MM-DD')}
-                  td
-                    a.btn.btn-sm.btn-primary.me-1(href=`/stock/edit/${item._id}`) Edit
-                    a.btn.btn-sm.btn-warning.me-1(href=`/stock/adjust/${item._id}`) Adjust
-                    form(action=`/stock/delete/${item._id}` method="POST" style="display:inline")
-                      button.btn.btn-sm.btn-danger(type="submit" onclick="return confirm('Are you sure?')") Delete
+                  //- td
+                  //-   a.btn.btn-sm.btn-primary.me-1(href=`/stock/edit/${item._id}`) Edit
+                  //-   a.btn.btn-sm.btn-warning.me-1(href=`/stock/adjust/${item._id}`) Adjust
+                  //-   form(action=`/stock/delete/${item._id}` method="POST" style="display:inline")
+                  //-     button.btn.btn-sm.btn-danger(type="submit" onclick="return confirm('Are you sure?')") Delete
             else
               tr
                 td(colspan="10" class="text-center text-muted") No stock records found

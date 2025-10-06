@@ -2,41 +2,52 @@ const express = require("express");
 const router = express.Router();
 const Task = require("../models/taskModel");
 
-// Render the page
-router.get("/todo", (req, res) => {
-  res.render("todo"); // shows the Pug file
+// --- Show the Task Manager Page ---
+router.get("/todo", async (req, res) => {
+  try {
+    const tasks = await Task.find().sort({ createdAt: -1 });
+    res.render("todo", { title: "Task Manager", tasks });
+  } catch (err) {
+    console.error("Error fetching tasks:", err);
+    res.status(500).send("Error loading tasks");
+  }
 });
 
-// Get all tasks (AJAX)
-router.get("/api/tasks", async (req, res) => {
-  const tasks = await Task.find().sort({ createdAt: -1 });
-  res.json(tasks);
+// --- Add New Task ---
+router.post("/add", async (req, res) => {
+  try {
+    const newTask = new Task({
+      text: req.body.text,
+      completed: false,
+    });
+    await newTask.save();
+    res.json(newTask);
+  } catch (err) {
+    console.error("Error adding task:", err);
+    res.status(500).json({ message: "Failed to add task" });
+  }
 });
 
-// Add task
-router.post("/api/tasks", async (req, res) => {
-  const { text } = req.body;
-  if (!text) return res.status(400).json({ error: "Task text is required" });
-
-  const newTask = new Task({ text });
-  await newTask.save();
-  res.json(newTask);
+// --- Toggle Complete ---
+router.post("/toggle/:id", async (req, res) => {
+  try {
+    const task = await Task.findById(req.params.id);
+    task.completed = !task.completed;
+    await task.save();
+    res.json(task);
+  } catch (err) {
+    res.status(500).json({ message: "Failed to toggle task" });
+  }
 });
 
-// Toggle complete
-router.put("/api/tasks/:id", async (req, res) => {
-  const task = await Task.findById(req.params.id);
-  if (!task) return res.status(404).json({ error: "Task not found" });
-
-  task.completed = !task.completed;
-  await task.save();
-  res.json(task);
-});
-
-// Delete
-router.delete("/api/tasks/:id", async (req, res) => {
-  await Task.findByIdAndDelete(req.params.id);
-  res.json({ success: true });
+// --- Delete Task ---
+router.delete("/delete/:id", async (req, res) => {
+  try {
+    await Task.findByIdAndDelete(req.params.id);
+    res.json({ message: "Task deleted" });
+  } catch (err) {
+    res.status(500).json({ message: "Failed to delete task" });
+  }
 });
 
 module.exports = router;

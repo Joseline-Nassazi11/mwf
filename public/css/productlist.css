@@ -18,6 +18,9 @@ body {
     background: linear-gradient(90deg, #1a4d2e, #2e8b57);
     padding: 10px 15px !important;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+    margin-top: 20px;
+    margin: 20px;
+    border-radius: 12px;
 }
 
 .navbar-brand {

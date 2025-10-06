@@ -3,7 +3,18 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: "Poppins", sans-serif;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+:root {
+    /* MWF Green Color Palette */
+    --green-dark: #1a4d2e;
+    /* Deep Forest Green (Primary) */
+    --green-light: #2e8b57;
+    /* Emerald Green (Accent) */
+    --green-gradient: linear-gradient(90deg, var(--green-dark), var(--green-light));
+    --white-bg: #fff;
+    --gray-light: #f4f6f8;
 }
 
 body {
@@ -11,81 +22,249 @@ body {
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    background: linear-gradient(135deg, #1a4d2e, #2e8b57);
+    /* Clean background using the primary green */
+    /* background: var(--green-dark); */
+    background: linear-gradient(90deg, #1a4d2e, #2e8b57, #1a4d2e);
+    overflow: hidden;
 }
 
-/* Login container */
+/* --- Login container (Used for centering) --- */
 .login-container {
+    position: relative;
+    z-index: 1;
+    padding: 20px;
     width: 100%;
     max-width: 400px;
-    padding: 20px;
+}
+/* ... (previous CSS code) ... */
+
+/* Logo Area (The green circle) */
+.logo-area {
+    margin: 0 auto 30px;
+    height: 70px;
+    /* Define the size of the circular container */
+    width: 70px;
+    border-radius: 50%;
+    background-color: var(--green-dark);
+    /* Dark green circle background */
+    display: flex;
+    /* Use flex to center the image */
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 0 0 5px var(--green-light);
+    /* Light green ring */
+    overflow: hidden;
+    /* Ensure image doesn't spill out if slightly larger */
 }
 
-/* Login box */
+.logo-area img {
+    max-width: 100%;
+    /* Make sure the image fits within the 70x70px area */
+    max-height: 100%;
+    object-fit: contain;
+    /* Scales the image down without cropping, maintaining aspect ratio */
+    border-radius: 50%;
+    /* If your logo is not already circular, this will make it so */
+    /* If you want the image to fill the circle and potentially crop edges: use 'cover' */
+    /* object-fit: cover; */
+}
+
+/* ... (rest of your CSS code) ... */
+/* --- Login Box (The central card) --- */
 .login-box {
-    background: #fff;
+    background: var(--white-bg);
     border-radius: 15px;
     padding: 40px 30px;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    /* Stronger shadow */
     text-align: center;
     animation: fadeIn 1s ease;
 }
 
-/* Heading */
-.login-box h2 {
-    margin-bottom: 25px;
-    font-size: 28px;
+/* Logo Area (The green circle) */
+.logo-area {
+    margin: 0 auto 30px;
+    height: 70px;
+    width: 70px;
+    border-radius: 50%;
+    background-color: var(--green-dark);
+    /* Dark green circle */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.1rem;
     font-weight: 700;
-    color: #1a4d2e;
-    letter-spacing: 1px;
+    color: white;
+    box-shadow: 0 0 0 5px var(--green-light);
+    /* Light green ring */
+}
+
+/* Heading */
+.login-box h3 {
+    margin-bottom: 25px;
+    font-size: 24px;
+    font-weight: 600;
+    color: var(--green-dark);
 }
 
 /* Input groups */
 .input-group {
     text-align: left;
-    margin-bottom: 20px;
+    margin-bottom: 18px;
 }
 
 .input-group label {
     display: block;
     font-size: 14px;
     margin-bottom: 6px;
-    color: #333;
+    color: #555;
+    font-weight: 500;
 }
 
 .input-group input {
     width: 100%;
     padding: 12px 15px;
-    border: 2px solid #ddd;
-    border-radius: 10px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    /* Rounded corners from modern design */
     font-size: 15px;
     outline: none;
     transition: 0.3s;
+    background-color: var(--gray-light);
+    /* Subtle light gray background */
 }
 
 .input-group input:focus {
-    border-color: #2e8b57;
-    box-shadow: 0 0 8px rgba(46, 139, 87, 0.3);
+    border-color: var(--green-light);
+    box-shadow: 0 0 5px rgba(46, 139, 87, 0.5);
+    background-color: var(--white-bg);
+}
+
+/* Forgot Password Link */
+.forgot-password {
+    text-align: right;
+    margin-bottom: 20px;
+}
+
+.forgot-password a {
+    color: var(--green-light);
+    text-decoration: none;
+    font-size: 0.9em;
+    transition: color 0.3s;
+}
+
+.forgot-password a:hover {
+    color: var(--green-dark);
+    text-decoration: underline;
 }
 
 /* Button */
-.btn {
+.btn.btn-primary {
     width: 100%;
     padding: 12px;
     font-size: 16px;
     font-weight: 600;
-    background: linear-gradient(90deg, #1a4d2e, #2e8b57);
+    background: var(--green-gradient);
+    /* Green gradient */
     color: #fff;
     border: none;
-    border-radius: 10px;
+    border-radius: 8px;
     cursor: pointer;
     transition: 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
 }
 
-.btn:hover {
+.btn.btn-primary:hover {
     background: linear-gradient(90deg, #166b3a, #24965b);
     transform: translateY(-2px);
-    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.25);
+}
+
+/* --- OR Continue With --- */
+.or-continue {
+    margin: 25px 0;
+    font-size: 0.9em;
+    color: #888;
+    position: relative;
+}
+
+.or-continue span {
+    background-color: var(--white-bg);
+    padding: 0 10px;
+    z-index: 2;
+    position: relative;
+}
+
+.or-continue::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background-color: #eee;
+    z-index: 1;
+}
+
+/* --- Social Login Buttons --- */
+.social-login {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+.social-btn {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.2em;
+    color: white;
+    text-decoration: none;
+    transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.social-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+}
+
+.social-btn.google {
+    background-color: #db4437;
+}
+
+/* Standard Google Red */
+.social-btn.github {
+    background-color: #333;
+}
+
+/* Standard GitHub Black */
+.social-btn.facebook {
+    background-color: #4267b2;
+}
+
+/* Standard Facebook Blue */
+
+/* --- Register Link --- */
+.register-link {
+    font-size: 0.9em;
+    color: #888;
+}
+
+.register-link a {
+    color: var(--green-light);
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.3s;
+}
+
+.register-link a:hover {
+    color: var(--green-dark);
+    text-decoration: underline;
 }
 
 /* Animation */
@@ -105,9 +284,5 @@ body {
 @media (max-width: 500px) {
     .login-box {
         padding: 30px 20px;
-    }
-
-    .login-box h2 {
-        font-size: 24px;
     }
 }

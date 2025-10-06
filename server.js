@@ -74,7 +74,6 @@ passport.use(UserModel.createStrategy());
 passport.serializeUser(UserModel.serializeUser());
 passport.deserializeUser(UserModel.deserializeUser());
 
-
 //5.Routes
 // using imported routes
 app.use("/", managerRoutes);
