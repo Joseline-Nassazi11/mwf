@@ -2,56 +2,11 @@ const express = require("express");
 const router = express.Router();
 const { ensureAuthenticated, ensureManager } = require("../middleware/auth");
 const UserModel = require("../models/userModel");
-// const userModel = require("../models/userModel");
-// const Attendant = require("../models/register-attendantModel");
-// router.get("/users", async (req, res) => {
-//   try {
-//     const users = await UserModel.find().lean();
-//     res.render("user-table", { users });
-//   } catch (error) {
-//     console.error(error);
-//     res.status(500).send("Error retrieving users");
-//   }
-// });
 
 // GET - Registration form
 router.get("/register-attendant", ensureAuthenticated, ensureManager, (req, res) => {
   res.render("register-attendant", { title: "Register Attendant" });
 });
-
-// POST - Handle form submission (Manager only)
-// router.post(
-//   "/register-attendant",
-//   ensureAuthenticated,
-//   ensureManager,
-//   async (req, res) => {
-//     try {
-//       const { fullName, age, nin, phone, email, gender, password } = req.body;
-
-//       const existing = await UserModel.findOne({ email });
-//       if (existing) {
-//         return res.status(400).send("Attendant already exists");
-//       }
-
-//       const newAttendant = new UserModel({
-//         fullName,
-//         age,
-//         nin,
-//         phone,
-//         email,
-//         gender,
-//         role: "Attendant",
-//       });
-
-//       await UserModel.register(newAttendant, password); // ⬅️ This hashes the password
-
-//       res.redirect("/users");
-//     } catch (error) {
-//       console.error("Error registering attendant:", error);
-//       res.status(500).send("Error registering attendant.");
-//     }
-//   }
-// );
 
 // Manager registers new attendant
 router.post("/register-attendant", ensureManager, async (req, res) => {
@@ -78,7 +33,7 @@ router.post("/register-attendant", ensureManager, async (req, res) => {
 });
 
 // GET: Users (Manager only)
-router.get("/users", async (req, res) => {
+router.get("/users", ensureManager, async (req, res) => {
   try {
     const { search, role } = req.query;
     let query = {};

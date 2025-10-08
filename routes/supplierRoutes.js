@@ -1,10 +1,10 @@
 const express = require("express");
 const router = express.Router();
 const SupplierModel = require("../models/supplierModel");
-
+const { ensureAuthenticated, ensureManager } = require("../middleware/auth");
 
 // --- GET All Suppliers ---
-router.get("/dashboard/suppliers", async (req, res) => {
+router.get("/dashboard/suppliers", ensureAuthenticated, ensureManager, async (req, res) => {
   try {
     const suppliers = await SupplierModel.find().sort({ createdAt: -1 });
     res.render("suppliers", { title: "Suppliers", suppliers });
@@ -15,7 +15,7 @@ router.get("/dashboard/suppliers", async (req, res) => {
 });
 
 // --- POST Add Supplier ---
-router.post("/dashboard/suppliers/add", async (req, res) => {
+router.post("/dashboard/suppliers/add", ensureAuthenticated, ensureManager, async (req, res) => {
   try {
     const { name, phone, email, address } = req.body;
     const supplier = new SupplierModel({ name, phone, email, address });

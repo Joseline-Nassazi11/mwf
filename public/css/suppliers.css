@@ -64,7 +64,8 @@ body {
 .user-role {
     font-size: 1rem;
     font-weight: 500;
-    background: rgba(255, 255, 255, 0.2);
+    /* background: rgba(255, 255, 255, 0.2); */
+    background: linear-gradient(90deg, #1a4d2e, #2e8b57, #1a4d2e);
     padding: 6px 12px;
     border-radius: 8px;
     box-shadow: inset 0px 2px 4px rgba(255, 255, 255, 0.2);
@@ -75,6 +76,9 @@ body {
     background: rgba(255, 255, 255, 0.3);
 }
 
+.btn{
+background: linear-gradient(90deg, #1a4d2e, #2e8b57, #1a4d2e);
+}
 /* === CONTENT === */
 .content {
     padding: 25px 35px;
@@ -96,7 +100,8 @@ body {
 
 /* === BUTTONS === */
 .btn-primary {
-    background: linear-gradient(135deg, #28a745, #218838);
+    /* background: linear-gradient(135deg, #28a745, #218838); */
+    background: linear-gradient(90deg, #1a4d2e, #2e8b57, #1a4d2e);
     border: none;
     border-radius: 8px;
     font-weight: 500;

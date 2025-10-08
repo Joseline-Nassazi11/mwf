@@ -1,3 +1,4 @@
+// For coverting unitprice * quantity to get totalprice
 document.getElementById("unitPrice").addEventListener("input", calculateTotal);
 document.getElementById("quantity").addEventListener("input", calculateTotal);
 

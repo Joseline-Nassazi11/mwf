@@ -18,7 +18,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   let cart = [];
 
-  // === Add to Cart ===
+  //  Add to Cart 
   document.querySelectorAll(".btn-add").forEach((btn) => {
     btn.addEventListener("click", (e) => {
       const card = e.target.closest(".product-card");
@@ -37,7 +37,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  // === Update Cart Display ===
+  //  Update Cart Display 
   function updateCartUI() {
     cartList.innerHTML = "";
     if (cart.length === 0) {
@@ -68,7 +68,7 @@ document.addEventListener("DOMContentLoaded", () => {
     updateTotals();
   }
 
-  // === Update Totals ===
+  //  Update Totals 
   function updateTotals() {
     const subtotal = cart.reduce((sum, item) => sum + item.price * item.qty, 0);
     const transport = subtotal * 0.05;
@@ -79,7 +79,7 @@ document.addEventListener("DOMContentLoaded", () => {
     totalEl.textContent = `UGX ${total.toLocaleString()}`;
   }
 
-  // === Checkout (optional save) ===
+  //  Checkout (optional save) 
   checkoutBtn.addEventListener("click", () => {
     if (cart.length === 0) {
       alert("Cart is empty!");
@@ -88,7 +88,7 @@ document.addEventListener("DOMContentLoaded", () => {
     alert("Checkout completed successfully!");
   });
 
-  // === Print Receipt ===
+  //  Print Receipt 
   printBtn.addEventListener("click", () => {
     if (cart.length === 0) {
       alert("No items in cart to print.");

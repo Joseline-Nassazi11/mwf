@@ -78,7 +78,8 @@ body {
 
  /* ===== GET STARTED BUTTON ===== */
  .head-content .btn {
-     background-color: #198754;
+     /* background-color: #198754; */
+    background: linear-gradient(90deg, #1a4d2e, #2e8b57, #1a4d2e);
      color: white;
      padding: 12px 30px;
      border-radius: 30px;

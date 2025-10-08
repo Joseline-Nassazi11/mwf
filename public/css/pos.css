@@ -191,7 +191,8 @@ body {
 }
 
 .product-card button.btn-add {
-    background: linear-gradient(135deg, #0ea05a, #0b6b3a);
+    /* background: linear-gradient(135deg, #0ea05a, #0b6b3a); */
+    background: linear-gradient(90deg, #1a4d2e, #2e8b57, #1a4d2e);
     color: white;
     border: none;
     border-radius: 8px;
@@ -205,7 +206,7 @@ body {
     opacity: 0.9;
 }
 
-/* === Cart Sidebar === */
+/*  Cart Sidebar  */
 .cart {
     background: white;
     border-radius: 12px;
@@ -259,7 +260,7 @@ body {
     margin-left: 8px;
 }
 
-/* === Totals Section === */
+/* Totals Section */
 .totals {
     border-top: 2px solid #f2f2f2;
     padding-top: 8px;
@@ -291,7 +292,7 @@ body {
     color: #0b6b3a;
 }
 
-/* === Checkout Buttons === */
+/*  Checkout Buttons */
 .checkout-row {
     display: flex;
     gap: 10px;
@@ -339,10 +340,7 @@ body {
     margin-bottom: 10px;
 }
 
-/* ========================================= */
-/* === RECEIPT PRINT STYLING (The Fix!) === */
-/* ========================================= */
-
+/*  RECEIPT PRINT STYLING  */
 /* By default, hide the receipt section on screen */
 .receipt {
     display: none;
@@ -356,7 +354,6 @@ body {
     /* If you haven't explicitly set width on .container, this is fine */
 }
 
-
 /* --- PRINT MEDIA QUERY --- */
 @media print {
 
@@ -368,18 +365,13 @@ body {
 
     /* 2. Display and Style the Receipt */
     .receipt {
-        display: block;
-        /* Make the receipt visible */
-        width: 80mm;
-        /* Standard thermal receipt paper width (adjust as needed) */
-        max-width: 300px;
-        /* Max width if printing to a standard printer */
+        display: block;      /* Make the receipt visible */
+        width: 80mm;         /* Standard thermal receipt paper width (adjust as needed) */
+        max-width: 300px;   /* Max width if printing to a standard printer */
         margin: 0 auto;
         padding: 0;
-        font-family: monospace;
-        /* Often used for receipts */
-        font-size: 10px;
-        /* Small, receipt-like font size */
+        font-family: monospace;  /* Often used for receipts */
+        font-size: 10px;      /* Small, receipt-like font size */
         color: #000;
     }
 
@@ -390,11 +382,9 @@ body {
     }
 
     .receipt-header img {
-        max-width: 50px;
-        /* Small logo size */
+        max-width: 50px;        /* Small logo size */
         height: auto;
-        margin-bottom: 5px;
-        /* Optionally remove the green ring style if it was there */
+        margin-bottom: 5px;    /* Optionally remove the green ring style if it was there */
         border: none;
         box-shadow: none;
     }
@@ -416,8 +406,7 @@ body {
     }
 
     hr {
-        border: 0.5px dashed #333;
-        /* Dashed line for clean separation */
+        border: 0.5px dashed #333;    /* Dashed line for clean separation */
         margin: 5px 0;
     }
 
@@ -435,15 +424,13 @@ body {
         font-size: 10px;
     }
 
-    .receipt-table th:nth-child(2),
-    /* Qty column */
+    .receipt-table th:nth-child(2),        /* Qty column */
     .receipt-table td:nth-child(2) {
         text-align: center;
         width: 15%;
     }
 
-    .receipt-table th:nth-child(3),
-    /* Price column */
+    .receipt-table th:nth-child(3),      /* Price column */
     .receipt-table td:nth-child(3) {
         text-align: right;
         width: 30%;
@@ -456,8 +443,7 @@ body {
     }
 
     .receipt-totals strong {
-        font-size: 12px;
-        /* Emphasize the total */
+        font-size: 12px;        /* Emphasize the total */
     }
 
     .text-center {

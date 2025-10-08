@@ -35,7 +35,8 @@ h2, h4 {
 
 span.user-role {
     font-size: 0.95rem;
-    background-color: rgba(255, 255, 255, 0.2);
+    /* background-color: rgba(255, 255, 255, 0.2); */
+    background: linear-gradient(90deg, #1a4d2e, #2e8b57, #1a4d2e);
     padding: 0.3rem 0.8rem;
     border-radius: 20px;
 }
@@ -233,4 +234,44 @@ form.row.g-3 {
     button.btn {
         margin-top: 10px;
     }
+}
+
+/* === Validation Styles === */
+.error-message {
+    color: #e74c3c;
+    font-size: 13px;
+    margin-top: 3px;
+}
+
+input.error,
+select.error {
+    border: 1px solid #e74c3c;
+    box-shadow: 0 0 4px rgba(231, 76, 60, 0.3);
+}
+
+input.valid,
+select.valid {
+    border: 1px solid #2ecc71;
+    box-shadow: 0 0 4px rgba(46, 204, 113, 0.3);
+}
+
+/*  Success Toast  */
+.toast-message {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #2ecc71;
+    color: white;
+    padding: 12px 20px;
+    border-radius: 8px;
+    font-weight: 500;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.4s ease;
+    z-index: 9999;
+}
+
+.toast-message.show {
+    opacity: 1;
+    transform: translateY(0);
 }

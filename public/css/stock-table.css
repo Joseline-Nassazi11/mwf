@@ -68,7 +68,8 @@ body {
 .user-role {
     font-size: 1rem;
     font-weight: 500;
-    background: rgba(255, 255, 255, 0.2);
+    background: linear-gradient(90deg, #1a4d2e, #2e8b57, #1a4d2e);
+    /* background: rgba(255, 255, 255, 0.2); */
     padding: 6px 12px;
     border-radius: 8px;
 }

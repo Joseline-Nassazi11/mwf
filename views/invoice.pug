@@ -30,4 +30,8 @@ html
             td UGX #{invoice.sale.totalPrice}
 
       h3.text-end Grand Total: UGX #{invoice.sale.totalPrice}
-      button.btn.btn-primary(onclick="window.print()") Print Invoice
+
+      // Buttons section
+      .d-flex.justify-content-between.mt-4
+        a.btn.btn-secondary(href="/sales") ← Back to Sales
+        button.btn.btn-primary(onclick="window.print()") Print Invoice

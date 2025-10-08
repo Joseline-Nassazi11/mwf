@@ -164,7 +164,8 @@ body {
     padding: 12px;
     font-size: 16px;
     font-weight: 600;
-    background: var(--green-gradient);
+    /* background: var(--green-gradient); */
+    background: linear-gradient(90deg, #1a4d2e, #2e8b57, #1a4d2e);
     /* Green gradient */
     color: #fff;
     border: none;
@@ -285,4 +286,24 @@ body {
     .login-box {
         padding: 30px 20px;
     }
+}
+
+/* Error message styling */
+.error-message {
+    color: #e74c3c;
+    font-size: 13px;
+    margin-top: 4px;
+    display: block;
+}
+
+/* Disable default browser validation style */
+input:invalid {
+    border-color: initial;
+    box-shadow: none;
+}
+
+/* Show red border when JS flags invalid input */
+input.error {
+    border-color: #e74c3c;
+    box-shadow: 0 0 4px rgba(231, 76, 60, 0.4);
 }

@@ -110,7 +110,8 @@ body {
 
 /*  User role  */
 .user-role {
-    background: linear-gradient(90deg, #10b981, #34d399);
+    /* background: linear-gradient(90deg, #10b981, #34d399); */
+    background: linear-gradient(90deg, #1a4d2e, #2e8b57, #1a4d2e);
     color: #fff;
     padding: 6px 16px;
     border-radius: 30px;
@@ -297,7 +298,8 @@ form,
 
 /* Submit Button - Professional Floating Style */
 form .btn-success {
-    background: linear-gradient(90deg, #10b981, #34d399);
+    /* background: linear-gradient(90deg, #10b981, #34d399); */
+    background: linear-gradient(90deg, #1a4d2e, #2e8b57, #1a4d2e);
     color: #fff;
     font-weight: 600;
     font-size: 1.1rem;

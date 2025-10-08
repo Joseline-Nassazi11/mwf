@@ -47,6 +47,7 @@ body {
     list-style: none;
     display: flex;
     gap: 25px;
+    background: linear-gradient(90deg, #1a4d2e, #2e8b57, #1a4d2e);
 }
 
 .nav-links a {
@@ -59,7 +60,8 @@ body {
 
 .nav-links a:hover,
 .nav-links a.active {
-    background: rgba(255, 255, 255, 0.2);
+    /* background: rgba(255, 255, 255, 0.2); */
+    background: linear-gradient(90deg, #1a4d2e, #2e8b57, #1a4d2e);
 }
 
 /* --- Content Area --- */
@@ -102,7 +104,8 @@ body {
 }
 
 .task-input button {
-    background: #2e8b57;
+    /* background: #2e8b57; */
+    background: linear-gradient(90deg, #1a4d2e, #2e8b57, #1a4d2e);
     color: white;
     border: none;
     padding: 12px 20px;

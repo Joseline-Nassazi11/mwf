@@ -173,7 +173,7 @@ router.get("/sales/:id/receipt", async (req, res) => {
   }
 });
 
-// ==================== Invoice ====================
+//  Invoice 
 router.get("/invoices/:id", async (req, res) => {
   const { id } = req.params;
   if (!mongoose.Types.ObjectId.isValid(id)) {
