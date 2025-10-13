@@ -4,33 +4,12 @@ const passport = require ("passport");
 const StockModel = require("../models/stockModel");
 
 const UserModel = require("../models/userModel");
+
 //getting a signup route
 router.get("/register", (req, res) => {
   res.render("signup", { title: "signup page" });
 });
 
-// router.post("/register", async (req, res) => {
-//   try {
-//     const { fullName, email, role, password, confirmPassword } = req.body;
-//     // confirm passwords match
-//     if (password !== confirmPassword) {
-//       return res.status(400).send("Passwords do not match");
-//     }
-//     // check for existing email
-//     const existingUser = await UserModel.findOne({ email });
-//     if (existingUser) {
-//       return res.status(400).send("Already registered");
-//     }
-//     // create new user (only schema fields, no password here)
-//     const newUser = new UserModel({ fullName, email, role });
-//     // register with passport-local-mongoose
-//     await UserModel.register(newUser, password);
-//     res.redirect("/login");
-//   } catch (error) {
-//     console.error("Registration error:", error);
-//     res.status(400).send("Try again");
-//   }
-// });
 // Public sign-up only for first Manager
 router.post("/register", async (req, res) => {
   try {
@@ -50,6 +29,7 @@ router.post("/register", async (req, res) => {
     res.status(400).send("Failed to register manager: " + err.message);
   }
 });
+
 // Login route
 router.get("/login", (req, res) => {
   res.render("login", { title: "login page" });
@@ -76,11 +56,8 @@ router.get("/logout", (req,res) => {
   }
 });
 
-// routes/authRoutes.js (or wherever you handle authentication)
-
 // 1. GET route to display the Forgot Password form view
 router.get('/forgot-password', (req, res) => {
-    // Assuming you have a 'forgot-password.pug' file
     res.render('forgot-password', { title: 'Reset Password' });
 });
 
@@ -95,5 +72,49 @@ router.post('/forgot-password', async (req, res) => {
     // ...
 });
 
+//  GOOGLE AUTH 
+router.get('/google', passport.authenticate('google', { scope: ['profile', 'email'] }));
+
+router.get('/google/callback', 
+  passport.authenticate('google', { failureRedirect: '/login' }),
+  (req, res) => {
+    req.session.user = req.user;
+    if (req.user.role === "Manager") {
+      res.redirect("/dashboard");
+    } else {
+      res.redirect("/Addsale");
+    }
+  }
+);
+
+// GITHUB AUTH 
+router.get('/github', passport.authenticate('github', { scope: ['user:email'] }));
+
+router.get('/github/callback', 
+  passport.authenticate('github', { failureRedirect: '/login' }),
+  (req, res) => {
+    req.session.user = req.user;
+    if (req.user.role === "Manager") {
+      res.redirect("/dashboard");
+    } else {
+      res.redirect("/Addsale");
+    }
+  }
+);
+
+//  FACEBOOK AUTH 
+router.get('/facebook', passport.authenticate('facebook', { scope: ['email'] }));
+
+router.get('/facebook/callback', 
+  passport.authenticate('facebook', { failureRedirect: '/login' }),
+  (req, res) => {
+    req.session.user = req.user;
+    if (req.user.role === "Manager") {
+      res.redirect("/dashboard");
+    } else {
+      res.redirect("/Addsale");
+    }
+  }
+);
 
 module.exports = router;

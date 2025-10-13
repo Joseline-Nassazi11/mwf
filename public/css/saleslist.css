@@ -1,4 +1,3 @@
-/* ===== Global Styles ===== */
 body {
     font-family: 'Poppins', sans-serif;
     background-color: #f8f9fa;
@@ -7,7 +6,7 @@ body {
     color: #333;
 }
 
-/* ===== Navbar ===== */
+/*  Navbar  */
 .navbar-custom {
 background: linear-gradient(90deg, #1a4d2e, #2e8b57, #1a4d2e);
     padding: 15px 25px;
@@ -33,7 +32,7 @@ background: linear-gradient(90deg, #1a4d2e, #2e8b57, #1a4d2e);
     font-size: 1rem;
 }
 
-/* ===== Content ===== */
+/*  Content  */
 .content {
     padding: 2rem;
 }
@@ -43,7 +42,7 @@ background: linear-gradient(90deg, #1a4d2e, #2e8b57, #1a4d2e);
     font-weight: 600;
 }
 
-/* ===== Buttons Styling ===== */
+/*  Buttons Styling  */
 a.btn,
 button.btn {
     font-weight: 500;
@@ -137,7 +136,7 @@ button.btn-primary:hover {
     border-color: #3749b0;
 }
 
-/* ===== Table ===== */
+/*  Table  */
 table.table {
     background-color: #fff;
     border-radius: 0.5rem;
@@ -167,7 +166,7 @@ td a.btn {
     font-size: 0.85rem;
 }
 
-/* ===== Form Controls ===== */
+/*  Form Controls  */
 input.form-control,
 select.form-select {
     border-radius: 0.5rem;

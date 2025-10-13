@@ -18,7 +18,7 @@ html
     // Form Container
     .container
       h2 Register New Attendant
-      form(action="/register-attendant" method="POST")
+      form(action="/register-attendant" method="POST" novalidate)
         .mb-3
           label.form-label Full Name
           input.form-control(type="text" name="fullName" required)
@@ -45,3 +45,4 @@ html
           label.form-label Password
           input.form-control(type="password" name="password" required)
         button.btn.btn-success(type="submit") Register Attendant
+  script(src="/js/register-atttendant.js")      

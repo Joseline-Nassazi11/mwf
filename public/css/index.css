@@ -47,7 +47,7 @@ body {
     font-size: 22px;
     font-weight: bold;
 } */
- /* ===== LOGO ===== */
+ /* LOGO */
  .logo {
      display: flex;
      align-items: center;
@@ -76,7 +76,7 @@ body {
      letter-spacing: 1px;
  }
 
- /* ===== GET STARTED BUTTON ===== */
+ /*  GET STARTED BUTTON  */
  .head-content .btn {
      /* background-color: #198754; */
     background: linear-gradient(90deg, #1a4d2e, #2e8b57, #1a4d2e);

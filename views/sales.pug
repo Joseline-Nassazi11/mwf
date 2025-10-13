@@ -14,7 +14,7 @@ html(lang="en")
     .sidebar
       h2 MWF
       a(href='/') Index
-      a(href='/agent-dashboard') Dashboard
+      a(href='/agent-dashboard') Attendant Dashboard
       a(href='/product-list') Products List
       a.active(href='/salestable') Sales Table
       a(href='/reports') Reports
@@ -30,7 +30,7 @@ html(lang="en")
     .content
       h2.mb-4 Record Sale
 
-      form(action='/Addsale' method='POST')
+      form(action='/Addsale' method='POST' novalidate)
         .form-grid
           // Left column
           .form-group
@@ -84,4 +84,5 @@ html(lang="en")
             button.btn.btn-success(type='submit')
               i.bi.bi-check-circle.me-2
               | Submit Sale
+              
       script(src='/js/calctotal.js')

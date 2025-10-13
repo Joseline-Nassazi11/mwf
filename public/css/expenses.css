@@ -1,0 +1,29 @@
+body {
+    font-family: "Poppins", sans-serif;
+    background-color: #f4f6f8;
+    color: #333;
+}
+
+.container {
+    max-width: 900px;
+}
+
+h1 {
+    text-align: center;
+    color: #2b3e50;
+}
+
+table {
+    background: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+button.btn-primary {
+    width: 100%;
+}
+
+h3 {
+    font-weight: 600;
+    color: #1a73e8;
+}

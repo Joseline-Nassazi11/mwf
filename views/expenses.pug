@@ -1,0 +1,51 @@
+//- doctype html
+//- html(lang="en")
+//-   head
+//-     meta(charset="UTF-8")
+//-     meta(name="viewport" content="width=device-width, initial-scale=1.0")
+//-     title= title
+//-     link(rel="stylesheet" href="/css/expenses.css")
+//-     link(href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet")
+
+//-   body
+//-     .container.mt-5
+//-       h1.mb-4 Expense Tracker
+
+//-       // Add Expense Form
+//-       form(action="/dashboard/expenses/add" method="POST" class="mb-4")
+//-         .row.g-2
+//-           .col-md-4
+//-             input.form-control(type="text" name="description" placeholder="Description" required)
+//-           .col-md-3
+//-             input.form-control(type="number" name="amount" placeholder="Amount" required)
+//-           .col-md-3
+//-             select.form-select(name="category" required)
+//-               option(value="") Select Category
+//-               option(value="Food") Food
+//-               option(value="Transport") Transport
+//-               option(value="Entertainment") Entertainment
+//-               option(value="Essentials") Essentials
+//-           .col-md-2
+//-             button.btn.btn-primary(type="submit") Add Expense
+
+//-       // Expense List
+//-       if expenses.length
+//-         table.table.table-bordered
+//-           thead.table-dark
+//-             tr
+//-               th Description
+//-               th Amount
+//-               th Category
+//-               th Date
+//-           tbody
+//-             each e in expenses
+//-               tr
+//-                 td= e.description
+//-                 td UGX #{e.amount.toLocaleString()}
+//-                 td= e.category
+//-                 td= e.createdAt.toDateString()
+//-       else
+//-         p.text-muted No expenses recorded yet.
+
+//-       // Total Spending
+//-       h3.mt-4.text-end Total Spending: UGX #{total.toLocaleString()}

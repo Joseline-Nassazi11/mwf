@@ -4,11 +4,12 @@ const stockSchema = new mongoose.Schema(
   {
     name: {
       type: String,
-      required: true, // Product name must be provided
+      required: true, 
       trim: true,
     },
     type: {
       type: String,
+      ref: "SupplierModel",
       trim: true,
       // enum: ['timber', 'poles', 'hardwood', 'softwood']
     },
@@ -37,7 +38,7 @@ const stockSchema = new mongoose.Schema(
     },
     lastUpdate: {
       type: Date,
-      default: Date.now, // if no date is entered, use current date
+      default: Date.now,
     },
   },
   {

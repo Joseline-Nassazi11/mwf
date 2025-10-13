@@ -38,10 +38,10 @@ router.post("/Addsale", ensureAuthenticated, ensureAgent, async (req, res) => {
     const userId = req.session.user?._id;
     if (!userId) return res.status(401).send("User not authenticated");
 
-    const stock = await StockModel.findOne({
-      type: productType,
-      name: product,
-    });
+    const stock = await StockModel.findById(product);
+    //   type: productType,
+    //   name: product,
+    // });
     if (!stock) return res.status(400).send("Product not found in stock");
 
     if (stock.quantity < Number(quantity)) {
@@ -54,7 +54,7 @@ router.post("/Addsale", ensureAuthenticated, ensureAgent, async (req, res) => {
     const newSale = new SaleModel({
       customerName,
       productType,
-      product,
+      product: stock._id,
       unitPrice: Number(unitPrice),
       quantity: Number(quantity),
       totalPrice: total,
@@ -86,7 +86,6 @@ router.post("/Addsale", ensureAuthenticated, ensureAgent, async (req, res) => {
   }
 });
 
-//  Edit Sale 
 // GET edit form
 router.get("/editsales/:id", async (req, res) => {
   try {
@@ -150,9 +149,11 @@ router.post("/deletesales/:id", async (req, res) => {
 //  Sales List 
 router.get("/salestable", async (req, res) => {
   try {
-    const sales = await SaleModel.find().populate("agent", "fullName");
+    const sales = await SaleModel.find()
+      .populate("agent", "fullName")
+      .populate("product", "name type price");
     const currentUser = req.session.user || null;
-    res.render("saleslist", { sales, currentUser });
+    res.render("saleslist", { sales, currentUser, moment: require("moment") });
   } catch (error) {
     console.error(error.message);
     res.redirect("/");

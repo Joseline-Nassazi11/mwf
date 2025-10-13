@@ -18,7 +18,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   let cart = [];
 
-  //  Add to Cart 
+  //  Add to Cart
   document.querySelectorAll(".btn-add").forEach((btn) => {
     btn.addEventListener("click", (e) => {
       const card = e.target.closest(".product-card");
@@ -37,7 +37,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  //  Update Cart Display 
+  //  Update Cart Display
   function updateCartUI() {
     cartList.innerHTML = "";
     if (cart.length === 0) {
@@ -68,7 +68,7 @@ document.addEventListener("DOMContentLoaded", () => {
     updateTotals();
   }
 
-  //  Update Totals 
+  //  Update Totals
   function updateTotals() {
     const subtotal = cart.reduce((sum, item) => sum + item.price * item.qty, 0);
     const transport = subtotal * 0.05;
@@ -79,34 +79,62 @@ document.addEventListener("DOMContentLoaded", () => {
     totalEl.textContent = `UGX ${total.toLocaleString()}`;
   }
 
-  //  Checkout (optional save) 
-  checkoutBtn.addEventListener("click", () => {
+  //  Checkout — Save to Database
+  checkoutBtn.addEventListener("click", async () => {
     if (cart.length === 0) {
       alert("Cart is empty!");
       return;
     }
-    alert("Checkout completed successfully!");
+
+    const subtotal = cart.reduce((sum, item) => sum + item.price * item.qty, 0);
+    const transport = subtotal * 0.05;
+    const total = subtotal + transport;
+
+    const customerName = customerNameInput.value.trim() || "Walk-in";
+
+    try {
+      const response = await fetch("/checkout", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          items: cart,
+          subtotal,
+          transport,
+          total,
+          customerName,
+        }),
+      });
+
+      const result = await response.json();
+
+      if (response.ok) {
+        alert(result.message || "Checkout completed successfully!");
+        generateReceipt();
+        cart = []; // Clear cart after success
+        updateCartUI();
+      } else {
+        alert(result.error || "Error completing checkout!");
+      }
+    } catch (err) {
+      console.error("Checkout error:", err);
+      alert("Network or server error during checkout!");
+    }
   });
 
-  //  Print Receipt 
-  printBtn.addEventListener("click", () => {
-    if (cart.length === 0) {
-      alert("No items in cart to print.");
-      return;
-    }
+  //  Print Receipt
+  function generateReceipt() {
+    if (cart.length === 0) return;
 
-    // Generate Receipt Number (MWF-YYYYMMDD-###)
     const today = new Date();
     const datePart = today.toISOString().split("T")[0].replace(/-/g, "");
     const randomPart = String(Math.floor(Math.random() * 999)).padStart(3, "0");
     const receiptNumber = `MWF-${datePart}-${randomPart}`;
 
     receiptNumberEl.textContent = receiptNumber;
-
-    // Populate Customer Name
     receiptCustomer.textContent = customerNameInput.value.trim() || "Walk-in";
 
-    // Populate Receipt Items
     receiptItemsBody.innerHTML = "";
     cart.forEach((item) => {
       const tr = document.createElement("tr");
@@ -118,7 +146,6 @@ document.addEventListener("DOMContentLoaded", () => {
       receiptItemsBody.appendChild(tr);
     });
 
-    // Calculate totals for receipt
     const subtotal = cart.reduce((sum, item) => sum + item.price * item.qty, 0);
     const transport = subtotal * 0.05;
     const total = subtotal + transport;
@@ -127,14 +154,14 @@ document.addEventListener("DOMContentLoaded", () => {
     receiptTransport.textContent = `UGX ${transport.toLocaleString()}`;
     receiptTotal.textContent = `UGX ${total.toLocaleString()}`;
 
-    // Show print section & print
     const printSection = document.getElementById("print-section");
     printSection.style.display = "block";
 
-    // Print and hide after printing
     window.print();
     setTimeout(() => {
       printSection.style.display = "none";
     }, 1000);
-  });
+  }
+
+  printBtn.addEventListener("click", generateReceipt);
 });

@@ -1,4 +1,3 @@
-// Ensure user is authenticated
 exports.ensureAuthenticated = (req, res, next) => {
   if (req.isAuthenticated()) {
     return next();

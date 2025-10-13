@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", () => {
   document.querySelector(".filter-btn").classList.add("active");
 });
 
-// --- Core Task Management Functions ---
+//  Core Task Management Functions 
 
 function saveTasks() {
   localStorage.setItem("tasks", JSON.stringify(tasks));
@@ -46,7 +46,7 @@ function toggleCompletion(id) {
   }
 }
 
-// --- Rendering and Filtering ---
+//  Rendering and Filtering 
 
 function setFilter(filter) {
   currentFilter = filter;

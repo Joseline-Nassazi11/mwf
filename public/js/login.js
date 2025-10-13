@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const emailInput = document.getElementById("email");
   const passwordInput = document.getElementById("password");
 
-  // Create error message elements dynamically (if not in HTML)
+  // Create error message elements dynamically 
   const emailError = document.createElement("span");
   emailError.id = "emailError";
   emailError.classList.add("error-message");
@@ -51,5 +51,19 @@ document.addEventListener("DOMContentLoaded", () => {
       if (input.id === "email") emailError.textContent = "";
       if (input.id === "password") passwordError.textContent = "";
     });
+  });
+});
+
+document.addEventListener("DOMContentLoaded", function () {
+  const passwordInput = document.getElementById("password");
+  const togglePassword = document.querySelector(".toggle-password");
+
+  togglePassword.addEventListener("click", function () {
+    const type =
+      passwordInput.getAttribute("type") === "password" ? "text" : "password";
+    passwordInput.setAttribute("type", type);
+
+    this.querySelector("i").classList.toggle("fa-eye");
+    this.querySelector("i").classList.toggle("fa-eye-slash");
   });
 });

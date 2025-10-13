@@ -1,8 +1,7 @@
-/* ===== General ===== */
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background-color: #f4f6f8;
-    color: #333;
+    color: #2c3e50;
     margin: 0;
     padding: 0;
 }
@@ -13,14 +12,13 @@ body {
     padding: 20px;
 }
 
-/* ===== Navbar ===== */
+/*  NAVBAR  */
 .navbar {
     background: linear-gradient(90deg, #1a4d2e, #2e8b57);
-    padding: 10px 15px !important;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
-    margin-top: 20px;
-    margin: 20px;
+    padding: 12px 20px !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
     border-radius: 12px;
+    margin: 20px;
 }
 
 .navbar-brand {
@@ -36,35 +34,29 @@ body {
     height: 40px !important;
     width: 40px !important;
     object-fit: contain;
-    border: 3px solid white;
+    border: 2px solid white;
     border-radius: 50%;
     padding: 2px;
     box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.3);
 }
 
-.navbar .form-control {
-    height: 38px;
-    font-size: 0.9rem;
-    border-radius: 5px;
-    border: 1px solid #2e8b57;
-}
-
+/* Navbar Buttons */
 .navbar .btn {
     height: 38px;
     font-size: 0.9rem;
-    border-radius: 5px;
+    border-radius: 6px;
     font-weight: 500;
     transition: all 0.3s ease;
 }
 
 .navbar .btn-success {
-    background: linear-gradient(90deg, #28a745, #2ecc71);
+    background: linear-gradient(135deg, #28a745, #2ecc71);
     border-color: #28a745;
     color: white;
 }
 
 .navbar .btn-warning {
-    background: linear-gradient(90deg, #ffc107, #ffca2c);
+    background: linear-gradient(135deg, #ffc107, #ffca2c);
     border-color: #ffc107;
     color: white;
 }
@@ -77,21 +69,57 @@ body {
 
 .navbar .btn:hover {
     opacity: 0.9;
+    transform: translateY(-2px);
 }
 
-/* ===== Product List Heading ===== */
+/*  PRODUCT LIST HEADING  */
 h2.text-success {
     color: #2e8b57 !important;
     font-size: 2rem;
     font-weight: 600;
     margin-bottom: 20px;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
 }
 
-/* ===== Table Styling ===== */
+/*  TABLE STYLING  */
 .table {
-    border-radius: 8px;
+    border-radius: 12px;
     overflow: hidden;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.table:hover {
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    transform: translateY(-2px);
+}
+
+.table thead {
+    background: linear-gradient(135deg, #1a4d2e, #2e8b57);
+    color: white;
+}
+
+.table th,
+.table td {
+    padding: 14px;
+    text-align: center;
+    border-color: #dee2e6;
+    font-size: 0.95rem;
+}
+
+.table-striped tbody tr:nth-of-type(odd) {
+    background-color: rgba(46, 139, 87, 0.05);
+}
+
+.table-hover tbody tr:hover {
+    background-color: rgba(46, 139, 87, 0.1);
+    transition: background 0.3s ease;
+}
+
+.table-bordered {
+    border: 1px solid #dee2e6;
 }
 
 .table-success {
@@ -106,32 +134,20 @@ h2.text-success {
     font-weight: bold;
 }
 
-.table-striped tbody tr:nth-of-type(odd) {
-    background-color: #f9f9f9;
-}
-
-.table-bordered {
-    border: 1px solid #dee2e6;
-}
-
-.table-hover tbody tr:hover {
-    background-color: #e8f5e9;
-}
-
-.table th,
-.table td {
-    padding: 12px;
-    border-color: #dee2e6;
-    vertical-align: middle;
-}
-
-/* ===== KPI Animation Styling ===== */
+/*  KPI ANIMATION STYLING  */
 .kpi-number {
     font-weight: bold;
     color: #1a4d2e;
+    font-size: 1.4rem;
+    transition: all 0.3s ease;
 }
 
-/* ===== Pagination Styling ===== */
+.kpi-number:hover {
+    color: #28a745;
+    transform: scale(1.05);
+}
+
+/*  PAGINATION  */
 .pagination {
     justify-content: center;
     margin-top: 20px;
@@ -139,6 +155,7 @@ h2.text-success {
 
 .page-link {
     color: #1a4d2e;
+    transition: background 0.3s ease;
 }
 
 .page-item.active .page-link {
@@ -147,7 +164,7 @@ h2.text-success {
     color: white;
 }
 
-/* ===== Responsive ===== */
+/*  RESPONSIVE  */
 @media (max-width: 992px) {
     .navbar .d-flex {
         flex-direction: column;
@@ -163,12 +180,87 @@ h2.text-success {
     }
 }
 
-/* ===== Hover Effects ===== */
-table tbody tr:hover {
-    background: rgba(46, 139, 87, 0.1);
-    transition: background 0.3s ease;
+/*  MOBILE STYLING  */
+@media (max-width: 600px) {
+    body {
+        padding: 10px;
+    }
+
+    .navbar {
+        flex-direction: column !important;
+        align-items: center !important;
+        text-align: center;
+        padding: 12px;
+        margin: 10px;
+    }
+
+    .navbar-brand {
+        flex-direction: column;
+        gap: 6px;
+        font-size: 1rem;
+        text-align: center;
+    }
+
+    .navbar-brand img.logo {
+        height: 36px !important;
+        width: 36px !important;
+    }
+
+    .navbar .d-flex {
+        flex-direction: column !important;
+        width: 100%;
+        gap: 8px;
+        margin-top: 10px;
+    }
+
+    .navbar .form-control,
+    .navbar .btn {
+        width: 100% !important;
+        margin: 4px 0 !important;
+    }
+
+    h2.text-success {
+        font-size: 1.5rem;
+        text-align: center;
+    }
+
+    .table {
+        display: block;
+        width: 100%;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .table th,
+    .table td {
+        font-size: 0.85rem;
+        white-space: nowrap;
+        padding: 8px;
+    }
+
+    .pagination {
+        flex-wrap: wrap;
+        gap: 6px;
+    }
+
+    .page-link {
+        font-size: 0.8rem;
+        padding: 4px 8px;
+    }
 }
 
-.btn {
-    box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.2);
+/*  ULTRA SMALL DEVICES  */
+@media (max-width: 400px) {
+    .navbar-brand {
+        font-size: 0.9rem;
+    }
+
+    h2.text-success {
+        font-size: 1.2rem;
+    }
+
+    .btn {
+        font-size: 0.8rem;
+        padding: 5px 8px;
+    }
 }

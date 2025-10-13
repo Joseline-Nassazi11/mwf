@@ -322,3 +322,30 @@ form .btn-success:hover {
 form .btn-success:active {
     transform: scale(0.98);
 }
+
+/*  Validation Styles  */
+.error-message {
+    color: #e74c3c;
+    font-size: 13px;
+    margin-top: 3px;
+    display: block;
+}
+
+.valid-message {
+    color: #28a745;
+    font-size: 13px;
+    margin-top: 3px;
+    display: block;
+}
+
+input.error,
+select.error {
+    border: 1px solid #e74c3c !important;
+    box-shadow: 0 0 4px rgba(231, 76, 60, 0.5);
+}
+
+input.valid,
+select.valid {
+    border: 1px solid #28a745 !important;
+    box-shadow: 0 0 4px rgba(40, 167, 69, 0.5);
+}

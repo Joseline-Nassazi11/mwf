@@ -3,7 +3,7 @@ const router = express.Router();
 const { ensureAuthenticated, ensureManager } = require("../middleware/auth");
 const UserModel = require("../models/userModel");
 
-// GET - Registration form
+// GET  Registration form
 router.get("/register-attendant", ensureAuthenticated, ensureManager, (req, res) => {
   res.render("register-attendant", { title: "Register Attendant" });
 });
@@ -20,12 +20,12 @@ router.post("/register-attendant", ensureManager, async (req, res) => {
       phone,
       email,
       gender,
-      role: "Attendants", // force attendants role
+      role: "Attendants", // attendants role
     });
 
     await UserModel.register(newUser, password);
 
-    res.redirect("/users"); // or wherever you want after success
+    res.redirect("/users"); 
   } catch (err) {
     console.error("Error registering attendant:", err);
     res.status(400).send("Failed to register attendant: " + err.message);
@@ -63,12 +63,13 @@ router.get("/users/edit/:id", async (req, res) => {
   try {
     const user = await UserModel.findById(req.params.id).lean();
     if (!user) return res.status(404).send("User not found");
-    res.render("user-edit", { user }); // you'll create a user-edit.pug file
+    res.render("user-edit", { user }); 
   } catch (err) {
     console.error("Error loading edit form:", err.message);
     res.status(500).send("Error loading edit form");
   }
 });
+
 // POST Update User
 router.post("/users/edit/:id", async (req, res) => {
   try {
@@ -92,7 +93,7 @@ router.post("/users/delete/:id", async (req, res) => {
   }
 });
 
-// List all attendants (for manager to manage)
+// List all attendants 
 router.get("/manage-users", ensureManager, async (req, res) => {
   try {
     const attendants = await UserModel.find({ role: "Attendants" });

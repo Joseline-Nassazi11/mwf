@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const Task = require("../models/taskModel");
 
-// --- Show the Task Manager Page ---
+//  Show the Task Manager Page 
 router.get("/todo", async (req, res) => {
   try {
     const tasks = await Task.find().sort({ createdAt: -1 });
@@ -13,7 +13,7 @@ router.get("/todo", async (req, res) => {
   }
 });
 
-// --- Add New Task ---
+//  Add New Task 
 router.post("/add", async (req, res) => {
   try {
     const newTask = new Task({
@@ -28,7 +28,7 @@ router.post("/add", async (req, res) => {
   }
 });
 
-// --- Toggle Complete ---
+//  Toggle Complete 
 router.post("/toggle/:id", async (req, res) => {
   try {
     const task = await Task.findById(req.params.id);
@@ -40,7 +40,7 @@ router.post("/toggle/:id", async (req, res) => {
   }
 });
 
-// --- Delete Task ---
+//  Delete Task 
 router.delete("/delete/:id", async (req, res) => {
   try {
     await Task.findByIdAndDelete(req.params.id);

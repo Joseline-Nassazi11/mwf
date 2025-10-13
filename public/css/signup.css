@@ -1,7 +1,8 @@
 body {
     margin: 0;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: url('https://images.unsplash.com/photo-1523413651479-597eb2da0ad6?auto=format&fit=crop&w=1350&q=80') no-repeat center center fixed;
+    background: linear-gradient(135deg, #1b5e20, #2e7d32, #1b5e20);
+    /* background: url('https://images.unsplash.com/photo-1523413651479-597eb2da0ad6?auto=format&fit=crop&w=1350&q=80') no-repeat center center fixed; */
     background-size: cover;
     min-height: 100vh;
 
@@ -50,7 +51,6 @@ body {
     border: none;
     border-radius: 8px;
     padding: 10px;
-    /* ⬅️ shorter button height */
     font-size: 15px;
     font-weight: 600;
 }
@@ -63,8 +63,30 @@ body {
 .signup-card p {
     text-align: center;
     font-size: 12px;
-    /* ⬅️ smaller text */
     color: #666;
     margin-top: 10px;
-    /* ⬅️ less margin */
+}
+
+.error-message {
+    color: #e74c3c;
+    font-size: 13px;
+    margin-top: 3px;
+}
+
+.valid-message {
+    color: #27ae60;
+    font-size: 13px;
+    margin-top: 3px;
+}
+
+input.error,
+select.error {
+    border: 1px solid #e74c3c !important;
+    box-shadow: 0 0 3px #e74c3c;
+}
+
+input.valid,
+select.valid {
+    border: 1px solid #27ae60 !important;
+    box-shadow: 0 0 3px #27ae60;
 }

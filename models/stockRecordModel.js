@@ -25,7 +25,7 @@ const stockRecordSchema = new mongoose.Schema(
     quality: { type: String },
     lastUpdate: { type: Date, default: Date.now },
   },
-  { timestamps: true } // ✅ adds createdAt and updatedAt automatically
+  { timestamps: true } // adds createdAt and updatedAt automatically
 );
 
 

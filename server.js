@@ -2,11 +2,12 @@
 const express = require("express");
 const path = require("path");
 const mongoose = require("mongoose");
-const passport = require("passport");
+const passport = require("./config/passport");
 const expressSession = require("express-session");
 const MongoStore = require("connect-mongo");
 const moment = require("moment");
 const methodOverride = require("method-override");
+// const passport = require("./config/passport"); // We'll create this file next
 
 require("dotenv").config();
 const UserModel = require("./models/userModel");
@@ -22,7 +23,7 @@ const classRoutes = require("./routes/classRoutes");
 const supplierRoutes = require("./routes/supplierRoutes")
 const posRoutes = require("./routes/posRoutes");
 const todoRoutes = require("./routes/todoRoutes");
-
+const expenseRoutes = require("./routes/expenseRoutes");
 //2. Instantiations
 const app = express();
 const port = 3000
@@ -56,6 +57,8 @@ app.set("views", path.join(__dirname, "views"))
 // app.use(express.static("public")); 
 app.use(express.static(path.join(__dirname, "public")))//static files 
 app.use(express.urlencoded({extended: true}))  //Helps to add data from forms
+app.use(express.json());  //  Enables parsing of JSON body (needed for POS checkout)
+
 // Express session configs
 app.use(expressSession({
     secret: process.env.SESSION_SECRET,
@@ -87,6 +90,7 @@ app.use("/", classRoutes);
 app.use("/", supplierRoutes)
 app.use("/", posRoutes);
 app.use("/", todoRoutes);
+app.use("/dashboard/expenses", expenseRoutes);
 
 
 //non existent route handler

@@ -10,7 +10,7 @@ html(lang="en")
     )
     link(rel="stylesheet" href="/css/stock-record.css") 
   body
-    //- Navbar
+    // Navbar
     nav.navbar.navbar-expand-lg.navbar-dark.bg-success.shadow-sm
       .container-fluid
         a.navbar-brand(href="/dashboard")
@@ -27,22 +27,20 @@ html(lang="en")
             li.nav-item
               a.nav-link.active(href="/stock-records") Records
 
-    //- Page Content
+    //Page Content
     .container.mt-5
       .card.p-3.shadow-lg
         .d-flex.justify-content-between.align-items-center.mb-3
           h4.text-success.mb-0 Stock Records
-          //- Add Stock dropdown
+          // Add Stock dropdown
           .btn-group
             button.btn.btn-success.dropdown-toggle(type="button" data-bs-toggle="dropdown" aria-expanded="false")
               | + Add Stock
             ul.dropdown-menu.dropdown-menu-end
               li
                 a.dropdown-item(href="/stock") ➕ Add Stock
-              //- li
-              //-   a.dropdown-item(href="/stock/add-finished") 🛠️ Add Finished Product
-
-        //- Table
+            
+        // Table
         table.table.table-striped.table-hover.mt-3
           thead
             tr

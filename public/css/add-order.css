@@ -1,0 +1,144 @@
+/* === Page Background === */
+body {
+    font-family: "Poppins", sans-serif;
+    background: linear-gradient(90deg, #1a4d2e, #2e8b57, #1a4d2e);
+    color: #fff;
+    margin: 0;
+    padding: 30px;
+    min-height: 100vh;
+}
+
+/* Navbar */
+nav {
+    background: linear-gradient(90deg, #1a4d2e, #2e8b57, #1a4d2e);
+    padding: 10px 25px;
+    border-radius: 14px;
+    margin-bottom: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.logo {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+}
+
+.company-name {
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: #fff;
+    letter-spacing: 0.5px;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
+}
+
+.back-link {
+    color: #fff;
+    font-weight: 500;
+    text-decoration: none;
+    background-color: rgba(255, 255, 255, 0.15);
+    padding: 8px 16px;
+    border-radius: 8px;
+    transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.back-link:hover {
+    background-color: rgba(255, 255, 255, 0.25);
+    transform: scale(1.03);
+}
+
+/* Form Styling  */
+main {
+    max-width: 550px;
+    margin: 0 auto;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 25px;
+    border-radius: 16px;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 2rem;
+}
+
+label {
+    font-weight: 500;
+    display: block;
+    margin-bottom: 6px;
+}
+
+.form-control,
+.form-select {
+    width: 100%;
+    padding: 10px 12px;
+    border: none;
+    border-radius: 8px;
+    background-color: rgba(255, 255, 255, 0.15);
+    color: black;
+    font-size: 15px;
+    outline: none;
+    margin-bottom: 15px;
+}
+
+.form-control::placeholder {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.form-control:focus,
+.form-select:focus {
+    background-color: rgba(255, 255, 255, 0.25);
+}
+
+/* Button  */
+.btn-success {
+    width: 100%;
+    background-color: #28a745;
+    border: none;
+    color: #fff;
+    padding: 12px;
+    font-size: 16px;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.btn-success:hover {
+    background-color: #218838;
+    transform: scale(1.03);
+}
+
+/*  Responsive  */
+@media (max-width: 768px) {
+    body {
+        padding: 15px;
+    }
+
+    main {
+        padding: 20px;
+    }
+
+    h1 {
+        font-size: 1.6rem;
+    }
+}

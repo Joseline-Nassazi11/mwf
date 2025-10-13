@@ -1,30 +1,3 @@
-//- doctype html
-//- head
-//-   meta(charset='UTF-8')
-//-   meta(name='viewport' content='width=device-width, initial-scale=1.0')
-//-   title MWF - Login
-//-   link(rel='stylesheet' href='/css/login.css')
-//- .login-container
-//-   .login-box
-//-     h2 MWF Login
-//-     form(action='/login' method='post')
-//-       .input-group
-//-         label(for='email') Email Address
-//-         input#email(type='email' name='email' placeholder='Enter email' required='')
-//-       .input-group
-//-         label(for='password') Password
-//-         input#password(type='password' name='password' placeholder='Enter password' required='')
-//-       button.btn(type='submit') Login
-//- .or-continue
-          //-   span or continue with
-          
-          //- .social-login
-          //-   a.social-btn.google(href='/auth/google')
-          //-     i.fab.fa-google
-          //-   a.social-btn.github(href='/auth/github')
-          //-     i.fab.fa-github
-          //-   a.social-btn.facebook(href='/auth/facebook')
-          //-     i.fab.fa-facebook-f
 doctype html
 html(lang="en")
   head
@@ -39,16 +12,18 @@ html(lang="en")
         .logo-area
           img(src="/images/mwf-logo.png", alt="MWF Logo")
         
-        h3 Welcome Back!
-        
+        h3 Welcome !
+
         form(action='/login' method='post' id='loginForm' novalidate)
           .input-group
             label(for='email') Email Address
+            i.fas.fa-envelope
             input#email(type='email' name='email' placeholder='Enter your email')
             small.error-message#emailError
 
           .input-group
             label(for='password') Password
+            i.fas.fa-lock
             input#password(type='password' name='password' placeholder='Enter your password')
             small.error-message#passwordError
           
@@ -56,10 +31,24 @@ html(lang="en")
             a(href='/forgot-password') Forgot Password?
           
           button.btn.btn-primary(type='submit') LOGIN
-          
-          .register-link
-            span Don't have an account yet? 
-            a(href='/register') Register for free
 
-    // Link external JS
+        //  Divider
+        .or-continue
+          span OR Continue With
+
+        // Social Login Buttons
+        .social-login
+          a.social-btn.google(href="/google")
+            i.fab.fa-google
+
+          a.social-btn.github(href="/github")
+            i.fab.fa-github
+
+          a.social-btn.facebook(href="/facebook")
+            i.fab.fa-facebook
+
+        .register-link
+          span Don't have an account yet? 
+          a(href='/register') Register for free
+
     script(src="/js/login.js")

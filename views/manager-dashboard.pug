@@ -27,11 +27,11 @@ html(lang='en')
             a(href='/')
               i.bi.bi-house-door-fill.me-2
               | Index
-          li.active
+          li
             a(href='/stocklist')
               i.bi.bi-box-seam.me-2
               | Stock Management
-          li.active
+          li
             a(href='/stock-records')
               i.bi.bi-clipboard-data.me-2
               | Stock Records
@@ -75,6 +75,10 @@ html(lang='en')
             a(href='/todo')
               i.bi.bi-check2-square.me-2
               | TO DO
+          li
+            a(href='/open-orders')
+              i.bi.bi-clipboard-check.me-2
+              | Open Orders
 
       main.content
         h1 Manager Overview & KPIs
@@ -95,31 +99,32 @@ html(lang='en')
           
           .insight-card.out-of-stock
             p Out of Stock Items
-            span #{productsOutOfStock ? productsOutOfStock : 0}
+            span #{productsOutOfStock || 0}
           
           .insight-card.orders
             p Total Open Orders
-            span #{totalOpenOrders ? totalOpenOrders : 0}
+            span #{totalOpenOrders || 0}
 
           .insight-card.attendants
             p Registered Attendants
-            span #{totalAttendants ? totalAttendants : 0}
+            span #{totalAttendants || 0}
 
           .insight-card.suppliers
             p Active Suppliers
-            span #{totalSuppliers ? totalSuppliers : 0}
+            span #{totalSuppliers || 0}
 
           .insight-card.losses
             p Total Losses (30 Days)
             span UGX #{totalLosses ? totalLosses.toLocaleString() : 0}
 
-        // --- GRAPH/CHART ---
+        //  GRAPH/CHART 
         .card.chart-area
           h2 Sales Trend (Last 7 Days)
           canvas#salesChart(width='400', height='150')
 
-        // --- RECENT ACTIVITY ---
+        //  RECENT ACTIVITY GRID 
         .recent-activity-grid
+          // Recent Sales Card
           .card
             h2 Recent Sales Activity 
             table.summary-table
@@ -134,13 +139,14 @@ html(lang='en')
                   each sale in recentSales
                     tr
                       td= sale.customerName || 'Unknown'
-                      td= sale.productId && sale.productId.toString ? sale.productId.toString().slice(-6) : 'N/A'
-                      td= sale.quantitySold || 0
+                      td= sale.productId ? sale.productId.toString().slice(-6) : 'N/A'
+                      td= sale.quantity || 0
                       td= sale.totalPrice ? sale.totalPrice.toLocaleString() : 0
                 else
                   tr
                     td(colspan='4') No recent sales recorded.
 
+          // Low Stock Alert Card
           .card
             h2 Low Stock Alert 
             table.summary-table
@@ -158,13 +164,70 @@ html(lang='en')
                         td= product.name || 'N/A'
                         td= product.type || 'N/A'
                         td= product.quantity || 0
-                        td= product.supplierName || 'Unknown'
+                        td= product.supplier || 'Unknown'
                 else
                   tr
                     td(colspan='4') All stock levels appear healthy!
+
+        //  EXPENSE TRACKER SECTION 
+        .card.mt-5
+          h2.mb-3 Expense Tracker
+          form(action="/dashboard/expenses/add" method="POST" class="mb-4")
+            .mb-4
+              input.form-control(type="text" name="description" placeholder="Description" required)
+            .mb-4
+              input.form-control(type="number" name="amount" placeholder="Amount (UGX)" required)
+            .mb-4
+              select.form-select(name="category" required)
+                option(value="") Select Category
+                option(value="Supplies") Supplies
+                option(value="Transport") Transport
+                option(value="Maintenance") Maintenance
+                option(value="Utilities") Utilities
+                option(value="Wages") Wages
+                option(value="Others") Others
+            .mb-4
+              button.btn.btn-success(type="submit") Add Expense
+
+          if expenses && expenses.length
+            table.table.table-striped.table-bordered.mt-3
+              thead.table-dark
+                tr
+                  th Description
+                  th Amount
+                  th Category
+                  th Date
+                  th Action
+              tbody
+                each e in expenses
+                  tr
+                    td= e.description
+                    td UGX #{e.amount.toLocaleString()}
+                    td= e.category
+                    td= e.createdAt.toDateString()
+                    td
+                      form(action=`/dashboard/expenses/delete/${e._id}` method="POST")
+                        button.btn.btn-danger.btn-sm(type="submit") Delete
+          else
+            p.text-muted.mt-3 No expenses recorded yet.
+
+          h3.mt-4.total-spending-text.text-end Total Spending: UGX #{total.toLocaleString()}
+
+          if summary && Object.keys(summary).length
+            .mt-3
+              h5 Category Breakdown:
+              ul.list-group
+                each val, key in summary
+                  li.list-group-item.d-flex.justify-content-between.align-items-center
+                    span= key
+                    span UGX #{val.toLocaleString()}
+          else
+            p.text-muted No spending summary available yet.
+            
     // Pass data from Node to frontend JS
     script.
       const chartLabels = !{chartLabels};
       const chartRevenue = !{chartRevenue};
       const chartTransactions = !{chartTransactions};
+
     script(src='/js/manager-dashboard.js', defer)

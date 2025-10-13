@@ -1,0 +1,208 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/*  PAGE LAYOUT  */
+body {
+    font-family: "Poppins", sans-serif;
+    background: linear-gradient(145deg, #f4f7f5, #e8f5ef);
+    color: #1a4d2e;
+    margin: 0;
+    padding: 40px;
+    min-height: 100vh;
+}
+
+/*  NAVBAR */
+nav {
+    /* background: linear-gradient(90deg, #1a4d2e, #2e8b57, #1a4d2e); */
+    background: linear-gradient(90deg, #1a4d2e, #2e8b57, #1a4d2e);
+    padding: 10px 25px;
+    border-radius: 14px;
+    margin-bottom: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.logo {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+}
+
+.company-name {
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: #fff;
+    letter-spacing: 0.5px;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
+}
+
+.back-link {
+    color: #fff;
+    font-weight: 500;
+    text-decoration: none;
+    background-color: rgba(255, 255, 255, 0.15);
+    padding: 8px 16px;
+    border-radius: 8px;
+    transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.back-link:hover {
+    background-color: rgba(255, 255, 255, 0.25);
+    transform: scale(1.03);
+}
+
+/*  HEADER  */
+h1 {
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 2rem;
+    font-weight: 700;
+    color: #1a4d2e;
+    text-shadow: 0 1px 0 #fff;
+}
+
+/*  TABLE STYLING  */
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 18px;
+    overflow: hidden;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+    margin-bottom: 30px;
+}
+
+.table thead {
+    /* background: linear-gradient(90deg, #1a4d2e, #2e8b57, #1a4d2e); */
+    background: linear-gradient(135deg, #28a745, #1e7e34);
+    color: white;
+}
+
+.table thead th {
+    color: #fff;    /* White for the header text */
+    background: linear-gradient(90deg, #1a4d2e, #2e8b57, #1a4d2e);   
+}
+
+.table tbody td {
+    color: #000;
+}
+
+.table th,
+.table td {
+    padding: 14px 18px;
+    text-align: left;
+    border-bottom: 1px solid #e8e8e8;
+    font-size: 15px;
+    color: #2c3e50;
+    
+}
+
+.table th {
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+}
+
+.table tr:nth-child(even) {
+    background: #f8faf9;
+}
+
+.table tr:hover {
+    background: #e8f5ef;
+    transition: background 0.3s ease;
+}
+
+/*  BUTTONS  */
+.btn {
+    display: inline-block;
+    padding: 8px 14px;
+    border: none;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+/* Green Success Button */
+.btn-success {
+    background: linear-gradient(90deg, #1a4d2e, #2e8b57);
+    color: #fff;
+}
+
+.btn-success:hover {
+    background: #1a6938;
+    transform: translateY(-2px);
+}
+
+/* Gold Primary Button */
+.btn-primary {
+    background: linear-gradient(135deg, #28a745, #1e7e34);
+    /* background: linear-gradient(90deg, #ffd700, #ffea80); */
+    color: white;
+    font-weight: 600;
+}
+
+.btn-primary:hover {
+    /* background: #ffcc00; */
+    /* background: linear-gradient(90deg, #1a4d2e, #2e8b57, #1a4d2e); */
+    transform: scale(1.03);
+}
+
+/* Small Buttons */
+.btn-sm {
+    padding: 6px 10px;
+    font-size: 13px;
+}
+
+/*  EMPTY STATE  */
+p {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 1rem;
+    color: #555;
+}
+
+/*  ADD ORDER LINK  */
+a.btn-primary.mt-3 {
+    display: block;
+    width: fit-content;
+    margin: 25px auto 0;
+}
+
+/*  RESPONSIVE  */
+@media (max-width: 768px) {
+    body {
+        padding: 20px;
+    }
+
+    h1 {
+        font-size: 1.6rem;
+    }
+
+    .table th,
+    .table td {
+        padding: 10px 8px;
+    }
+}

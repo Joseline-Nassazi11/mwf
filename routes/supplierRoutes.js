@@ -3,7 +3,7 @@ const router = express.Router();
 const SupplierModel = require("../models/supplierModel");
 const { ensureAuthenticated, ensureManager } = require("../middleware/auth");
 
-// --- GET All Suppliers ---
+//  GET All Suppliers 
 router.get("/dashboard/suppliers", ensureAuthenticated, ensureManager, async (req, res) => {
   try {
     const suppliers = await SupplierModel.find().sort({ createdAt: -1 });
@@ -14,7 +14,7 @@ router.get("/dashboard/suppliers", ensureAuthenticated, ensureManager, async (re
   }
 });
 
-// --- POST Add Supplier ---
+//  POST Add Supplier 
 router.post("/dashboard/suppliers/add", ensureAuthenticated, ensureManager, async (req, res) => {
   try {
     const { name, phone, email, address } = req.body;
@@ -27,7 +27,7 @@ router.post("/dashboard/suppliers/add", ensureAuthenticated, ensureManager, asyn
   }
 });
 
-// --- POST Edit Supplier ---
+//  POST Edit Supplier 
 router.post("/dashboard/suppliers/edit/:id", async (req, res) => {
   try {
     const { name, phone, email, address } = req.body;
@@ -44,7 +44,7 @@ router.post("/dashboard/suppliers/edit/:id", async (req, res) => {
   }
 });
 
-// --- POST Delete Supplier ---
+// POST Delete Supplier 
 router.post("/dashboard/suppliers/delete/:id", async (req, res) => {
   try {
     await SupplierModel.findByIdAndDelete(req.params.id);

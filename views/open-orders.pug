@@ -4,34 +4,47 @@ html(lang="en")
     meta(charset="UTF-8")
     meta(name="viewport" content="width=device-width, initial-scale=1.0")
     title Open Orders
-    link(rel="stylesheet", href="/css/style.css")
-
+    link(rel="stylesheet", href="/css/open-orders.css")
   body
     nav
-      a(href="/dashboard") ← Back to Dashboard
+      .nav-container
+        .brand
+          img.logo(src="/images/mwf-logo.png", alt="Company Logo")
+          span.company-name Mayondo Wood & Furniture
+        a.back-link(href="/dashboard") ← Back to Dashboard
+        a.back-link(href="/agent-dashboard") ← Back to Attendant Dashboard
 
-    h1 Open Orders 
+    h1 Open Orders
 
     if openOrders.length
-      table
+      table.table
         thead
           tr
-            th Order ID
             th Customer
             th Product
+            th Type
             th Quantity
-            th Total Price
-            th Status
+            th Price per Unit (UGX)
+            th Total Price (UGX)
             th Date
+            th Status
+            th Action
         tbody
           each order in openOrders
             tr
-              td= order._id.toString().slice(-6)
               td= order.customerName
-              td= order.productId.name || order.productId.toString()
+              td= order.productId ? order.productId.name : "N/A"
+              td= order.productId ? order.productId.type : "N/A"
               td= order.quantity
+              td= order.productId ? order.productId.price.toLocaleString() : "N/A"
               td= order.totalPrice.toLocaleString()
-              td= order.status
               td= new Date(order.date).toLocaleDateString()
+              td= order.status
+              td
+                if order.status === "open"
+                  form(action=`/orders/${order._id}/complete` method="POST")
+                    button.btn.btn-success.btn-sm(type="submit") Mark as Completed
     else
-      p No open orders found.
+      p No open orders at the moment.
+
+    a.btn.btn-primary.mt-3(href="/AddOrder") Add New Order

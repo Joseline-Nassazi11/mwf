@@ -1,6 +1,6 @@
 const ctx = document.getElementById("salesChart").getContext("2d");
 new Chart(ctx, {
-  type: "line", // You can try 'bar', 'pie', 'doughnut'
+  type: "line", 
   data: {
     labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun"],
     datasets: [

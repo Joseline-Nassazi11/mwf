@@ -8,9 +8,6 @@ html(lang="en")
     link(rel="stylesheet" href="/css/suppliers.css")
     script(src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js")
 
-    // The inline styles have been removed. Ensure these styles are in /css/suppliers.css
-    // .navbar-custom, .navbar-logo, .company-name, .user-role styles should be in /css/suppliers.css
-
   body
     // Navbar
     .navbar-custom.d-flex.justify-content-between.align-items-center
@@ -49,7 +46,6 @@ html(lang="en")
                 td #{supplier.email}
                 td #{supplier.address}
                 td
-                  // Action buttons with spacing using d-flex and gap-2
                   .d-flex.justify-content-center.gap-2
                     button.btn.btn-sm.btn-warning(
                       data-bs-toggle="modal"
@@ -107,3 +103,5 @@ html(lang="en")
                     label.form-label(for='address') Address
                     input.form-control(type='text' id='address' name='address' value=supplier.address)
                   button.btn.btn-success(type='submit') Update Supplier
+  script(src="/js/suppliers.js")
+    

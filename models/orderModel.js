@@ -1,12 +1,16 @@
 const mongoose = require("mongoose");
 
-const OrderSchema = new mongoose.Schema({
+const orderSchema = new mongoose.Schema({
   customerName: { type: String, required: true },
-  productId: { type: mongoose.Schema.Types.ObjectId, ref: "Product" },
-  quantity: { type: Number, required: true },
+  productId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "StockModel",
+    required: true,
+  },
+  quantity: { type: Number, required: true, min: 1 },
   totalPrice: { type: Number, required: true },
-  status: { type: String, default: "open" }, // ← NEW FIELD
-  createdAt: { type: Date, default: Date.now },
+  status: { type: String, default: "open" },
+  date: { type: Date, default: Date.now },
 });
 
-module.exports = mongoose.model("Order", OrderSchema);
+module.exports = mongoose.model("OrderModel", orderSchema);

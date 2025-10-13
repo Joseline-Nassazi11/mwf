@@ -1,0 +1,36 @@
+doctype html
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport" content="width=device-width, initial-scale=1.0")
+    title Add New Order
+    link(rel="stylesheet", href="/css/add-order.css")
+
+  body
+    nav
+      .nav-container
+        .brand
+          img.logo(src="/images/mwf-logo.png", alt="Company Logo")
+          span.company-name Mayondo Wood & Furniture
+        a.back-link(href="/agent-dashboard") ← Back to Attendant Dashboard
+
+    main
+      h1 Add New Order
+
+      form(action="/AddOrder" method="POST" class="order-form")
+        .mb-3
+          label(for="customerName") Customer Name
+          input.form-control(type="text" name="customerName" id="customerName" placeholder="Enter customer's name" required)
+
+        .mb-3
+          label(for="productId") Product
+          select.form-select(name="productId" id="productId" required)
+            option(value="") Select a product
+            each product in stockItems
+              option(value=product._id)= `${product.name} (${product.type}) - ${product.quantity} in stock`
+
+        .mb-3
+          label(for="quantity") Quantity
+          input.form-control(type="number" name="quantity" id="quantity" min="1" placeholder="Enter quantity" required)
+
+        button.btn.btn-success(type="submit") Place Order
