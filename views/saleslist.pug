@@ -13,11 +13,9 @@ html(lang="en")
       .d-flex.align-items-center
         img(src="/images/mwf-logo.png" alt="MWF Logo" class="logo")
         span.ms-2.fw-bold.text-white Mayondo Wood & Furniture Ltd
-      ul.navbar-nav.ms-auto
-        li.nav-item
-          a.nav-link(href="/dashboard") Dashboard    
-        li.nav-item
-          a.nav-link(href="/agent-dashboard") Attendant Dashboard     
+      .d-flex.align-items-center.gap-2
+          a.nav-link.btn.btn-outline-light(href="/dashboard") Dashboard
+          a.nav-link.btn.btn-outline-light(href="/agent-dashboard") Attendant Dashboard
       span.user-role.text-white Attendant
 
     // Sales Table
@@ -72,8 +70,8 @@ html(lang="en")
                   else
                      td
                       .btn-group
+                        a.btn.btn-info.mt-3.ms-2(href=`/invoices/sale/${sale._id}`) Invoice
                         a.btn.btn-dark.mt-3(href=`/sales/${sale._id}/receipt`) Receipt
-                        //- a.btn.btn-sm.btn-info.me-1(href="/Addsale") Add
             else
               tr
                 td(colspan="11").text-center.text-muted No sales recorded yet

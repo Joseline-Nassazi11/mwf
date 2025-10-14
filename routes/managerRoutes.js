@@ -42,7 +42,7 @@ router.get("/dashboard", ensureAuthenticated, ensureManager, async (req, res) =>
 
     //Recent Sales
     const recentSales = await SaleModel.find()
-      // .populate("product") // linked product info
+      .populate("product", "name") // linked product info
       .sort({ date: -1 })
       .limit(5)
       .lean();
@@ -131,11 +131,12 @@ router.get("/dashboard", ensureAuthenticated, ensureManager, async (req, res) =>
 
 
 // Reports Page Route
-router.get("/reports", async (req, res) => {
+router.get("/reports", ensureAuthenticated, ensureManager, async (req, res) => {
   try {
     // Fetch sales data
     const sales = await SaleModel.find({})
       .populate("agent") // populate agent details
+      .populate("product", "name") //  populate product name from StockModel
       .sort({ date: -1 })
       .lean();
 
@@ -155,6 +156,7 @@ router.get("/reports", async (req, res) => {
   }
 });
 
+// GET /OPEN-ORDERs
 router.get("/open-orders", async (req, res) => {
   try {
     // Fetch all orders with status "open" and populate product info

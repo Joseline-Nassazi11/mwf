@@ -56,7 +56,7 @@ router.post("/stock", ensureAuthenticated, ensureManager, async (req, res) => {
       );
     }
 
-    // Always log to stock record (for both new and existing)
+    //  log to stock record (for both new and existing)
     const stockRecord = new StockRecordModel({
       name: productName,
       type,
@@ -77,6 +77,7 @@ router.post("/stock", ensureAuthenticated, ensureManager, async (req, res) => {
   }
 });
 
+// GET/ stocklist
 router.get("/stocklist", async (req, res) => {
   try {
     let items = await StockModel.find().sort({ $natural: -1 }).lean();

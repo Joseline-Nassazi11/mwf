@@ -30,21 +30,38 @@ body {
     color: white;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
 }
-.dashboard-link {
+
+/*  Navigation Buttons  */
+.header .nav-link {
+    display: inline-block;
     font-weight: 600;
-    padding: 8px 16px;
+    padding: 8px 18px;
     border-radius: 8px;
-    background: linear-gradient(90deg, #2e8b57, #1a4d2e);
-    color: white;
     text-decoration: none;
     transition: all 0.3s ease;
+    color: white;
+    background: linear-gradient(90deg, #1a4d2e, #2e8b57, #1a4d2e);
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    border: none;
 }
 
-.dashboard-link:hover {
-    background: linear-gradient(90deg, #1a4d2e, #2e8b57);
+.header .d-flex.align-items-center.gap-2 {
+    margin-left: auto;
+    
+}
+
+.header .nav-link:hover {
     transform: translateY(-2px);
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+    opacity: 0.95;
+}
+
+/* Make them consistent on small screens */
+@media (max-width: 600px) {
+    .header .nav-link {
+        padding: 6px 12px;
+        font-size: 13px;
+    }
 }
 
 .brand {

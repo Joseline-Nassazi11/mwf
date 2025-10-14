@@ -6,7 +6,7 @@ const SaleModel = require("../models/salesModel");
 const StockModel = require("../models/stockModel");
 const InvoiceModel = require("../models/invoiceModel");
 
-//  Add Sale 
+//  Add Sale
 router.get("/Addsale", ensureAuthenticated, ensureAgent, async (req, res) => {
   try {
     const stocks = await StockModel.find();
@@ -38,10 +38,13 @@ router.post("/Addsale", ensureAuthenticated, ensureAgent, async (req, res) => {
     const userId = req.session.user?._id;
     if (!userId) return res.status(401).send("User not authenticated");
 
-    const stock = await StockModel.findById(product);
+    // const stock = await StockModel.findById(product);
     //   type: productType,
     //   name: product,
     // });
+    // if (!stock) return res.status(400).send("Product not found in stock");
+    // Find stock by its name instead of by ID
+    const stock = await StockModel.findOne({ name: product }); // <-- change here
     if (!stock) return res.status(400).send("Product not found in stock");
 
     if (stock.quantity < Number(quantity)) {
@@ -50,7 +53,7 @@ router.post("/Addsale", ensureAuthenticated, ensureAgent, async (req, res) => {
 
     let total = Number(unitPrice) * Number(quantity);
     if (transport === "on") total += total * 0.05;
-    
+
     const newSale = new SaleModel({
       customerName,
       productType,
@@ -79,7 +82,7 @@ router.post("/Addsale", ensureAuthenticated, ensureAgent, async (req, res) => {
     });
     await invoice.save();
 
-    res.redirect(`/invoices/${invoice._id}`);
+res.redirect(`/invoices/sale/${newSale._id}`);
   } catch (error) {
     console.error("Error saving sale:", error);
     res.status(500).send("Error recording sale");
@@ -146,7 +149,7 @@ router.post("/deletesales/:id", async (req, res) => {
   }
 });
 
-//  Sales List 
+//  Sales List
 router.get("/salestable", async (req, res) => {
   try {
     const sales = await SaleModel.find()
@@ -160,7 +163,7 @@ router.get("/salestable", async (req, res) => {
   }
 });
 
-//  Receipt 
+//  Receipt
 router.get("/sales/:id/receipt", async (req, res) => {
   try {
     const sale = await SaleModel.findById(req.params.id);
@@ -174,24 +177,50 @@ router.get("/sales/:id/receipt", async (req, res) => {
   }
 });
 
-//  Invoice 
-router.get("/invoices/:id", async (req, res) => {
-  const { id } = req.params;
-  if (!mongoose.Types.ObjectId.isValid(id)) {
-    console.error("Invalid invoice ID:", id);
-    return res.status(400).send("Invalid invoice ID");
+//  Invoice
+// // GET invoice by Sale ID
+router.get("/invoices/sale/:saleId", ensureAuthenticated, async (req, res) => {
+  const { saleId } = req.params;
+
+  // Validate ObjectId
+  if (!mongoose.Types.ObjectId.isValid(saleId)) {
+    console.error("Invalid sale ID:", saleId);
+    return res.status(400).send("Invalid sale ID");
   }
 
   try {
-    const invoice = await InvoiceModel.findById(id).populate("sale");
-    if (!invoice) return res.status(404).send("Invoice not found");
+    // First, check if the sale exists
+    const sale = await SaleModel.findById(saleId).populate("product", "name type price");
+    if (!sale) {
+      console.error("Sale not found:", saleId);
+      return res.status(404).send("Sale not found");
+    }
+
+    // Find the invoice linked to this sale
+    let invoice = await InvoiceModel.findOne({ sale: saleId }).populate({
+      path: "sale",
+      populate: { path: "product", select: "name type price" },
+    });
+
+    // If invoice does not exist, create one automatically
+    if (!invoice) {
+      const invoiceCount = await InvoiceModel.countDocuments();
+      const invoiceNumber = `INV-${new Date().getFullYear()}-${String(invoiceCount + 1).padStart(4, "0")}`;
+
+      invoice = new InvoiceModel({
+        sale: sale._id,
+        invoiceNumber,
+      });
+      await invoice.save();
+      console.log("Invoice auto-created:", invoice._id, "for sale:", sale._id);
+    }
+
     res.render("invoice", { invoice });
   } catch (error) {
     console.error("Error fetching invoice:", error);
     res.status(500).send("Error loading invoice");
   }
 });
-
 
 router.post("/api/sales", async (req, res) => {
   try {

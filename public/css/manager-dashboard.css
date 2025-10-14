@@ -473,3 +473,15 @@ body {
     margin-top: 20px;
     font-weight: 500;
 }
+
+.error-message {
+    color: #d9534f;
+    font-size: 0.9em;
+    margin-top: 4px;
+}
+
+.form-control.error,
+.form-select.error {
+    border-color: #d9534f;
+    background-color: #fff6f6;
+}

@@ -23,7 +23,7 @@ html
         tbody
           tr
             td #{invoice.sale.productType}
-            td #{invoice.sale.product}
+            td #{invoice.sale.product.name}
             td UGX #{invoice.sale.unitPrice}
             td #{invoice.sale.quantity}
             td #{invoice.sale.transport ? "Yes (+5%)" : "No"}
@@ -32,6 +32,6 @@ html
       h3.text-end Grand Total: UGX #{invoice.sale.totalPrice}
 
       // Buttons section
-      .d-flex.justify-content-between.mt-4
-        //- a.btn.btn-secondary(href="/sales") ← Back to Sales
+      .d-flex.justify-content-between.mt-4.no-print
         button.btn.btn-primary(onclick="window.print()") Print Invoice
+        a.btn(href="/Addsale") Back to Sales

@@ -5,6 +5,15 @@ html(lang="en")
     meta(name="viewport" content="width=device-width, initial-scale=1.0")
     title Add New Order
     link(rel="stylesheet", href="/css/add-order.css")
+    style.
+      .error-message {
+        color: #d9534f;
+        font-size: 0.9em;
+        margin-top: 4px;
+      }
+      .form-control.error, .form-select.error {
+        border: 1px solid #d9534f;
+      }
 
   body
     nav
@@ -17,20 +26,81 @@ html(lang="en")
     main
       h1 Add New Order
 
-      form(action="/AddOrder" method="POST" class="order-form")
+      form#orderForm.order-form(action="/AddOrder" method="POST" novalidate)
         .mb-3
           label(for="customerName") Customer Name
-          input.form-control(type="text" name="customerName" id="customerName" placeholder="Enter customer's name" required)
+          input#customerName.form-control(type="text" name="customerName" placeholder="Enter customer's name" required)
+          small#errorName.error-message
 
         .mb-3
           label(for="productId") Product
-          select.form-select(name="productId" id="productId" required)
+          select#productId.form-select(name="productId" required)
             option(value="") Select a product
             each product in stockItems
-              option(value=product._id)= `${product.name} (${product.type}) - ${product.quantity} in stock`
+              option(value=product._id data-stock=product.quantity)= `${product.name} (${product.type}) - ${product.quantity} in stock`
+          small#errorProduct.error-message
 
         .mb-3
           label(for="quantity") Quantity
-          input.form-control(type="number" name="quantity" id="quantity" min="1" placeholder="Enter quantity" required)
+          input#quantity.form-control(type="number" name="quantity" min="1" placeholder="Enter quantity" required)
+          small#errorQuantity.error-message
 
         button.btn.btn-success(type="submit") Place Order
+
+    //  Validation Script 
+    script.
+      document.addEventListener("DOMContentLoaded", () => {
+        const form = document.getElementById("orderForm");
+        const name = document.getElementById("customerName");
+        const product = document.getElementById("productId");
+        const qty = document.getElementById("quantity");
+
+        const errName = document.getElementById("errorName");
+        const errProduct = document.getElementById("errorProduct");
+        const errQty = document.getElementById("errorQuantity");
+
+        // Clear all error messages
+        function clearErrors() {
+          [errName, errProduct, errQty].forEach(el => el.textContent = "");
+          [name, product, qty].forEach(el => el.classList.remove("error"));
+        }
+
+        form.addEventListener("submit", (e) => {
+          clearErrors();
+          let valid = true;
+
+          const selected = product.options[product.selectedIndex];
+          const stock = parseInt(selected?.getAttribute("data-stock")) || 0;
+          const quantity = parseInt(qty.value);
+
+          if (!name.value.trim()) {
+            errName.textContent = "Please enter the customer's name.";
+            name.classList.add("error");
+            valid = false;
+          }
+
+          if (!product.value) {
+            errProduct.textContent = "Please select a product.";
+            product.classList.add("error");
+            valid = false;
+          }
+
+          if (!quantity || quantity < 1) {
+            errQty.textContent = "Please enter a valid quantity (at least 1).";
+            qty.classList.add("error");
+            valid = false;
+          } else if (quantity > stock) {
+            errQty.textContent = `Only ${stock} units available in stock.`;
+            qty.classList.add("error");
+            valid = false;
+          }
+
+          if (!valid) e.preventDefault();
+        });
+
+        // Remove errors when user starts fixing input
+        [name, product, qty].forEach(el => {
+          el.addEventListener("input", clearErrors);
+          el.addEventListener("change", clearErrors);
+        });
+      });

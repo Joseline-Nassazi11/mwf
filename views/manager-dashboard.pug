@@ -88,36 +88,34 @@ html(lang='en')
           .insight-card.revenue
             p Total Revenue (30 Days)
             span UGX #{totalRevenue ? totalRevenue.toLocaleString() : 0}
-          
           .insight-card.profit
             p Gross Profit (30 Days)
             span UGX #{grossProfit ? grossProfit.toLocaleString() : 0}
-          
           .insight-card.capital
             p Capital in Stock
             span UGX #{capitalInStock ? capitalInStock.toLocaleString() : 0}
-          
           .insight-card.out-of-stock
             p Out of Stock Items
-            span #{productsOutOfStock || 0}
-          
+            if productsOutOfStock && productsOutOfStock.length
+              ul.out-of-stock-list
+                each product in productsOutOfStock
+                  li= product.name
+            else
+              span 0
           .insight-card.orders
             p Total Open Orders
             span #{totalOpenOrders || 0}
-
           .insight-card.attendants
             p Registered Attendants
             span #{totalAttendants || 0}
-
           .insight-card.suppliers
             p Active Suppliers
             span #{totalSuppliers || 0}
-
           .insight-card.losses
             p Total Losses (30 Days)
             span UGX #{totalLosses ? totalLosses.toLocaleString() : 0}
 
-        //  GRAPH/CHART 
+        // --- GRAPH/CHART ---
         .card.chart-area
           h2 Sales Trend (Last 7 Days)
           canvas#salesChart(width='400', height='150')
@@ -131,7 +129,7 @@ html(lang='en')
               thead
                 tr
                   th Customer
-                  th Product ID
+                  th Product 
                   th Quantity
                   th Total Price (UGX)
               tbody
@@ -139,7 +137,7 @@ html(lang='en')
                   each sale in recentSales
                     tr
                       td= sale.customerName || 'Unknown'
-                      td= sale.productId ? sale.productId.toString().slice(-6) : 'N/A'
+                      td= sale.product ? sale.product.name : 'N/A'
                       td= sale.quantity || 0
                       td= sale.totalPrice ? sale.totalPrice.toLocaleString() : 0
                 else
@@ -169,16 +167,20 @@ html(lang='en')
                   tr
                     td(colspan='4') All stock levels appear healthy!
 
-        //  EXPENSE TRACKER SECTION 
+        // --- EXPENSE TRACKER SECTION ---
         .card.mt-5
           h2.mb-3 Expense Tracker
-          form(action="/dashboard/expenses/add" method="POST" class="mb-4")
+          form#expenseForm(action="/dashboard/expenses/add" method="POST" class="mb-4" novalidate)
             .mb-4
-              input.form-control(type="text" name="description" placeholder="Description" required)
+              input#description.form-control(type="text" name="description" placeholder="Description")
+              small#errorDescription.error-message
+
             .mb-4
-              input.form-control(type="number" name="amount" placeholder="Amount (UGX)" required)
+              input#amount.form-control(type="number" name="amount" placeholder="Amount (UGX)")
+              small#errorAmount.error-message
+
             .mb-4
-              select.form-select(name="category" required)
+              select#category.form-select(name="category")
                 option(value="") Select Category
                 option(value="Supplies") Supplies
                 option(value="Transport") Transport
@@ -186,9 +188,12 @@ html(lang='en')
                 option(value="Utilities") Utilities
                 option(value="Wages") Wages
                 option(value="Others") Others
+              small#errorCategory.error-message
+
             .mb-4
               button.btn.btn-success(type="submit") Add Expense
 
+          // Expense Table
           if expenses && expenses.length
             table.table.table-striped.table-bordered.mt-3
               thead.table-dark
@@ -223,11 +228,64 @@ html(lang='en')
                     span UGX #{val.toLocaleString()}
           else
             p.text-muted No spending summary available yet.
-            
-    // Pass data from Node to frontend JS
+
+    // --- PASS DATA TO FRONTEND JS ---
     script.
       const chartLabels = !{chartLabels};
       const chartRevenue = !{chartRevenue};
       const chartTransactions = !{chartTransactions};
+
+    // EXPENSE FORM VALIDATION
+    script.
+      document.addEventListener("DOMContentLoaded", () => {
+        const form = document.getElementById("expenseForm");
+        const description = document.getElementById("description");
+        const amount = document.getElementById("amount");
+        const category = document.getElementById("category");
+
+        const errDescription = document.getElementById("errorDescription");
+        const errAmount = document.getElementById("errorAmount");
+        const errCategory = document.getElementById("errorCategory");
+
+        function clearErrors() {
+          [errDescription, errAmount, errCategory].forEach(el => el.textContent = "");
+          [description, amount, category].forEach(el => el.classList.remove("error"));
+        }
+
+        form.addEventListener("submit", (e) => {
+          clearErrors();
+          let valid = true;
+
+          // Description
+          if (!description.value.trim()) {
+            errDescription.textContent = "Please enter a description.";
+            description.classList.add("error");
+            valid = false;
+          }
+
+          // Amount
+          const amtValue = parseFloat(amount.value);
+          if (!amount.value.trim() || isNaN(amtValue) || amtValue <= 0) {
+            errAmount.textContent = "Please enter a valid amount greater than 0.";
+            amount.classList.add("error");
+            valid = false;
+          }
+
+          // Category
+          if (!category.value) {
+            errCategory.textContent = "Please select a category.";
+            category.classList.add("error");
+            valid = false;
+          }
+
+          if (!valid) e.preventDefault();
+        });
+
+        // Clear errors as user types
+        [description, amount, category].forEach(el => {
+          el.addEventListener("input", clearErrors);
+          el.addEventListener("change", clearErrors);
+        });
+      });
 
     script(src='/js/manager-dashboard.js', defer)

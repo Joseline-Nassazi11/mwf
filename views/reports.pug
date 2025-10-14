@@ -53,7 +53,8 @@ html(lang="en")
                 tr
                   td= i + 1
                   td= sale.customerName
-                  td= sale.product
+                  //- td= sale.product
+                  td= sale.product && sale.product.name ? sale.product.name : 'N/A'
                   td= sale.unitPrice
                   td= sale.quantity
                   td= sale.totalPrice
